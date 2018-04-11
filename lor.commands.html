@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lor.commands package &mdash; Luigi on Rails 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lor.tasks package" href="lor.tasks.html" />
+    <link rel="prev" title="lor package" href="lor.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Luigi on Rails
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="lor.html">lor package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lor.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">lor.commands package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.commands.dot">lor.commands.dot module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.commands.explain">lor.commands.explain module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.commands.ls">lor.commands.ls module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.commands.new">lor.commands.new module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.commands.properties">lor.commands.properties module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.commands.run">lor.commands.run module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.commands">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lor.tasks.html">lor.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lor.util.html">lor.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.cmdline">lor.cmdline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.pathalias">lor.pathalias module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.properties">lor.properties module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.test">lor.test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.workspace">lor.workspace module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.workspace_global">lor.workspace_global module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Luigi on Rails</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="lor.html">lor package</a> &raquo;</li>
+        
+      <li>lor.commands package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/lor.commands.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lor-commands-package">
+<h1>lor.commands package<a class="headerlink" href="#lor-commands-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lor.commands.dot">
+<span id="lor-commands-dot-module"></span><h2>lor.commands.dot module<a class="headerlink" href="#module-lor.commands.dot" title="Permalink to this headline">¶</a></h2>
+<p>Module for visualizing Luigi task graphs</p>
+<dl class="class">
+<dt id="lor.commands.dot.DotCommand">
+<em class="property">class </em><code class="descclassname">lor.commands.dot.</code><code class="descname">DotCommand</code><a class="headerlink" href="#lor.commands.dot.DotCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lor.util.html#lor.util.cli.CliCommand" title="lor.util.cli.CliCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">lor.util.cli.CliCommand</span></code></a></p>
+<dl class="method">
+<dt id="lor.commands.dot.DotCommand.description">
+<code class="descname">description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.dot.DotCommand.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a human-readable description of
+the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.dot.DotCommand.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.dot.DotCommand.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a unique name for the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.dot.DotCommand.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.dot.DotCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that is called with the command’s arguments
+:param argv:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.commands.dot.print_as_dot">
+<code class="descclassname">lor.commands.dot.</code><code class="descname">print_as_dot</code><span class="sig-paren">(</span><em>task</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.dot.print_as_dot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.commands.dot.recursively_traverse_task">
+<code class="descclassname">lor.commands.dot.</code><code class="descname">recursively_traverse_task</code><span class="sig-paren">(</span><em>graph</em>, <em>task</em>, <em>parent_task_name=None</em>, <em>previously_traversed_task_names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.dot.recursively_traverse_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-lor.commands.explain">
+<span id="lor-commands-explain-module"></span><h2>lor.commands.explain module<a class="headerlink" href="#module-lor.commands.explain" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lor.commands.explain.ExplainCommand">
+<em class="property">class </em><code class="descclassname">lor.commands.explain.</code><code class="descname">ExplainCommand</code><a class="headerlink" href="#lor.commands.explain.ExplainCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lor.util.html#lor.util.cli.CliCommand" title="lor.util.cli.CliCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">lor.util.cli.CliCommand</span></code></a></p>
+<dl class="method">
+<dt id="lor.commands.explain.ExplainCommand.description">
+<code class="descname">description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.explain.ExplainCommand.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a human-readable description of
+the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.explain.ExplainCommand.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.explain.ExplainCommand.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a unique name for the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.explain.ExplainCommand.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.explain.ExplainCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that is called with the command’s arguments
+:param argv:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.commands.explain.explain">
+<code class="descclassname">lor.commands.explain.</code><code class="descname">explain</code><span class="sig-paren">(</span><em>task_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.explain.explain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.commands.explain.generate_depends">
+<code class="descclassname">lor.commands.explain.</code><code class="descname">generate_depends</code><span class="sig-paren">(</span><em>task_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.explain.generate_depends" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.commands.explain.generate_header">
+<code class="descclassname">lor.commands.explain.</code><code class="descname">generate_header</code><span class="sig-paren">(</span><em>task_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.explain.generate_header" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.commands.explain.generate_inputs">
+<code class="descclassname">lor.commands.explain.</code><code class="descname">generate_inputs</code><span class="sig-paren">(</span><em>task_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.explain.generate_inputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.commands.explain.generate_outputs">
+<code class="descclassname">lor.commands.explain.</code><code class="descname">generate_outputs</code><span class="sig-paren">(</span><em>task_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.explain.generate_outputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.commands.explain.generate_task_explanation">
+<code class="descclassname">lor.commands.explain.</code><code class="descname">generate_task_explanation</code><span class="sig-paren">(</span><em>task_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.explain.generate_task_explanation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-lor.commands.ls">
+<span id="lor-commands-ls-module"></span><h2>lor.commands.ls module<a class="headerlink" href="#module-lor.commands.ls" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lor.commands.ls.LsCommand">
+<em class="property">class </em><code class="descclassname">lor.commands.ls.</code><code class="descname">LsCommand</code><a class="headerlink" href="#lor.commands.ls.LsCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lor.util.html#lor.util.cli.CliCommand" title="lor.util.cli.CliCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">lor.util.cli.CliCommand</span></code></a></p>
+<dl class="method">
+<dt id="lor.commands.ls.LsCommand.description">
+<code class="descname">description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.ls.LsCommand.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a human-readable description of
+the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.ls.LsCommand.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.ls.LsCommand.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a unique name for the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.ls.LsCommand.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.ls.LsCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that is called with the command’s arguments
+:param argv:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.commands.new">
+<span id="lor-commands-new-module"></span><h2>lor.commands.new module<a class="headerlink" href="#module-lor.commands.new" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lor.commands.new.NewCommand">
+<em class="property">class </em><code class="descclassname">lor.commands.new.</code><code class="descname">NewCommand</code><a class="headerlink" href="#lor.commands.new.NewCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lor.util.html#lor.util.cli.CliCommand" title="lor.util.cli.CliCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">lor.util.cli.CliCommand</span></code></a></p>
+<dl class="method">
+<dt id="lor.commands.new.NewCommand.description">
+<code class="descname">description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.new.NewCommand.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a human-readable description of
+the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.new.NewCommand.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.new.NewCommand.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a unique name for the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.new.NewCommand.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.new.NewCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that is called with the command’s arguments
+:param argv:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.commands.properties">
+<span id="lor-commands-properties-module"></span><h2>lor.commands.properties module<a class="headerlink" href="#module-lor.commands.properties" title="Permalink to this headline">¶</a></h2>
+<p>Module for a command that lists runtime property keys + values.</p>
+<dl class="class">
+<dt id="lor.commands.properties.PropertiesCommand">
+<em class="property">class </em><code class="descclassname">lor.commands.properties.</code><code class="descname">PropertiesCommand</code><a class="headerlink" href="#lor.commands.properties.PropertiesCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lor.util.html#lor.util.cli.CliCommand" title="lor.util.cli.CliCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">lor.util.cli.CliCommand</span></code></a></p>
+<dl class="method">
+<dt id="lor.commands.properties.PropertiesCommand.description">
+<code class="descname">description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.properties.PropertiesCommand.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a human-readable description of
+the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.properties.PropertiesCommand.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.properties.PropertiesCommand.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a unique name for the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.properties.PropertiesCommand.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.properties.PropertiesCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that is called with the command’s arguments
+:param argv:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.commands.run">
+<span id="lor-commands-run-module"></span><h2>lor.commands.run module<a class="headerlink" href="#module-lor.commands.run" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lor.commands.run.RunCommand">
+<em class="property">class </em><code class="descclassname">lor.commands.run.</code><code class="descname">RunCommand</code><a class="headerlink" href="#lor.commands.run.RunCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="lor.util.html#lor.util.cli.CliCommand" title="lor.util.cli.CliCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">lor.util.cli.CliCommand</span></code></a></p>
+<dl class="method">
+<dt id="lor.commands.run.RunCommand.description">
+<code class="descname">description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.run.RunCommand.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a human-readable description of
+the command.
+:return:</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.commands.run.RunCommand.epilog">
+<code class="descname">epilog</code><em class="property"> = '\n    This command is effectively an alias for the base `luigi` command. The only addition is that this command *also* \n    allows overrides that are specific to LoR (e.g. overriding a property value).\n    '</em><a class="headerlink" href="#lor.commands.run.RunCommand.epilog" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.run.RunCommand.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.run.RunCommand.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a unique name for the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.commands.run.RunCommand.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.commands.run.RunCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that is called with the command’s arguments
+:param argv:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.commands">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lor.commands" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lor.tasks.html" class="btn btn-neutral float-right" title="lor.tasks package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lor.html" class="btn btn-neutral" title="lor package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Adam Kewley.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

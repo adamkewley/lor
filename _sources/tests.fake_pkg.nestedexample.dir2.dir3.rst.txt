@@ -1,0 +1,22 @@
+tests.fake\_pkg.nestedexample.dir2.dir3 package
+===============================================
+
+Submodules
+----------
+
+tests.fake\_pkg.nestedexample.dir2.dir3.mod5 module
+---------------------------------------------------
+
+.. automodule:: tests.fake_pkg.nestedexample.dir2.dir3.mod5
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.fake_pkg.nestedexample.dir2.dir3
+    :members:
+    :undoc-members:
+    :show-inheritance:

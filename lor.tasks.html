@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lor.tasks package &mdash; Luigi on Rails 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lor.util package" href="lor.util.html" />
+    <link rel="prev" title="lor.commands package" href="lor.commands.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Luigi on Rails
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="lor.html">lor package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lor.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="lor.commands.html">lor.commands package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">lor.tasks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.tasks.fs">lor.tasks.fs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.tasks.general">lor.tasks.general module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.tasks.hdfs">lor.tasks.hdfs module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.tasks.tar">lor.tasks.tar module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.tasks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lor.util.html">lor.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.cmdline">lor.cmdline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.pathalias">lor.pathalias module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.properties">lor.properties module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.test">lor.test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.workspace">lor.workspace module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.workspace_global">lor.workspace_global module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Luigi on Rails</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="lor.html">lor package</a> &raquo;</li>
+        
+      <li>lor.tasks package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/lor.tasks.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lor-tasks-package">
+<h1>lor.tasks package<a class="headerlink" href="#lor-tasks-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lor.tasks.fs">
+<span id="lor-tasks-fs-module"></span><h2>lor.tasks.fs module<a class="headerlink" href="#module-lor.tasks.fs" title="Permalink to this headline">¶</a></h2>
+<p>Utility tasks for the local filesystem</p>
+<dl class="class">
+<dt id="lor.tasks.fs.EnsureExistsOnLocalFilesystemTask">
+<em class="property">class </em><code class="descclassname">lor.tasks.fs.</code><code class="descname">EnsureExistsOnLocalFilesystemTask</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.fs.EnsureExistsOnLocalFilesystemTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">luigi.task.ExternalTask</span></code></p>
+<dl class="attribute">
+<dt id="lor.tasks.fs.EnsureExistsOnLocalFilesystemTask.description">
+<code class="descname">description</code><em class="property"> = 'Ensure a file/dir exists on the local filesystem'</em><a class="headerlink" href="#lor.tasks.fs.EnsureExistsOnLocalFilesystemTask.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.fs.EnsureExistsOnLocalFilesystemTask.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.fs.EnsureExistsOnLocalFilesystemTask.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output that this Task produces.</p>
+<p>The output of the Task determines if the Task needs to be run–the task
+is considered finished iff the outputs all exist. Subclasses should
+override this method to return a single <code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> or a list of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> instances.</p>
+<dl class="docutils">
+<dt>Implementation note</dt>
+<dd>If running multiple workers, the output must be a resource that is accessible
+by all workers, such as a DFS or database. Otherwise, workers might compute
+the same output since they don’t see the work done by other workers.</dd>
+</dl>
+<p>See <span class="xref std std-ref">Task.output</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.fs.EnsureExistsOnLocalFilesystemTask.path">
+<code class="descname">path</code><em class="property"> = &lt;luigi.parameter.Parameter object&gt;</em><a class="headerlink" href="#lor.tasks.fs.EnsureExistsOnLocalFilesystemTask.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.fs.EnsureExistsOnLocalFilesystemTask.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.fs.EnsureExistsOnLocalFilesystemTask.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>The task run method, to be overridden in a subclass.</p>
+<p>See <span class="xref std std-ref">Task.run</span></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.tasks.general">
+<span id="lor-tasks-general-module"></span><h2>lor.tasks.general module<a class="headerlink" href="#module-lor.tasks.general" title="Permalink to this headline">¶</a></h2>
+<p>General utility tasks</p>
+<dl class="class">
+<dt id="lor.tasks.general.AlwaysRunsTask">
+<em class="property">class </em><code class="descclassname">lor.tasks.general.</code><code class="descname">AlwaysRunsTask</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.general.AlwaysRunsTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">luigi.task.ExternalTask</span></code></p>
+<dl class="method">
+<dt id="lor.tasks.general.AlwaysRunsTask.complete">
+<code class="descname">complete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.general.AlwaysRunsTask.complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the task has any outputs, return <code class="docutils literal notranslate"><span class="pre">True</span></code> if all outputs exist.
+Otherwise, return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>However, you may freely override this method with custom logic.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.general.AlwaysRunsTask.description">
+<code class="descname">description</code><em class="property"> = 'A trivial task that always runs successfully'</em><a class="headerlink" href="#lor.tasks.general.AlwaysRunsTask.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lor.tasks.general.DictPluckTask">
+<em class="property">class </em><code class="descclassname">lor.tasks.general.</code><code class="descname">DictPluckTask</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.general.DictPluckTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">luigi.task.ExternalTask</span></code></p>
+<dl class="attribute">
+<dt id="lor.tasks.general.DictPluckTask.description">
+<code class="descname">description</code><em class="property"> = 'Pluck a single output from a task that produces a dict of outputs'</em><a class="headerlink" href="#lor.tasks.general.DictPluckTask.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.general.DictPluckTask.key">
+<code class="descname">key</code><em class="property"> = &lt;luigi.parameter.Parameter object&gt;</em><a class="headerlink" href="#lor.tasks.general.DictPluckTask.key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.general.DictPluckTask.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.general.DictPluckTask.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output that this Task produces.</p>
+<p>The output of the Task determines if the Task needs to be run–the task
+is considered finished iff the outputs all exist. Subclasses should
+override this method to return a single <code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> or a list of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> instances.</p>
+<dl class="docutils">
+<dt>Implementation note</dt>
+<dd>If running multiple workers, the output must be a resource that is accessible
+by all workers, such as a DFS or database. Otherwise, workers might compute
+the same output since they don’t see the work done by other workers.</dd>
+</dl>
+<p>See <span class="xref std std-ref">Task.output</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.general.DictPluckTask.requires">
+<code class="descname">requires</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.general.DictPluckTask.requires" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Tasks that this Task depends on.</p>
+<p>A Task will only run if all of the Tasks that it requires are completed.
+If your Task does not require any other Tasks, then you don’t need to
+override this method. Otherwise, a Subclasses can override this method
+to return a single Task, a list of Task instances, or a dict whose
+values are Task instances.</p>
+<p>See <span class="xref std std-ref">Task.requires</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.general.DictPluckTask.upstream_task">
+<code class="descname">upstream_task</code><em class="property"> = &lt;luigi.parameter.Parameter object&gt;</em><a class="headerlink" href="#lor.tasks.general.DictPluckTask.upstream_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.tasks.hdfs">
+<span id="lor-tasks-hdfs-module"></span><h2>lor.tasks.hdfs module<a class="headerlink" href="#module-lor.tasks.hdfs" title="Permalink to this headline">¶</a></h2>
+<p>Utility tasks for HDFS</p>
+<dl class="class">
+<dt id="lor.tasks.hdfs.ClusterDeployTask">
+<em class="property">class </em><code class="descclassname">lor.tasks.hdfs.</code><code class="descname">ClusterDeployTask</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.ClusterDeployTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">luigi.task.Task</span></code></p>
+<dl class="attribute">
+<dt id="lor.tasks.hdfs.ClusterDeployTask.description">
+<code class="descname">description</code><em class="property"> = 'Deploy a local file/dir to the cluster'</em><a class="headerlink" href="#lor.tasks.hdfs.ClusterDeployTask.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.ClusterDeployTask.destination">
+<code class="descname">destination</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.ClusterDeployTask.destination" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.ClusterDeployTask.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.ClusterDeployTask.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output that this Task produces.</p>
+<p>The output of the Task determines if the Task needs to be run–the task
+is considered finished iff the outputs all exist. Subclasses should
+override this method to return a single <code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> or a list of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> instances.</p>
+<dl class="docutils">
+<dt>Implementation note</dt>
+<dd>If running multiple workers, the output must be a resource that is accessible
+by all workers, such as a DFS or database. Otherwise, workers might compute
+the same output since they don’t see the work done by other workers.</dd>
+</dl>
+<p>See <span class="xref std std-ref">Task.output</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.ClusterDeployTask.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.ClusterDeployTask.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>The task run method, to be overridden in a subclass.</p>
+<p>See <span class="xref std std-ref">Task.run</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.ClusterDeployTask.source">
+<code class="descname">source</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.ClusterDeployTask.source" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lor.tasks.hdfs.DownloadFromHdfsTask">
+<em class="property">class </em><code class="descclassname">lor.tasks.hdfs.</code><code class="descname">DownloadFromHdfsTask</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.DownloadFromHdfsTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">luigi.task.Task</span></code></p>
+<dl class="attribute">
+<dt id="lor.tasks.hdfs.DownloadFromHdfsTask.description">
+<code class="descname">description</code><em class="property"> = 'Move a file/dir from HDFS to the local filesystem'</em><a class="headerlink" href="#lor.tasks.hdfs.DownloadFromHdfsTask.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.DownloadFromHdfsTask.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.DownloadFromHdfsTask.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output that this Task produces.</p>
+<p>The output of the Task determines if the Task needs to be run–the task
+is considered finished iff the outputs all exist. Subclasses should
+override this method to return a single <code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> or a list of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> instances.</p>
+<dl class="docutils">
+<dt>Implementation note</dt>
+<dd>If running multiple workers, the output must be a resource that is accessible
+by all workers, such as a DFS or database. Otherwise, workers might compute
+the same output since they don’t see the work done by other workers.</dd>
+</dl>
+<p>See <span class="xref std std-ref">Task.output</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.hdfs.DownloadFromHdfsTask.output_path">
+<code class="descname">output_path</code><em class="property"> = &lt;luigi.parameter.Parameter object&gt;</em><a class="headerlink" href="#lor.tasks.hdfs.DownloadFromHdfsTask.output_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.DownloadFromHdfsTask.requires">
+<code class="descname">requires</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.DownloadFromHdfsTask.requires" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Tasks that this Task depends on.</p>
+<p>A Task will only run if all of the Tasks that it requires are completed.
+If your Task does not require any other Tasks, then you don’t need to
+override this method. Otherwise, a Subclasses can override this method
+to return a single Task, a list of Task instances, or a dict whose
+values are Task instances.</p>
+<p>See <span class="xref std std-ref">Task.requires</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.DownloadFromHdfsTask.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.DownloadFromHdfsTask.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>The task run method, to be overridden in a subclass.</p>
+<p>See <span class="xref std std-ref">Task.run</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.hdfs.DownloadFromHdfsTask.upstream_task">
+<code class="descname">upstream_task</code><em class="property"> = &lt;luigi.parameter.TaskParameter object&gt;</em><a class="headerlink" href="#lor.tasks.hdfs.DownloadFromHdfsTask.upstream_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lor.tasks.hdfs.EnsureExistsOnHdfsTask">
+<em class="property">class </em><code class="descclassname">lor.tasks.hdfs.</code><code class="descname">EnsureExistsOnHdfsTask</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.EnsureExistsOnHdfsTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">luigi.task.ExternalTask</span></code></p>
+<dl class="attribute">
+<dt id="lor.tasks.hdfs.EnsureExistsOnHdfsTask.description">
+<code class="descname">description</code><em class="property"> = 'Ensure a file/dir exists on HDFS'</em><a class="headerlink" href="#lor.tasks.hdfs.EnsureExistsOnHdfsTask.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.EnsureExistsOnHdfsTask.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.EnsureExistsOnHdfsTask.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output that this Task produces.</p>
+<p>The output of the Task determines if the Task needs to be run–the task
+is considered finished iff the outputs all exist. Subclasses should
+override this method to return a single <code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> or a list of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> instances.</p>
+<dl class="docutils">
+<dt>Implementation note</dt>
+<dd>If running multiple workers, the output must be a resource that is accessible
+by all workers, such as a DFS or database. Otherwise, workers might compute
+the same output since they don’t see the work done by other workers.</dd>
+</dl>
+<p>See <span class="xref std std-ref">Task.output</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.hdfs.EnsureExistsOnHdfsTask.path">
+<code class="descname">path</code><em class="property"> = &lt;luigi.parameter.Parameter object&gt;</em><a class="headerlink" href="#lor.tasks.hdfs.EnsureExistsOnHdfsTask.path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.EnsureExistsOnHdfsTask.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.EnsureExistsOnHdfsTask.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>The task run method, to be overridden in a subclass.</p>
+<p>See <span class="xref std std-ref">Task.run</span></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lor.tasks.hdfs.MoveToHdfsTask">
+<em class="property">class </em><code class="descclassname">lor.tasks.hdfs.</code><code class="descname">MoveToHdfsTask</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.MoveToHdfsTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">luigi.task.Task</span></code></p>
+<p>Move the output of a task (assuming it’s a LocalTarget) onto HDFS</p>
+<dl class="attribute">
+<dt id="lor.tasks.hdfs.MoveToHdfsTask.cache_invalidator">
+<code class="descname">cache_invalidator</code><em class="property"> = &lt;luigi.parameter.Parameter object&gt;</em><a class="headerlink" href="#lor.tasks.hdfs.MoveToHdfsTask.cache_invalidator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.hdfs.MoveToHdfsTask.description">
+<code class="descname">description</code><em class="property"> = 'Move the output of a task to HDFS'</em><a class="headerlink" href="#lor.tasks.hdfs.MoveToHdfsTask.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.MoveToHdfsTask.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.MoveToHdfsTask.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output that this Task produces.</p>
+<p>The output of the Task determines if the Task needs to be run–the task
+is considered finished iff the outputs all exist. Subclasses should
+override this method to return a single <code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> or a list of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> instances.</p>
+<dl class="docutils">
+<dt>Implementation note</dt>
+<dd>If running multiple workers, the output must be a resource that is accessible
+by all workers, such as a DFS or database. Otherwise, workers might compute
+the same output since they don’t see the work done by other workers.</dd>
+</dl>
+<p>See <span class="xref std std-ref">Task.output</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.MoveToHdfsTask.requires">
+<code class="descname">requires</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.MoveToHdfsTask.requires" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Tasks that this Task depends on.</p>
+<p>A Task will only run if all of the Tasks that it requires are completed.
+If your Task does not require any other Tasks, then you don’t need to
+override this method. Otherwise, a Subclasses can override this method
+to return a single Task, a list of Task instances, or a dict whose
+values are Task instances.</p>
+<p>See <span class="xref std std-ref">Task.requires</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.hdfs.MoveToHdfsTask.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.hdfs.MoveToHdfsTask.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>The task run method, to be overridden in a subclass.</p>
+<p>See <span class="xref std std-ref">Task.run</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.hdfs.MoveToHdfsTask.upstream_task">
+<code class="descname">upstream_task</code><em class="property"> = &lt;luigi.parameter.TaskParameter object&gt;</em><a class="headerlink" href="#lor.tasks.hdfs.MoveToHdfsTask.upstream_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.tasks.tar">
+<span id="lor-tasks-tar-module"></span><h2>lor.tasks.tar module<a class="headerlink" href="#module-lor.tasks.tar" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="lor.tasks.tar.TarballTask">
+<em class="property">class </em><code class="descclassname">lor.tasks.tar.</code><code class="descname">TarballTask</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.tar.TarballTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">luigi.contrib.external_program.ExternalProgramTask</span></code></p>
+<p>A task that puts another task’s output (assuming it outputs a FileTarget) into a tarball)</p>
+<dl class="attribute">
+<dt id="lor.tasks.tar.TarballTask.describe">
+<code class="descname">describe</code><em class="property"> = &quot;Package a task's output into an uncompressed tarball.&quot;</em><a class="headerlink" href="#lor.tasks.tar.TarballTask.describe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.tar.TarballTask.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.tar.TarballTask.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>The output that this Task produces.</p>
+<p>The output of the Task determines if the Task needs to be run–the task
+is considered finished iff the outputs all exist. Subclasses should
+override this method to return a single <code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> or a list of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Target</span></code> instances.</p>
+<dl class="docutils">
+<dt>Implementation note</dt>
+<dd>If running multiple workers, the output must be a resource that is accessible
+by all workers, such as a DFS or database. Otherwise, workers might compute
+the same output since they don’t see the work done by other workers.</dd>
+</dl>
+<p>See <span class="xref std std-ref">Task.output</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.tar.TarballTask.output_path">
+<code class="descname">output_path</code><em class="property"> = &lt;luigi.parameter.Parameter object&gt;</em><a class="headerlink" href="#lor.tasks.tar.TarballTask.output_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.tar.TarballTask.program_args">
+<code class="descname">program_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.tar.TarballTask.program_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override this method to map your task parameters to the program arguments</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list to pass as <code class="docutils literal notranslate"><span class="pre">args</span></code> to <code class="xref py py-class docutils literal notranslate"><span class="pre">subprocess.Popen</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.tasks.tar.TarballTask.requires">
+<code class="descname">requires</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.tasks.tar.TarballTask.requires" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Tasks that this Task depends on.</p>
+<p>A Task will only run if all of the Tasks that it requires are completed.
+If your Task does not require any other Tasks, then you don’t need to
+override this method. Otherwise, a Subclasses can override this method
+to return a single Task, a list of Task instances, or a dict whose
+values are Task instances.</p>
+<p>See <span class="xref std std-ref">Task.requires</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="lor.tasks.tar.TarballTask.upstream_task">
+<code class="descname">upstream_task</code><em class="property"> = &lt;luigi.parameter.TaskParameter object&gt;</em><a class="headerlink" href="#lor.tasks.tar.TarballTask.upstream_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.tasks">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lor.tasks" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lor.util.html" class="btn btn-neutral float-right" title="lor.util package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lor.commands.html" class="btn btn-neutral" title="lor.commands package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Adam Kewley.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+tests.fake\_pkg.nestedexample.dir2 package
+==========================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    tests.fake_pkg.nestedexample.dir2.dir3
+
+Submodules
+----------
+
+tests.fake\_pkg.nestedexample.dir2.mod4 module
+----------------------------------------------
+
+.. automodule:: tests.fake_pkg.nestedexample.dir2.mod4
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tests.fake\_pkg.nestedexample.dir2.mod\_with\_subclass module
+-------------------------------------------------------------
+
+.. automodule:: tests.fake_pkg.nestedexample.dir2.mod_with_subclass
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.fake_pkg.nestedexample.dir2
+    :members:
+    :undoc-members:
+    :show-inheritance:

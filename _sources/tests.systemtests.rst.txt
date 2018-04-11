@@ -1,0 +1,22 @@
+tests.systemtests package
+=========================
+
+Submodules
+----------
+
+tests.systemtests.test\_cli module
+----------------------------------
+
+.. automodule:: tests.systemtests.test_cli
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.systemtests
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,921 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lor package &mdash; Luigi on Rails 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lor.commands package" href="lor.commands.html" />
+    <link rel="prev" title="Luigi on Rails" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Luigi on Rails
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">lor package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lor.commands.html">lor.commands package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lor.tasks.html">lor.tasks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lor.util.html">lor.util package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lor.cmdline">lor.cmdline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lor.pathalias">lor.pathalias module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lor.properties">lor.properties module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lor.test">lor.test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lor.workspace">lor.workspace module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lor.workspace_global">lor.workspace_global module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lor">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Luigi on Rails</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>lor package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/lor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lor-package">
+<h1>lor package<a class="headerlink" href="#lor-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lor.commands.html">lor.commands package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lor.commands.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.commands.html#module-lor.commands.dot">lor.commands.dot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.commands.html#module-lor.commands.explain">lor.commands.explain module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.commands.html#module-lor.commands.ls">lor.commands.ls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.commands.html#module-lor.commands.new">lor.commands.new module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.commands.html#module-lor.commands.properties">lor.commands.properties module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.commands.html#module-lor.commands.run">lor.commands.run module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.commands.html#module-lor.commands">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lor.tasks.html">lor.tasks package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lor.tasks.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.tasks.html#module-lor.tasks.fs">lor.tasks.fs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.tasks.html#module-lor.tasks.general">lor.tasks.general module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.tasks.html#module-lor.tasks.hdfs">lor.tasks.hdfs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.tasks.html#module-lor.tasks.tar">lor.tasks.tar module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.tasks.html#module-lor.tasks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lor.util.html">lor.util package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lor.util.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.util.html#module-lor.util.cli">lor.util.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.util.html#module-lor.util.reflection">lor.util.reflection module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.util.html#module-lor.util.subprocess">lor.util.subprocess module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.util.html#module-lor.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lor.cmdline">
+<span id="lor-cmdline-module"></span><h2>lor.cmdline module<a class="headerlink" href="#module-lor.cmdline" title="Permalink to this headline">¶</a></h2>
+<p>Top-level LoR CLI launcher</p>
+<dl class="function">
+<dt id="lor.cmdline.get_default_out_of_workspace_subcommands">
+<code class="descclassname">lor.cmdline.</code><code class="descname">get_default_out_of_workspace_subcommands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.cmdline.get_default_out_of_workspace_subcommands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dict of default out-of-workspace subcommands as &lt;name: <cite>CliCommand</cite>&gt;s</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict of &lt;name: <cite>CliCommand</cite>&gt;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.cmdline.get_default_workspace_subcommands">
+<code class="descclassname">lor.cmdline.</code><code class="descname">get_default_workspace_subcommands</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.cmdline.get_default_workspace_subcommands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dict of default in-workspace subcommands as &lt;name: <cite>CliCommand</cite>&gt;s</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Return A dict of &lt;name:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><cite>CliCommand</cite>&gt;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.cmdline.launch">
+<code class="descclassname">lor.cmdline.</code><code class="descname">launch</code><span class="sig-paren">(</span><em>out_of_workspace_subcommands=None</em>, <em>workspace_subcommands=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.cmdline.launch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch LoR top-level CLI</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>out_of_workspace_subcommands</strong> – A dict of &lt;name: <cite>CliCommand</cite>&gt;s to use when outside a workspace</li>
+<li><strong>workspace_subcommands</strong> – A dict of &lt;name: <cite>CliCommand</cite>&gt;s to use when inside a workspace</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.pathalias">
+<span id="lor-pathalias-module"></span><h2>lor.pathalias module<a class="headerlink" href="#module-lor.pathalias" title="Permalink to this headline">¶</a></h2>
+<p>Path aliasing support</p>
+<p>Luigi projects typically involve working with resources addressed via paths/URIs. Writing the code necessary to build
+those paths is error-prone and usually involves writing a bunch of <cite>join</cite> functions in the Luigi task. That code then
+needs to be edited whenever paths change.</p>
+<p>This module implements LoR support for <cite>pathaliases</cite> - a tiny python library for pathalias YAML files. The files contain
+hierarchies of paths. For example:</p>
+<dl class="docutils">
+<dt>dir1/:</dt>
+<dd><dl class="first last docutils">
+<dt>subdir/:</dt>
+<dd><dl class="first last docutils">
+<dt>${var}/:</dt>
+<dd>alias: FOO</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>With that file in place, downstream clients can then just write <cite>resolve(“FOO”, {“var”: “bar”})</cite> (or similar) and the
+engine builds the actual path at runtime. This enables tasks to focus on using aliases (e.g. <cite>FOO</cite>) rather than
+building paths, which makes it easier to change locations later down the line.</p>
+<p>The YAML file format was chosen so that a pathaliases parser could be built from scratch in another language trivially.</p>
+<dl class="function">
+<dt id="lor.pathalias.resolve">
+<code class="descclassname">lor.pathalias.</code><code class="descname">resolve</code><span class="sig-paren">(</span><em>alias_file_path</em>, <em>alias</em>, <em>property_loaders=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.pathalias.resolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve a path from its alias via a pathaliases YAML file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>alias_file_path</strong> – Path to the aliases file</li>
+<li><strong>alias</strong> – The alias to resolve</li>
+<li><strong>property_loaders</strong> – A list of PropertyLoaders to resolve the aliases file against</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The resolved path</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.properties">
+<span id="lor-properties-module"></span><h2>lor.properties module<a class="headerlink" href="#module-lor.properties" title="Permalink to this headline">¶</a></h2>
+<p>Property loading support</p>
+<p>Luigi projects typically require loading configuration properties at runtime. <em>Where</em> those properties should be loaded
+from depends on the situation. For example, domain specific knowledge might be put into the project itself
+(e.g. etc/properties.yml) whereas user logins might be placed in the user’s home folder.</p>
+<p>This module contains basic abstractions for loading properties from various sources transparently. This allows LoR
+workspace tasks to just “get” a property without having to worry about <em>where</em> it came from. How the various property
+sources are prioritized is dictated by the workspace implementation.</p>
+<dl class="class">
+<dt id="lor.properties.DictPropertyLoader">
+<em class="property">class </em><code class="descclassname">lor.properties.</code><code class="descname">DictPropertyLoader</code><span class="sig-paren">(</span><em>name</em>, <em>property_dict</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.DictPropertyLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lor.properties.PropertyLoader" title="lor.properties.PropertyLoader"><code class="xref py py-class docutils literal notranslate"><span class="pre">lor.properties.PropertyLoader</span></code></a></p>
+<p>A <cite>PropertyLoader</cite> loader that is backed by an in-memory python dict.</p>
+<dl class="method">
+<dt id="lor.properties.DictPropertyLoader.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>prop_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.DictPropertyLoader.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value of a property identified by <cite>prop_name</cite>.</p>
+<p>Attempts to get a property by its identifier. If a value cannot be found, a KeyError is raised. If there was an
+issue loading the property (e.g. because they are loaded from a disk) a RuntimeError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prop_name</strong> – Identifier of the property to get</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value of the property</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.properties.DictPropertyLoader.get_all">
+<code class="descname">get_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.DictPropertyLoader.get_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all properties the loader can load as a dict of key-value pairs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict (string, string) containing all properties</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.properties.DictPropertyLoader.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.DictPropertyLoader.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a human-readable name for the <cite>PropertyLoader</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A human-readable name for the <cite>PropertyLoader</cite> instance.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.properties.DictPropertyLoader.try_get">
+<code class="descname">try_get</code><span class="sig-paren">(</span><em>prop_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.DictPropertyLoader.try_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value of a property identified by <cite>prop_name</cite> if a value can be found. Otherwise, returns None.</p>
+<p>If there was an issue loading the property (e.g. because they are loaded from a disk) a RuntimeError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prop_name</strong> – Identifier of the property to get</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value of the property if it was found; otherwise, none.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lor.properties.PropertyLoader">
+<em class="property">class </em><code class="descclassname">lor.properties.</code><code class="descname">PropertyLoader</code><a class="headerlink" href="#lor.properties.PropertyLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract class for loading properties.</p>
+<dl class="docutils">
+<dt><a href="#id1"><span class="problematic" id="id2">`</span></a>PropertyLoader`s allow runtime associative lookup of a property’s value. This abstraction is similar to a standard</dt>
+<dd>python dict but <a href="#id3"><span class="problematic" id="id4">`</span></a>PropertyLoaders`s are read-only once initialized and have human-readable names. Names make
+debugging easier: instead of a vague “KeyError”, more descriptive errors are possible.</dd>
+</dl>
+<dl class="method">
+<dt id="lor.properties.PropertyLoader.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>prop_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.PropertyLoader.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value of a property identified by <cite>prop_name</cite>.</p>
+<p>Attempts to get a property by its identifier. If a value cannot be found, a KeyError is raised. If there was an
+issue loading the property (e.g. because they are loaded from a disk) a RuntimeError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prop_name</strong> – Identifier of the property to get</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value of the property</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.properties.PropertyLoader.get_all">
+<code class="descname">get_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.PropertyLoader.get_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all properties the loader can load as a dict of key-value pairs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict (string, string) containing all properties</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.properties.PropertyLoader.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.PropertyLoader.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a human-readable name for the <cite>PropertyLoader</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A human-readable name for the <cite>PropertyLoader</cite> instance.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.properties.PropertyLoader.try_get">
+<code class="descname">try_get</code><span class="sig-paren">(</span><em>prop_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.PropertyLoader.try_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value of a property identified by <cite>prop_name</cite> if a value can be found. Otherwise, returns None.</p>
+<p>If there was an issue loading the property (e.g. because they are loaded from a disk) a RuntimeError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prop_name</strong> – Identifier of the property to get</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value of the property if it was found; otherwise, none.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lor.properties.YAMLFilePropertyLoader">
+<em class="property">class </em><code class="descclassname">lor.properties.</code><code class="descname">YAMLFilePropertyLoader</code><span class="sig-paren">(</span><em>path_to_yaml_file</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.YAMLFilePropertyLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#lor.properties.PropertyLoader" title="lor.properties.PropertyLoader"><code class="xref py py-class docutils literal notranslate"><span class="pre">lor.properties.PropertyLoader</span></code></a></p>
+<p>A <cite>PropertyLoader</cite> that loads property values from a YAML file.</p>
+<p>Eagerly loads the provided YAML file in order to “fail fast”. Does not attempt to reload the source file at runtime.</p>
+<dl class="method">
+<dt id="lor.properties.YAMLFilePropertyLoader.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>prop_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.YAMLFilePropertyLoader.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value of a property identified by <cite>prop_name</cite>.</p>
+<p>Attempts to get a property by its identifier. If a value cannot be found, a KeyError is raised. If there was an
+issue loading the property (e.g. because they are loaded from a disk) a RuntimeError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prop_name</strong> – Identifier of the property to get</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value of the property</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.properties.YAMLFilePropertyLoader.get_all">
+<code class="descname">get_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.YAMLFilePropertyLoader.get_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all properties the loader can load as a dict of key-value pairs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict (string, string) containing all properties</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.properties.YAMLFilePropertyLoader.get_name">
+<code class="descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.YAMLFilePropertyLoader.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a human-readable name for the <cite>PropertyLoader</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A human-readable name for the <cite>PropertyLoader</cite> instance.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.properties.YAMLFilePropertyLoader.try_get">
+<code class="descname">try_get</code><span class="sig-paren">(</span><em>prop_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.YAMLFilePropertyLoader.try_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value of a property identified by <cite>prop_name</cite> if a value can be found. Otherwise, returns None.</p>
+<p>If there was an issue loading the property (e.g. because they are loaded from a disk) a RuntimeError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prop_name</strong> – Identifier of the property to get</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value of the property if it was found; otherwise, none.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.properties.get_property_from_list_of_loaders">
+<code class="descclassname">lor.properties.</code><code class="descname">get_property_from_list_of_loaders</code><span class="sig-paren">(</span><em>property_loaders</em>, <em>prop_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.get_property_from_list_of_loaders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a property’s value, if a value could be loaded from a list of PropertyLoaders.</p>
+<p>Goes through each <cite>PropertyLoader</cite> in <cite>property_loaders</cite> in order, attempting to get the property from that loader.
+Once a value for the property is found, returns that value. If the property cannot be found in all property loaders,
+raises a KeyError.</p>
+<p>:return The property’s value</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.properties.merge_list_of_property_loaders">
+<code class="descclassname">lor.properties.</code><code class="descname">merge_list_of_property_loaders</code><span class="sig-paren">(</span><em>property_loaders</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.properties.merge_list_of_property_loaders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dict containing the merge product of all property loaders.</p>
+<p>Earlier elements in <cite>property_loaders</cite> take higher priority over lower elements</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.test">
+<span id="lor-test-module"></span><h2>lor.test module<a class="headerlink" href="#module-lor.test" title="Permalink to this headline">¶</a></h2>
+<p>Testing support</p>
+<p>This module contains helper functions that downstream workspaces might want to use for testing purposes.</p>
+<dl class="class">
+<dt id="lor.test.ChangeWorkspace">
+<em class="property">class </em><code class="descclassname">lor.test.</code><code class="descname">ChangeWorkspace</code><span class="sig-paren">(</span><em>ws_path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.test.ChangeWorkspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Set the global workspace temporarily.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lor.test.TemporaryEnv">
+<em class="property">class </em><code class="descclassname">lor.test.</code><code class="descname">TemporaryEnv</code><a class="headerlink" href="#lor.test.TemporaryEnv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Enable the application’s environment (env vars, pwd) to be temporarily mutated, resetting it afterwards.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lor.test.TemporaryHdfsDir">
+<em class="property">class </em><code class="descclassname">lor.test.</code><code class="descname">TemporaryHdfsDir</code><a class="headerlink" href="#lor.test.TemporaryHdfsDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create a temporary directory on HDFS</p>
+<p>The directory’s path on HDFS is returned. After the block exists, the dir is deleted. Useful for testing tasks
+on-cluster without filling the cluster’s HDFS filesystem with test outputs.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lor.test.TemporaryWorkspace">
+<em class="property">class </em><code class="descclassname">lor.test.</code><code class="descname">TemporaryWorkspace</code><a class="headerlink" href="#lor.test.TemporaryWorkspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create a temporary workspace</p>
+<p>Creates a workspace and sets it as the global workspace temporarily.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.test.assert_task_fails">
+<code class="descclassname">lor.test.</code><code class="descname">assert_task_fails</code><span class="sig-paren">(</span><em>luigi_task</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.test.assert_task_fails" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert that <cite>luigi_task</cite> cannot be executed on a local scheduler.</p>
+<p>An AssertionError is raised if the task executed successfully.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>luigi_task</strong> – A fully-instantiated Luigi task</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.test.assert_task_passes">
+<code class="descclassname">lor.test.</code><code class="descname">assert_task_passes</code><span class="sig-paren">(</span><em>luigi_task</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.test.assert_task_passes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert that <cite>luigi_task</cite> can be executed on a local scheduler.</p>
+<p>An AssertionError is raised if the task cannot be executed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>luigi_task</strong> – A fully-instantiated Luigi task</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.workspace">
+<span id="lor-workspace-module"></span><h2>lor.workspace module<a class="headerlink" href="#module-lor.workspace" title="Permalink to this headline">¶</a></h2>
+<p>Workspace support</p>
+<p>A workspace is a structured, but standard, python project, which enables downstream projects to use a “convention
+over configuration” design. Definitions in this module make it easier to work with that structure (e.g. when resolving
+paths).</p>
+<dl class="class">
+<dt id="lor.workspace.Workspace">
+<em class="property">class </em><code class="descclassname">lor.workspace.</code><code class="descname">Workspace</code><span class="sig-paren">(</span><em>workspace_path</em>, <em>property_loaders</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.Workspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="lor.workspace.Workspace.get_abspath">
+<code class="descname">get_abspath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.Workspace.get_abspath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the absolute path of the workspace</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.workspace.Workspace.get_properties">
+<code class="descname">get_properties</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.Workspace.get_properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a dict containing all available properties and their values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dict containing all properties and their values.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.workspace.Workspace.get_property">
+<code class="descname">get_property</code><span class="sig-paren">(</span><em>prop_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.Workspace.get_property" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value of a property.</p>
+<p>If <cite>prop_name</cite> cannot be found, a KeyError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prop_name</strong> – The property’s string identifier.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The property’s value.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.workspace.Workspace.resolve_alias_file">
+<code class="descname">resolve_alias_file</code><span class="sig-paren">(</span><em>alias_file_path</em>, <em>alias</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.Workspace.resolve_alias_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve a path from an aliases file.</p>
+<p>If <cite>alias_file_path</cite> does not exist, FileNotFoundError is raised.
+If <cite>alias</cite> does not exist in the alias file, a KeyError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alias_file_path</strong> – A filesystem path to an aliases (YAML) file. Relative paths are</td>
+</tr>
+</tbody>
+</table>
+<p>resolved relative to the current directory, NOT the current workspace.
+:param alias: The alias to resolve
+:return: The aliase’s value</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.workspace.Workspace.resolve_path">
+<code class="descname">resolve_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.Workspace.resolve_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve a path relative to the workspace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – The path to resolve</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A path resolved relative to the workspace</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.workspace.Workspace.resolve_workspace_pathalias">
+<code class="descname">resolve_workspace_pathalias</code><span class="sig-paren">(</span><em>alias</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.Workspace.resolve_workspace_pathalias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve a path from the workspace’s workspace alias file.</p>
+<p>If the workspace aliases file does not exist, a FileNotFoundError is raised.
+If the <cite>alias</cite> does not exist, a KeyError is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alias</strong> – The alias to look up</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A path resolved from the aliases file relative to the current workspace.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.workspace.create">
+<code class="descclassname">lor.workspace.</code><code class="descname">create</code><span class="sig-paren">(</span><em>output_path</em>, <em>property_loaders=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new workspace at the output path.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>output_path</strong> – Full path to the workspace to create</li>
+<li><strong>property_loaders</strong> – <cite>PropertyLoader</cite> the returned workspace should use</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.workspace.get_default_property_loaders">
+<code class="descclassname">lor.workspace.</code><code class="descname">get_default_property_loaders</code><span class="sig-paren">(</span><em>workspace_dir</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.get_default_property_loaders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of default property loaders for a workspace dir.</p>
+<p>Raises <cite>FileNotFoundError</cite> if <cite>workspace_dir</cite> does not exist.
+Raises <cite>NotADirectoryError</cite> if <cite>workspace_dir</cite> is not a directory.
+Raises <cite>RuntimeError</cite> if <cite>workspace_dir</cite> is not a workspace dir.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of <a href="#id5"><span class="problematic" id="id6">`</span></a>PropertyLoader`s, ordered by high- to low-priority</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.workspace.install">
+<code class="descclassname">lor.workspace.</code><code class="descname">install</code><span class="sig-paren">(</span><em>workspace_path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.install" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run a workspace’s install script.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>workspace_path</strong> – Path to the workspace</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the install script ran successfully; otherwise, False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.workspace.is_workspace">
+<code class="descclassname">lor.workspace.</code><code class="descname">is_workspace</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.is_workspace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if path is a workspace; otherwise, return False.</p>
+<p>Throws if the path does not exist or is a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – The path to check</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if path is a workspace. False if path is not a workspace.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.workspace.try_locate">
+<code class="descclassname">lor.workspace.</code><code class="descname">try_locate</code><span class="sig-paren">(</span><em>cwd=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.try_locate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a path to the workspace, if it can be found: otherwise, returns <cite>None</cite>.</p>
+<p>This function looks for a workspace by:</p>
+<ul class="simple">
+<li>Checking if LOR_HOME environment variable is set and trying that</li>
+<li>Checking if <cite>cwd</cite> is a workspace</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.workspace_global">
+<span id="lor-workspace-global-module"></span><h2>lor.workspace_global module<a class="headerlink" href="#module-lor.workspace_global" title="Permalink to this headline">¶</a></h2>
+<p>Global workspace variable.</p>
+<p>Workspaces are, themselves, immutable. A global is used by LoR because it simplifies downstream clients (mostly, Luigi
+tasks) from having to use custom abstractions or write weird boilerplate + dependency injection stuff.</p>
+<dl class="function">
+<dt id="lor.workspace_global.bootstrap">
+<code class="descclassname">lor.workspace_global.</code><code class="descname">bootstrap</code><span class="sig-paren">(</span><em>prop_override_loaders=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace_global.bootstrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bootstrap the global workspace variable</p>
+<p>Explicitly initialize the global workspace variable with its default state + extra loaders (usually, from the CLI).
+This is usually called by CLI commands to prepare subsequent Luigi tasks with the correct workspace state.</p>
+<p>Raises a <cite>RuntimeError</cite> if the current workspace cannot be located.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>prop_override_loaders</strong> – A list of PropertyLoaders ordered by highest- to lowest-priority. All of these loaders are</td>
+</tr>
+</tbody>
+</table>
+<p>higher priority than the default property loaders.
+:return: The bootstrapped <cite>Workspace</cite> that will be returned by subsequent calls to <cite>get_current_workspace</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.workspace_global.get">
+<code class="descclassname">lor.workspace_global.</code><code class="descname">get</code><span class="sig-paren">(</span><em>cwd=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace_global.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current workspace as a <cite>Workspace</cite> object, or None if the workspace has not been set (or cannot
+be autoloaded).</p>
+<p>If a workspace has not been manually set with <cite>set_current_workspace</cite>, this function will attempt to load the
+workspace itself using <cite>lor.workspace.try_autoload</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A <cite>Workspace</cite> object representing the current workspace, or None if the current workspace cannot be</td>
+</tr>
+</tbody>
+</table>
+<p>established.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.workspace_global.set">
+<code class="descclassname">lor.workspace_global.</code><code class="descname">set</code><span class="sig-paren">(</span><em>new_workspace</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace_global.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the current (application-wide) workspace.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lor" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lor.commands.html" class="btn btn-neutral float-right" title="lor.commands package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Luigi on Rails" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Adam Kewley.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

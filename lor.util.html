@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lor.util package &mdash; Luigi on Rails 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="lor.tasks package" href="lor.tasks.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Luigi on Rails
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="lor.html">lor package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lor.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="lor.commands.html">lor.commands package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lor.tasks.html">lor.tasks package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">lor.util package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.util.cli">lor.util.cli module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.util.reflection">lor.util.reflection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.util.subprocess">lor.util.subprocess module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lor.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.cmdline">lor.cmdline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.pathalias">lor.pathalias module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.properties">lor.properties module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.test">lor.test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.workspace">lor.workspace module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor.workspace_global">lor.workspace_global module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lor.html#module-lor">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Luigi on Rails</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="lor.html">lor package</a> &raquo;</li>
+        
+      <li>lor.util package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/lor.util.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lor-util-package">
+<h1>lor.util package<a class="headerlink" href="#lor-util-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lor.util.cli">
+<span id="lor-util-cli-module"></span><h2>lor.util.cli module<a class="headerlink" href="#module-lor.util.cli" title="Permalink to this headline">¶</a></h2>
+<p>Utilities for command-line interfaces</p>
+<dl class="class">
+<dt id="lor.util.cli.CliCommand">
+<em class="property">class </em><code class="descclassname">lor.util.cli.</code><code class="descname">CliCommand</code><a class="headerlink" href="#lor.util.cli.CliCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract class that represents a CLI command (e.g. <cite>run</cite>, <cite>import</cite>)</p>
+<dl class="method">
+<dt id="lor.util.cli.CliCommand.description">
+<code class="descname">description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.cli.CliCommand.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a human-readable description of
+the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.util.cli.CliCommand.name">
+<code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.cli.CliCommand.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that returns a unique name for the command.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lor.util.cli.CliCommand.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.cli.CliCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Override to provide a method that is called with the command’s arguments
+:param argv:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.cli.add_command_to_parser">
+<code class="descclassname">lor.util.cli.</code><code class="descname">add_command_to_parser</code><span class="sig-paren">(</span><em>arg_parser</em>, <em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.cli.add_command_to_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.cli.add_commands_as_subcommands">
+<code class="descclassname">lor.util.cli.</code><code class="descname">add_commands_as_subcommands</code><span class="sig-paren">(</span><em>arg_parser</em>, <em>subcommands</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.cli.add_commands_as_subcommands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.cli.add_properties_override_arg">
+<code class="descclassname">lor.util.cli.</code><code class="descname">add_properties_override_arg</code><span class="sig-paren">(</span><em>subparser</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.cli.add_properties_override_arg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.cli.extract_property_overrides">
+<code class="descclassname">lor.util.cli.</code><code class="descname">extract_property_overrides</code><span class="sig-paren">(</span><em>namespace</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.cli.extract_property_overrides" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-lor.util.reflection">
+<span id="lor-util-reflection-module"></span><h2>lor.util.reflection module<a class="headerlink" href="#module-lor.util.reflection" title="Permalink to this headline">¶</a></h2>
+<p>Utilities for reflecting over python</p>
+<dl class="function">
+<dt id="lor.util.reflection.classes_in_module">
+<code class="descclassname">lor.util.reflection.</code><code class="descname">classes_in_module</code><span class="sig-paren">(</span><em>module</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.reflection.classes_in_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterable of python classes found in <cite>module</cite></p>
+<p>:param module The module to search in
+:return An iterable of classes found in <cite>module</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.reflection.classes_in_pkg">
+<code class="descclassname">lor.util.reflection.</code><code class="descname">classes_in_pkg</code><span class="sig-paren">(</span><em>package</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.reflection.classes_in_pkg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterable of python classes found in <cite>package</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>package</strong> – The package to search in</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An iterable of classes found in <cite>package</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.reflection.filter_subclasses">
+<code class="descclassname">lor.util.reflection.</code><code class="descname">filter_subclasses</code><span class="sig-paren">(</span><em>superclass</em>, <em>iter</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.reflection.filter_subclasses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterable of class obects which are subclasses of <cite>superclass</cite> filtered from a source iteration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>superclass</strong> – The superclass to filter against</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An iterable of classes which are subclasses of <cite>superclass</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.reflection.is_pkg">
+<code class="descclassname">lor.util.reflection.</code><code class="descname">is_pkg</code><span class="sig-paren">(</span><em>mod_or_pkg</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.reflection.is_pkg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if <cite>mod_or_pkg</cite> is a package</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.reflection.load_class_by_name">
+<code class="descclassname">lor.util.reflection.</code><code class="descname">load_class_by_name</code><span class="sig-paren">(</span><em>full_class_name</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.reflection.load_class_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a class by its fully-qualified name.</p>
+<p>“Fully qualified name” is a LoR-specific. It is PACKAGE.MODULE.CLASS_NAME. Examples:</p>
+<ul class="simple">
+<li>lor.tasks.fs.EnsureExistsOnLocalFilesystemTask</li>
+</ul>
+<p>Raises an exception if <cite>full_class_name</cite> cannot be found.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>full_class_name</strong> – Fully-qualified name of a class as a string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A python class</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.reflection.subclasses_in_pkg">
+<code class="descclassname">lor.util.reflection.</code><code class="descname">subclasses_in_pkg</code><span class="sig-paren">(</span><em>package</em>, <em>superclass</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.reflection.subclasses_in_pkg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterable of classes in a package which are subclasses of a superclass.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>package</strong> – The package to search in</li>
+<li><strong>superclass</strong> – The superclass to filter against</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An iterable of classes in <cite>package</cite> which are subclasses of <cite>superclass</cite></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lor.util.subprocess">
+<span id="lor-util-subprocess-module"></span><h2>lor.util.subprocess module<a class="headerlink" href="#module-lor.util.subprocess" title="Permalink to this headline">¶</a></h2>
+<p>Utilities for running separate subprocesses</p>
+<p>Many of these functions wrap the python standard library’s subprocess functions. The reason to use these functions
+instead of the standard library’s is because, in many cases:</p>
+<ul class="simple">
+<li>They handle signal capture (e.g. SIGINT), which is important when tasks are long-running and likely to be cancelled
+midway</li>
+<li>They stream the subprocess’s output directly to the calling process’s stdio, rather than collecting it into memory and
+dumping it after execution finishes: important for long-running tasks which output <em>a lot</em> of logging etc.</li>
+<li>Output streaming is handled functionally: downstream users don’t need to worry about spawning threads etc.: they just
+write lambdas/functions to filter+reduce process outputs: important when a subprocess produces <em>a lot</em> of logging
+output (e.g. long-running Hadoop MR jobs) and you don’t want to risk a memory leak.</li>
+</ul>
+<dl class="function">
+<dt id="lor.util.subprocess.call">
+<code class="descclassname">lor.util.subprocess.</code><code class="descname">call</code><span class="sig-paren">(</span><em>args</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.subprocess.call" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronously run the command described by args, returning an exit code integer once the subprocess exits.
+:param args: List of args, where the first arg is the application’s name
+:return Exit code of the subprocess</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.subprocess.call_and_write_stdout_to_file">
+<code class="descclassname">lor.util.subprocess.</code><code class="descname">call_and_write_stdout_to_file</code><span class="sig-paren">(</span><em>args</em>, <em>output_path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.subprocess.call_and_write_stdout_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.subprocess.call_with_output_reducers">
+<code class="descclassname">lor.util.subprocess.</code><code class="descname">call_with_output_reducers</code><span class="sig-paren">(</span><em>args</em>, <em>stdout_initial_state=None</em>, <em>stdout_reducer=&lt;function &lt;lambda&gt;&gt;</em>, <em>stderr_initial_state=None</em>, <em>stderr_reducer=&lt;function &lt;lambda&gt;&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.subprocess.call_with_output_reducers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.subprocess.call_with_stdout_reducer">
+<code class="descclassname">lor.util.subprocess.</code><code class="descname">call_with_stdout_reducer</code><span class="sig-paren">(</span><em>args</em>, <em>initial_reducer_state</em>, <em>output_reducer</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.subprocess.call_with_stdout_reducer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.subprocess.run_luigi_task">
+<code class="descclassname">lor.util.subprocess.</code><code class="descname">run_luigi_task</code><span class="sig-paren">(</span><em>task_class</em>, <em>task_args</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.subprocess.run_luigi_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-lor.util">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lor.util" title="Permalink to this headline">¶</a></h2>
+<p>A module containing general helpers</p>
+<dl class="function">
+<dt id="lor.util.assert_file_exists">
+<code class="descclassname">lor.util.</code><code class="descname">assert_file_exists</code><span class="sig-paren">(</span><em>path</em>, <em>noun='file'</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.assert_file_exists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.base36_str">
+<code class="descclassname">lor.util.</code><code class="descname">base36_str</code><span class="sig-paren">(</span><em>l=5</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.base36_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.bullet_point_list">
+<code class="descclassname">lor.util.</code><code class="descname">bullet_point_list</code><span class="sig-paren">(</span><em>str_list</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.bullet_point_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.file_uri">
+<code class="descclassname">lor.util.</code><code class="descname">file_uri</code><span class="sig-paren">(</span><em>local_path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.file_uri" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.find_newest_file_in_dir">
+<code class="descclassname">lor.util.</code><code class="descname">find_newest_file_in_dir</code><span class="sig-paren">(</span><em>glob_pattern</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.find_newest_file_in_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.flatten">
+<code class="descclassname">lor.util.</code><code class="descname">flatten</code><span class="sig-paren">(</span><em>lst</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.flatten" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.map_vals">
+<code class="descclassname">lor.util.</code><code class="descname">map_vals</code><span class="sig-paren">(</span><em>f</em>, <em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.map_vals" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.merge">
+<code class="descclassname">lor.util.</code><code class="descname">merge</code><span class="sig-paren">(</span><em>h1</em>, <em>h2</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.merge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.or_join">
+<code class="descclassname">lor.util.</code><code class="descname">or_join</code><span class="sig-paren">(</span><em>strs</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.or_join" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.read_file_to_string">
+<code class="descclassname">lor.util.</code><code class="descname">read_file_to_string</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.read_file_to_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.read_non_blank_lines_in_file">
+<code class="descclassname">lor.util.</code><code class="descname">read_non_blank_lines_in_file</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.read_non_blank_lines_in_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.read_yaml">
+<code class="descclassname">lor.util.</code><code class="descname">read_yaml</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.read_yaml" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.resolve_template_str">
+<code class="descclassname">lor.util.</code><code class="descname">resolve_template_str</code><span class="sig-paren">(</span><em>s</em>, <em>variables_h</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.resolve_template_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substitute a template string (e.g. “$VAR1”)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.subdirs_in">
+<code class="descclassname">lor.util.</code><code class="descname">subdirs_in</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.subdirs_in" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.task_input_merge">
+<code class="descclassname">lor.util.</code><code class="descname">task_input_merge</code><span class="sig-paren">(</span><em>task_input</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.task_input_merge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.tree_map">
+<code class="descclassname">lor.util.</code><code class="descname">tree_map</code><span class="sig-paren">(</span><em>h</em>, <em>key_mapper</em>, <em>leaf_mapper</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.tree_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a depth-first traversal of a hash, passing each
+key encountered to key_mapper and each value encountered to
+leaf_mapper.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.try_construct_suggestions_msg">
+<code class="descclassname">lor.util.</code><code class="descname">try_construct_suggestions_msg</code><span class="sig-paren">(</span><em>dic</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.try_construct_suggestions_msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.try_get_val_or_key_error">
+<code class="descclassname">lor.util.</code><code class="descname">try_get_val_or_key_error</code><span class="sig-paren">(</span><em>dic</em>, <em>k</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.try_get_val_or_key_error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.uri_subfolder">
+<code class="descclassname">lor.util.</code><code class="descname">uri_subfolder</code><span class="sig-paren">(</span><em>base</em>, <em>subfolder</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.uri_subfolder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join a subfolder onto a URI. This function exists because python (stupidly)
+uses a whitelist for custom protocols (e.g. hdfs) when using urljoin.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lor.util.with_trailing_slash">
+<code class="descclassname">lor.util.</code><code class="descname">with_trailing_slash</code><span class="sig-paren">(</span><em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.with_trailing_slash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="lor.util.write_str_to_file">
+<code class="descclassname">lor.util.</code><code class="descname">write_str_to_file</code><span class="sig-paren">(</span><em>path</em>, <em>s</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.util.write_str_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="lor.tasks.html" class="btn btn-neutral" title="lor.tasks package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Adam Kewley.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

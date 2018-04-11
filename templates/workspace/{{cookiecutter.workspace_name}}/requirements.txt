@@ -1,1 +1,0 @@
-{{cookiecutter.lor_requirement}}

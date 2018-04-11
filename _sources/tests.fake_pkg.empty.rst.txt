@@ -1,0 +1,10 @@
+tests.fake\_pkg.empty package
+=============================
+
+Module contents
+---------------
+
+.. automodule:: tests.fake_pkg.empty
+    :members:
+    :undoc-members:
+    :show-inheritance:
