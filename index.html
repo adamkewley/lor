@@ -150,10 +150,17 @@
             
   <div class="section" id="luigi-on-rails">
 <h1>Luigi on Rails<a class="headerlink" href="#luigi-on-rails" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>A framework for rapidly developing pipelines with Luigi</p>
-</div>
+<p>ALPHA BUILD: A framework for rapidly developing pipelines with Luigi</p>
+<p>[<a class="reference external" href="https://adamkewley.github.io/lor/">documentation</a>]</p>
+<p>Features:</p>
+<ul class="simple">
+<li>Convention-over-configuration approach to Luigi projects</li>
+<li>Standard workspace creation (<cite>lor new</cite>)</li>
+<li>Configuration loading</li>
+<li>A workspace-centric command-line (<cite>new</cite>, <cite>explain</cite>, <cite>ls</cite>, <cite>run</cite>, etc.)</li>
+<li>Utility tasks (e.g. ` EnsureExistsOnLocalFilesystemTask`)</li>
+<li>Other utilities for managing long-running subprocesses, building a CLI, etc.</li>
+</ul>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>To install use pip:</p>
@@ -161,20 +168,54 @@
 <div>$ pip install lor</div></blockquote>
 <p>Or clone the repo:</p>
 <blockquote>
-<div><p>$ git clone <a class="reference external" href="https://github.com/akewley/lor.git">https://github.com/akewley/lor.git</a></p>
+<div><p>$ git clone <a class="reference external" href="https://github.com/adamkewley/lor.git">https://github.com/adamkewley/lor.git</a></p>
 <p>$ python setup.py install</p>
 </div></blockquote>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Once installed, <cite>lor</cite> can be used from the command-line:</p>
+<blockquote>
+<div>$ lor new foo</div></blockquote>
+<p>This creates a <cite>lor</cite> workspace at <cite>foo/</cite>. A <cite>lor</cite> workspace is a standard python3 pip project which depends on <cite>lor</cite>
+as a dependency (this can be removed if you don’t need it). The <cite>lor</cite> command-line command can detect if the terminal is
+in a <cite>lor</cite> workspace and provides convenience commands for working in a standard workspace.</p>
+<p>Tasks written for <cite>lor</cite> are just standard Luigi tasks. The <cite>lor</cite> library provides various utility methods that a typical
+project <em>might</em> find useful (all opt-in). For example, <cite>lor</cite> provides a <cite>global_workspace</cite> module that you can use to
+resolve paths and configuration properties for the current workspace:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># foo/tasks/bar</span>
+
+<span class="kn">import</span> <span class="nn">lor.workspace_global</span>
+<span class="kn">import</span> <span class="nn">luigi</span>
+
+
+<span class="k">class</span> <span class="nc">BarTask</span><span class="p">(</span><span class="n">luigi</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+    <span class="n">output_path</span> <span class="o">=</span> <span class="n">luigi</span><span class="o">.</span><span class="n">Parameter</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">config_prop</span> <span class="o">=</span> <span class="n">lor</span><span class="o">.</span><span class="n">workspace_global</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s2">&quot;CONFIG_PROP&quot;</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">config_prop</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">luigi</span><span class="o">.</span><span class="n">LocalTarget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
-<p>TBD</p>
-</div>
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>TBD</p>
+<p>The above is a standard Luigi task that uses <cite>lor</cite> to load a configuration property called <cite>CONFIG_PROP</cite> from the
+workspace (held at <cite>etc/properties.yml</cite> in the workspace). The task is a standard Luigi task, so it can be ran from
+Luigi directly:</p>
+<blockquote>
+<div>$ luigi –module foo.tasks.bar BarTask –output-path some/path</div></blockquote>
+<p>The <cite>lor run</cite> command can also be used to run the task:</p>
+<blockquote>
+<div>$ lor run –module foo.tasks.bar BarTask –output-path some/path</div></blockquote>
+<p>The <cite>lor run</cite> command runs <cite>luigi</cite> by proxy, so it effectively has the same interface. However, <cite>lor run</cite> also adds
+useful functionality, such as the ability to override a variable’s value at runtime:</p>
+<blockquote>
+<div>$ lor run –properties CONFIG_PROP=overridden –module foo.tasks.bar BarTask –output-path some/path</div></blockquote>
+<p>The task will then write “overridden” to the output file instead of whatever was loaded from the workspace’s configuration
+file. This is because <cite>lor run</cite> bootstraps the workspace global with the override before running Luigi.</p>
+<p>TODO: This documentation is work in progress</p>
 </div>
 <div class="section" id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
