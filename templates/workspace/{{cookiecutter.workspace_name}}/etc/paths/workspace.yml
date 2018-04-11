@@ -1,0 +1,10 @@
+etc/:
+  alias: CONFIG_DIR
+
+${WORKSPACE_NAME}/:
+  alias: PYTHON_SRC_DIR
+  tasks/: { alias: TASKS }
+
+tests/:
+  fixtures/: { alias: TEST_FIXTURES }
+  tasks/: { alias: TASK_TESTS }
