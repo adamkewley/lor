@@ -235,26 +235,117 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-tests.test_lor_globals">
-<span id="tests-test-lor-globals-module"></span><h2>tests.test_lor_globals module<a class="headerlink" href="#module-tests.test_lor_globals" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="tests.test_lor_globals.TestLorGlobals">
-<em class="property">class </em><code class="descclassname">tests.test_lor_globals.</code><code class="descname">TestLorGlobals</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_lor_globals.TestLorGlobals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
-<dl class="method">
-<dt id="tests.test_lor_globals.TestLorGlobals.test_set_current_workspace_raises_if_called_with_non_Workspace_arg">
-<code class="descname">test_set_current_workspace_raises_if_called_with_non_Workspace_arg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_lor_globals.TestLorGlobals.test_set_current_workspace_raises_if_called_with_non_Workspace_arg" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</div>
 <div class="section" id="module-tests.test_path">
 <span id="tests-test-path-module"></span><h2>tests.test_path module<a class="headerlink" href="#module-tests.test_path" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="tests.test_path.TestPath">
-<em class="property">class </em><code class="descclassname">tests.test_path.</code><code class="descname">TestPath</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPath" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_path.TestPaths">
+<em class="property">class </em><code class="descclassname">tests.test_path.</code><code class="descname">TestPaths</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test__set_overlay_paths_causes_get_overlay_paths_to_return_the_supplied_paths">
+<code class="descname">test__set_overlay_paths_causes_get_overlay_paths_to_return_the_supplied_paths</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test__set_overlay_paths_causes_get_overlay_paths_to_return_the_supplied_paths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test__set_overlay_paths_raises_FileNotFoundError_if_list_entry_does_not_exist">
+<code class="descname">test__set_overlay_paths_raises_FileNotFoundError_if_list_entry_does_not_exist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test__set_overlay_paths_raises_FileNotFoundError_if_list_entry_does_not_exist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test__set_overlay_paths_raises_NotADirectoryError_if_path_is_to_a_file">
+<code class="descname">test__set_overlay_paths_raises_NotADirectoryError_if_path_is_to_a_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test__set_overlay_paths_raises_NotADirectoryError_if_path_is_to_a_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test__set_overlay_paths_raises_ValueError_if_supplied_a_list_of_non_strings">
+<code class="descname">test__set_overlay_paths_raises_ValueError_if_supplied_a_list_of_non_strings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test__set_overlay_paths_raises_ValueError_if_supplied_a_list_of_non_strings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test__set_overlay_paths_raises_ValueError_if_supplied_a_non_list">
+<code class="descname">test__set_overlay_paths_raises_ValueError_if_supplied_a_non_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test__set_overlay_paths_raises_ValueError_if_supplied_a_non_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test__set_overlay_paths_works_with_list_of_existient_dirs">
+<code class="descname">test__set_overlay_paths_works_with_list_of_existient_dirs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test__set_overlay_paths_works_with_list_of_existient_dirs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_get_overlay_paths_returns_a_list">
+<code class="descname">test_get_overlay_paths_returns_a_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_get_overlay_paths_returns_a_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_join_all_returns_a_list">
+<code class="descname">test_join_all_returns_a_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_join_all_returns_a_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_join_all_returns_list_of_overlays_then_workspace">
+<code class="descname">test_join_all_returns_list_of_overlays_then_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_join_all_returns_list_of_overlays_then_workspace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_join_raises_ValueError_if_no_overlays_and_not_in_workspace">
+<code class="descname">test_join_raises_ValueError_if_no_overlays_and_not_in_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_join_raises_ValueError_if_no_overlays_and_not_in_workspace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_join_returns_paths_joined_onto_first_overlay_if_overlays_assigned">
+<code class="descname">test_join_returns_paths_joined_onto_first_overlay_if_overlays_assigned</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_join_returns_paths_joined_onto_first_overlay_if_overlays_assigned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_join_returns_paths_joined_onto_workspace_if_no_overlay_paths_available">
+<code class="descname">test_join_returns_paths_joined_onto_workspace_if_no_overlay_paths_available</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_join_returns_paths_joined_onto_workspace_if_no_overlay_paths_available" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_join_works_with_multiple_fragments">
+<code class="descname">test_join_works_with_multiple_fragments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_join_works_with_multiple_fragments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_resolve_all_list_contains_elements_that_do_exist">
+<code class="descname">test_resolve_all_list_contains_elements_that_do_exist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_resolve_all_list_contains_elements_that_do_exist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_resolve_all_list_is_empty_if_no_overlays_or_workspace">
+<code class="descname">test_resolve_all_list_is_empty_if_no_overlays_or_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_resolve_all_list_is_empty_if_no_overlays_or_workspace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_resolve_all_returns_a_list">
+<code class="descname">test_resolve_all_returns_a_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_resolve_all_returns_a_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_resolve_raises_FileNotFoundError_if_file_doesnt_exist_in_any_location">
+<code class="descname">test_resolve_raises_FileNotFoundError_if_file_doesnt_exist_in_any_location</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_resolve_raises_FileNotFoundError_if_file_doesnt_exist_in_any_location" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_resolve_raises_ValueError_if_overlays_empty_and_not_in_workspace">
+<code class="descname">test_resolve_raises_ValueError_if_overlays_empty_and_not_in_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_resolve_raises_ValueError_if_overlays_empty_and_not_in_workspace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_resolve_returns_result_from_another_overlay_if_exists_in_different_overlay">
+<code class="descname">test_resolve_returns_result_from_another_overlay_if_exists_in_different_overlay</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_resolve_returns_result_from_another_overlay_if_exists_in_different_overlay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_resolve_returns_result_from_overlay_if_exists_and_in_overlay">
+<code class="descname">test_resolve_returns_result_from_overlay_if_exists_and_in_overlay</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_resolve_returns_result_from_overlay_if_exists_and_in_overlay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_path.TestPaths.test_resolve_returns_result_from_workspace_if_workspace_has_file">
+<code class="descname">test_resolve_returns_result_from_workspace_if_workspace_has_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_path.TestPaths.test_resolve_returns_result_from_workspace_if_workspace_has_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -340,6 +431,41 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="tests.test_properties.TestProperties.test__set_loaders_allows_setting_list_of_loaders">
+<code class="descname">test__set_loaders_allows_setting_list_of_loaders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test__set_loaders_allows_setting_list_of_loaders" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_properties.TestProperties.test__set_loaders_raises_ValueError_if_passed_list_containing_non_prop_loader">
+<code class="descname">test__set_loaders_raises_ValueError_if_passed_list_containing_non_prop_loader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test__set_loaders_raises_ValueError_if_passed_list_containing_non_prop_loader" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_properties.TestProperties.test__set_loaders_raises_ValueError_if_passed_non_list">
+<code class="descname">test__set_loaders_raises_ValueError_if_passed_non_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test__set_loaders_raises_ValueError_if_passed_non_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_properties.TestProperties.test__set_loaders_then_uses_loader_with_get_all_call">
+<code class="descname">test__set_loaders_then_uses_loader_with_get_all_call</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test__set_loaders_then_uses_loader_with_get_all_call" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_properties.TestProperties.test__set_loaders_then_uses_loader_with_get_call">
+<code class="descname">test__set_loaders_then_uses_loader_with_get_call</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test__set_loaders_then_uses_loader_with_get_call" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_properties.TestProperties.test_get_all_dict_contains_expected_results">
+<code class="descname">test_get_all_dict_contains_expected_results</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test_get_all_dict_contains_expected_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_properties.TestProperties.test_get_all_returns_a_dict">
+<code class="descname">test_get_all_returns_a_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test_get_all_returns_a_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="tests.test_properties.TestProperties.test_get_property_from_list_of_loaders_overwrites_properties">
 <code class="descname">test_get_property_from_list_of_loaders_overwrites_properties</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test_get_property_from_list_of_loaders_overwrites_properties" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -357,6 +483,16 @@
 <dl class="method">
 <dt id="tests.test_properties.TestProperties.test_get_property_from_list_of_loaders_returns_prop_from_single_loader">
 <code class="descname">test_get_property_from_list_of_loaders_returns_prop_from_single_loader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test_get_property_from_list_of_loaders_returns_prop_from_single_loader" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_properties.TestProperties.test_get_raises_KeyError_for_non_existent_property">
+<code class="descname">test_get_raises_KeyError_for_non_existent_property</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test_get_raises_KeyError_for_non_existent_property" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_properties.TestProperties.test_get_returns_property_from_loaders">
+<code class="descname">test_get_returns_property_from_loaders</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_properties.TestProperties.test_get_returns_property_from_loaders" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -378,31 +514,6 @@
 <dt id="tests.test_test.TestTest">
 <em class="property">class </em><code class="descclassname">tests.test_test.</code><code class="descname">TestTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_test.TestTest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
-<dl class="method">
-<dt id="tests.test_test.TestTest.test_resolve_raises_Exception_if_alias_file_path_is_a_directory">
-<code class="descname">test_resolve_raises_Exception_if_alias_file_path_is_a_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_test.TestTest.test_resolve_raises_Exception_if_alias_file_path_is_a_directory" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_test.TestTest.test_resolve_raises_FileNotFoundError_if_alias_file_path_does_not_exist">
-<code class="descname">test_resolve_raises_FileNotFoundError_if_alias_file_path_does_not_exist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_test.TestTest.test_resolve_raises_FileNotFoundError_if_alias_file_path_does_not_exist" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_test.TestTest.test_resolve_raises_KeyError_if_alias_is_not_in_file">
-<code class="descname">test_resolve_raises_KeyError_if_alias_is_not_in_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_test.TestTest.test_resolve_raises_KeyError_if_alias_is_not_in_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_test.TestTest.test_resolve_returns_path_if_given_a_valid_alias">
-<code class="descname">test_resolve_returns_path_if_given_a_valid_alias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_test.TestTest.test_resolve_returns_path_if_given_a_valid_alias" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_test.TestTest.test_resolve_uses_property_loader_to_resolve_vars_in_file">
-<code class="descname">test_resolve_uses_property_loader_to_resolve_vars_in_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_test.TestTest.test_resolve_uses_property_loader_to_resolve_vars_in_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </div>
@@ -442,108 +553,28 @@
 <em class="property">class </em><code class="descclassname">tests.test_workspace.</code><code class="descname">TestWorkspaces</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_get_path_returns_absolute_workspace_path">
-<code class="descname">test_Workspace_get_path_returns_absolute_workspace_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_get_path_returns_absolute_workspace_path" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test__set_path_raises_FileNotFoundError_if_arg_does_not_exist">
+<code class="descname">test__set_path_raises_FileNotFoundError_if_arg_does_not_exist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test__set_path_raises_FileNotFoundError_if_arg_does_not_exist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_get_properties_returns_dict">
-<code class="descname">test_Workspace_get_properties_returns_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_get_properties_returns_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test__set_path_raises_NotADirectoryError_if_arg_is_file">
+<code class="descname">test__set_path_raises_NotADirectoryError_if_arg_is_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test__set_path_raises_NotADirectoryError_if_arg_is_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_get_property_raises_KeyError_if_property_cannot_be_loaded_from_property_loader">
-<code class="descname">test_Workspace_get_property_raises_KeyError_if_property_cannot_be_loaded_from_property_loader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_get_property_raises_KeyError_if_property_cannot_be_loaded_from_property_loader" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test__set_path_raises_ValueError_if_arg_is_no_a_workspace">
+<code class="descname">test__set_path_raises_ValueError_if_arg_is_no_a_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test__set_path_raises_ValueError_if_arg_is_no_a_workspace" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_get_property_returns_value_if_value_can_be_loaded_from_property_loader">
-<code class="descname">test_Workspace_get_property_returns_value_if_value_can_be_loaded_from_property_loader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_get_property_returns_value_if_value_can_be_loaded_from_property_loader" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test__set_path_runs_ok_with_valid_workspace">
+<code class="descname">test__set_path_runs_ok_with_valid_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test__set_path_runs_ok_with_valid_workspace" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_init_accepts_a_property_loader_as_2nd_arg">
-<code class="descname">test_Workspace_init_accepts_a_property_loader_as_2nd_arg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_init_accepts_a_property_loader_as_2nd_arg" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_init_raises_if_called_with_a_file">
-<code class="descname">test_Workspace_init_raises_if_called_with_a_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_init_raises_if_called_with_a_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_init_raises_if_called_with_a_non_workspace_directory">
-<code class="descname">test_Workspace_init_raises_if_called_with_a_non_workspace_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_init_raises_if_called_with_a_non_workspace_directory" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_init_raises_if_called_with_non_existent_dir">
-<code class="descname">test_Workspace_init_raises_if_called_with_non_existent_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_init_raises_if_called_with_non_existent_dir" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_init_works_fine_when_called_with_a_workspace">
-<code class="descname">test_Workspace_init_works_fine_when_called_with_a_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_init_works_fine_when_called_with_a_workspace" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_resolve_alias_raises_FileNotFoundError_if_supplied_non_existient_path">
-<code class="descname">test_Workspace_resolve_alias_raises_FileNotFoundError_if_supplied_non_existient_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_resolve_alias_raises_FileNotFoundError_if_supplied_non_existient_path" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_resolve_alias_raises_KeyError_if_alias_not_in_aliases_file">
-<code class="descname">test_Workspace_resolve_alias_raises_KeyError_if_alias_not_in_aliases_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_resolve_alias_raises_KeyError_if_alias_not_in_aliases_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_resolve_alias_resolves_relative_paths_relative_to_cwd">
-<code class="descname">test_Workspace_resolve_alias_resolves_relative_paths_relative_to_cwd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_resolve_alias_resolves_relative_paths_relative_to_cwd" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_resolve_alias_works_with_absolute_path_to_aliases_file">
-<code class="descname">test_Workspace_resolve_alias_works_with_absolute_path_to_aliases_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_resolve_alias_works_with_absolute_path_to_aliases_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_resolve_does_nothing_to_an_absolute_path">
-<code class="descname">test_Workspace_resolve_does_nothing_to_an_absolute_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_resolve_does_nothing_to_an_absolute_path" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_resolve_resolves_path_relative_to_workspace">
-<code class="descname">test_Workspace_resolve_resolves_path_relative_to_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_resolve_resolves_path_relative_to_workspace" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_resolve_workspace_alias_raises_FileNotFoundError_if_workspace_aliases_file_does_not_exist">
-<code class="descname">test_Workspace_resolve_workspace_alias_raises_FileNotFoundError_if_workspace_aliases_file_does_not_exist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_resolve_workspace_alias_raises_FileNotFoundError_if_workspace_aliases_file_does_not_exist" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_resolve_workspace_alias_raises_KeyError_if_alias_does_not_exist">
-<code class="descname">test_Workspace_resolve_workspace_alias_raises_KeyError_if_alias_does_not_exist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_resolve_workspace_alias_raises_KeyError_if_alias_does_not_exist" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspace_resolve_workspace_alias_returns_value_when_called_with_actual_alias">
-<code class="descname">test_Workspace_resolve_workspace_alias_returns_value_when_called_with_actual_alias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspace_resolve_workspace_alias_returns_value_when_called_with_actual_alias" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_Workspce_get_properties_returns_dict_returned_by_property_loader">
-<code class="descname">test_Workspce_get_properties_returns_dict_returned_by_property_loader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_Workspce_get_properties_returns_dict_returned_by_property_loader" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_calling_install_on_a_workspace_runs_bin_install">
-<code class="descname">test_calling_install_on_a_workspace_runs_bin_install</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_calling_install_on_a_workspace_runs_bin_install" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_create_accepts_a_list_arg">
-<code class="descname">test_create_accepts_a_list_arg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_create_accepts_a_list_arg" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test__set_path_to_None_works_ok">
+<code class="descname">test__set_path_to_None_works_ok</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test__set_path_to_None_works_ok" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -557,8 +588,8 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_create_returns_a_Workspace_instance">
-<code class="descname">test_create_returns_a_Workspace_instance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_create_returns_a_Workspace_instance" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test_create_returns_a_path_to_the_workspace">
+<code class="descname">test_create_returns_a_path_to_the_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_create_returns_a_path_to_the_workspace" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -567,23 +598,23 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_get_default_property_loaders_raises_FileNotFoundError_for_non_existent_path">
-<code class="descname">test_get_default_property_loaders_raises_FileNotFoundError_for_non_existent_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_get_default_property_loaders_raises_FileNotFoundError_for_non_existent_path" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test_get_path_returns_None_if_manual_ws_set_is_None_and_cwd_is_not_a_workspace">
+<code class="descname">test_get_path_returns_None_if_manual_ws_set_is_None_and_cwd_is_not_a_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_get_path_returns_None_if_manual_ws_set_is_None_and_cwd_is_not_a_workspace" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_get_default_property_loaders_raises_NotADirectoryError_if_path_is_file">
-<code class="descname">test_get_default_property_loaders_raises_NotADirectoryError_if_path_is_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_get_default_property_loaders_raises_NotADirectoryError_if_path_is_file" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test_get_path_returns_cwd_if_cwd_is_workspace_and_no_manual_override_set">
+<code class="descname">test_get_path_returns_cwd_if_cwd_is_workspace_and_no_manual_override_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_get_path_returns_cwd_if_cwd_is_workspace_and_no_manual_override_set" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_get_default_property_loaders_raises_RuntimeError_if_dir_is_not_workspace">
-<code class="descname">test_get_default_property_loaders_raises_RuntimeError_if_dir_is_not_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_get_default_property_loaders_raises_RuntimeError_if_dir_is_not_workspace" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test_get_path_returns_manually_set_path">
+<code class="descname">test_get_path_returns_manually_set_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_get_path_returns_manually_set_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_get_default_property_loaders_returns_list_of_property_loaders_for_workspace">
-<code class="descname">test_get_default_property_loaders_returns_list_of_property_loaders_for_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_get_default_property_loaders_returns_list_of_property_loaders_for_workspace" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test_get_path_returns_manually_set_path_even_if_supplied_cwd">
+<code class="descname">test_get_path_returns_manually_set_path_even_if_supplied_cwd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_get_path_returns_manually_set_path_even_if_supplied_cwd" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -607,23 +638,43 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_try_locate_workspace_returns_LOR_HOME_if_it_is_set_in_env">
-<code class="descname">test_try_locate_workspace_returns_LOR_HOME_if_it_is_set_in_env</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_try_locate_workspace_returns_LOR_HOME_if_it_is_set_in_env" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test_run_install_script_raises_FileNotFoundError_if_workspace_doesnt_contain_installer">
+<code class="descname">test_run_install_script_raises_FileNotFoundError_if_workspace_doesnt_contain_installer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_run_install_script_raises_FileNotFoundError_if_workspace_doesnt_contain_installer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_try_locate_workspace_returns_cwd_if_cwd_is_a_workspace">
-<code class="descname">test_try_locate_workspace_returns_cwd_if_cwd_is_a_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_try_locate_workspace_returns_cwd_if_cwd_is_a_workspace" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test_run_install_script_raises_FileNotFoundError_if_workspace_path_does_not_exist">
+<code class="descname">test_run_install_script_raises_FileNotFoundError_if_workspace_path_does_not_exist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_run_install_script_raises_FileNotFoundError_if_workspace_path_does_not_exist" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_try_locate_workspace_returns_env_cwd_if_env_cwd_is_a_workspace">
-<code class="descname">test_try_locate_workspace_returns_env_cwd_if_env_cwd_is_a_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_try_locate_workspace_returns_env_cwd_if_env_cwd_is_a_workspace" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test_run_install_script_raises_NotADirectoryError_if_workspace_path_is_not_a_dir">
+<code class="descname">test_run_install_script_raises_NotADirectoryError_if_workspace_path_is_not_a_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_run_install_script_raises_NotADirectoryError_if_workspace_path_is_not_a_dir" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="tests.test_workspace.TestWorkspaces.test_try_locate_workspace_returns_none_if_lor_home_is_not_set_and_cwd_is_not_a_workspace">
-<code class="descname">test_try_locate_workspace_returns_none_if_lor_home_is_not_set_and_cwd_is_not_a_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_try_locate_workspace_returns_none_if_lor_home_is_not_set_and_cwd_is_not_a_workspace" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.test_workspace.TestWorkspaces.test_run_install_script_runs_bin_install">
+<code class="descname">test_run_install_script_runs_bin_install</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_run_install_script_runs_bin_install" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_workspace.TestWorkspaces.test_try_locate_returns_LOR_HOME_if_it_is_set_in_env">
+<code class="descname">test_try_locate_returns_LOR_HOME_if_it_is_set_in_env</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_try_locate_returns_LOR_HOME_if_it_is_set_in_env" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_workspace.TestWorkspaces.test_try_locate_returns_cwd_if_cwd_is_a_workspace">
+<code class="descname">test_try_locate_returns_cwd_if_cwd_is_a_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_try_locate_returns_cwd_if_cwd_is_a_workspace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_workspace.TestWorkspaces.test_try_locate_returns_env_cwd_if_env_cwd_is_a_workspace">
+<code class="descname">test_try_locate_returns_env_cwd_if_env_cwd_is_a_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_try_locate_returns_env_cwd_if_env_cwd_is_a_workspace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="tests.test_workspace.TestWorkspaces.test_try_locate_returns_none_if_lor_home_is_not_set_and_cwd_is_not_a_workspace">
+<code class="descname">test_try_locate_returns_none_if_lor_home_is_not_set_and_cwd_is_not_a_workspace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_workspace.TestWorkspaces.test_try_locate_returns_none_if_lor_home_is_not_set_and_cwd_is_not_a_workspace" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

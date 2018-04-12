@@ -21,14 +21,6 @@ tests.test\_cmdline module
     :undoc-members:
     :show-inheritance:
 
-tests.test\_lor\_globals module
--------------------------------
-
-.. automodule:: tests.test_lor_globals
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 tests.test\_path module
 -----------------------
 
