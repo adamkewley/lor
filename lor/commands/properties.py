@@ -16,7 +16,7 @@
 """
 import argparse
 
-from lor import workspace_global
+from lor import workspace
 from lor.properties import DictPropertyLoader
 from lor.util import cli
 from lor.util.cli import CliCommand
@@ -39,7 +39,7 @@ class PropertiesCommand(CliCommand):
         property_overrides = cli.extract_property_overrides(lor_args)
         cli_overrides_loader = DictPropertyLoader("cli-overrides", property_overrides)
 
-        bootstrapped_ws = workspace_global.bootstrap([cli_overrides_loader])
+        bootstrapped_ws = workspace._bootstrap([cli_overrides_loader])
 
         for k, v in bootstrapped_ws.get_properties().items():
             print("{k}={v}".format(k=k, v=v))

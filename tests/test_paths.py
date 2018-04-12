@@ -14,12 +14,6 @@
 #
 from unittest import TestCase
 
-from lor import workspace_global
 
-
-class TestLorGlobals(TestCase):
-
-    def test_set_current_workspace_raises_if_called_with_non_Workspace_arg(self):
-        with self.assertRaises(RuntimeError):
-            workspace_global.set("clearly-not-a-workspace")
-
+class TestPaths(TestCase):
+    pass

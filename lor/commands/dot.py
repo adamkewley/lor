@@ -24,7 +24,7 @@ from lor.util import cli
 from luigi.cmdline_parser import CmdlineParser
 from networkx.drawing.nx_pydot import to_pydot
 
-from lor import util, workspace_global
+from lor import util, workspace
 from lor.util.cli import CliCommand
 
 
@@ -45,7 +45,7 @@ class DotCommand(CliCommand):
         property_overrides = cli.extract_property_overrides(lor_args)
         cli_overrides_loader = DictPropertyLoader("cli-overrides", property_overrides)
 
-        workspace_global.bootstrap([cli_overrides_loader])
+        workspace._bootstrap([cli_overrides_loader])
         with CmdlineParser.global_instance(luigi_args) as cp:
             task_obj = cp.get_task_obj()
             print_as_dot(task_obj)

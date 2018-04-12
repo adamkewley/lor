@@ -12,33 +12,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-"""Workspace support
+"""
+Workspace support.
 
 A workspace is a structured, but standard, python project, which enables downstream projects to use a "convention
-over configuration" design. Definitions in this module make it easier to work with that structure (e.g. when resolving
-paths).
+over configuration" design. Definitions in this module make it easier to work with that structure (e.g. creating it,
+establishing whether a directory is a workspace, resolving paths in the workspace).
+
+This module also provides global access to the current workspace, which can be established automatically (from the
+current working dir or an env var) or set explicitly (e.g. by LoR's CLI commands). This enables downstream code to
+perform working-directory-independent pathing.
 """
 import os
 import subprocess
-import sys
 
-from cookiecutter.main import cookiecutter
+import sys
 
 import lor._paths
 import lor._constants
-import lor.pathalias
-from lor import properties
-from lor.properties import YAMLFilePropertyLoader
+
+from cookiecutter.main import cookiecutter
+
+__current_workspace_path = None
 
 
-def create(output_path, property_loaders=None):
-    """Create a new workspace at the output path.
+def create(output_path):
+    """
+    Create a new workspace at `output path`, returns the workspace's path.
 
     :param output_path: Full path to the workspace to create
-    :param property_loaders: `PropertyLoader` the returned workspace should use
+    :raises FileNotFoundError: if output_path does not exist
+    :raises NotADirectoryError: if output_path is not a directory
     """
-    if property_loaders is None:
-        property_loaders = []
 
     output_dir, workspace_name = os.path.split(output_path)
     cookiecutter(
@@ -51,7 +56,7 @@ def create(output_path, property_loaders=None):
 
     __print_create_message_for_dir(output_path)
 
-    return Workspace(output_path, property_loaders)
+    return output_path
 
 
 def __print_create_message_for_dir(dir):
@@ -61,30 +66,86 @@ def __print_create_message_for_dir(dir):
             print("create", os.path.join(root, file))
 
 
-def install(workspace_path):
+def get_path(cwd=None):
+    """
+    Returns the current workspace's path, or None if the workspace has not been set and cannot be located automatically.
+
+    :return: The current workspace's path as a string, or None if the current workspace cannot be established.
+    """
+    global __current_workspace_path
+
+    if cwd is None:
+        cwd = os.getcwd()
+
+    if __current_workspace_path is None:
+        maybe_ws_path = try_locate(cwd)
+        if maybe_ws_path is not None:
+            __current_workspace_path = maybe_ws_path
+        else:
+            __current_workspace_path = None
+
+    return __current_workspace_path
+
+
+def _set_path(ws_path):
+    """
+    Set the current (application-wide) workspace's path. Can be set to "None" to reset manual workspace setting.
+
+    :param ws_path: The path of the new workspace
+    :raises FileNotFoundError if `ws_path` does not exist
+    :raises NotADirectoryError if `ws_path` is not a directory
+    :raises ValueError if `ws_path` is not a workspace
+    """
+    global __current_workspace_path
+
+    if ws_path is None:
+        __current_workspace_path = None
+    else:
+        __assert_is_ws_dir_path(ws_path)
+        __current_workspace_path = ws_path
+
+
+def __assert_is_ws_dir_path(ws_path):
+    if not os.path.exists(ws_path):
+        raise FileNotFoundError("{ws_path}: No such directory: should be a workspace directory".format(ws_path=ws_path))
+    elif not os.path.isdir(ws_path):
+        raise NotADirectoryError("{ws_path}: Not a directory: should be a workspace directory".format(ws_path=ws_path))
+    elif not is_workspace(ws_path):
+        raise ValueError("{ws_path}: Is not workspace: should be a workspace directory".format(ws_path=ws_path))
+
+
+def run_install_script(ws_path):
     """
     Run a workspace's install script.
 
-    :param workspace_path: Path to the workspace
+    :param ws_path: Path to the workspace
     :return: True if the install script ran successfully; otherwise, False
+    :raises FileNotFoundError: if `workspace_path` does not exist
+    :raises NotADirectoryError: if `workspace_path` is not a directory
+    :raises FileNotFoundError: if the install script cannot be found
     """
 
-    installer_path_in_ws = "bin/install"
-    print("run   ", os.path.join(workspace_path, installer_path_in_ws))
+    __assert_is_ws_dir_path(ws_path)
 
-    installer_abspath = os.path.join(workspace_path, installer_path_in_ws)
-    exit_code = subprocess.call([installer_abspath])
+    installer_path = os.path.abspath(os.path.join(ws_path, lor._constants.WORKSPACE_INSTALL_BINSTUB))
+
+    if not os.path.exists(installer_path):
+        raise FileNotFoundError("{installer_path}: No such file: should be an installer script")
+
+    print("run   ", lor._constants.WORKSPACE_INSTALL_BINSTUB)
+
+    exit_code = subprocess.call([installer_path])
 
     if exit_code == 0:
         return True
     else:
-        print("The install command failed. Please fix all errors and re-run {cmd} before using the workspace".format(
-            cmd=installer_path_in_ws), sys.stderr)
+        print("The install command failed. Please fix all errors and re-run {cmd} before using the workspace".format(cmd=installer_path), sys.stderr)
         return False
 
 
 def try_locate(cwd=None):
-    """Returns a path to the workspace, if it can be found: otherwise, returns `None`.
+    """
+    Returns a path to the workspace, if it can be found: otherwise, returns `None`.
 
     This function looks for a workspace by:
 
@@ -129,12 +190,15 @@ def __try_get_workspace_path_from_cwd(cwd=None):
 
 
 def is_workspace(path):
-    """Return True if path is a workspace; otherwise, return False.
+    """
+    Return True if path is a workspace; otherwise, return False.
 
     Throws if the path does not exist or is a file.
 
     :param path: The path to check
     :return: True if path is a workspace. False if path is not a workspace.
+    :raises FileNotFoundError: if path does not exist
+    :raises NotADirectoryError: if path is not a directory
     """
 
     if not os.path.exists(path):
@@ -146,99 +210,3 @@ def is_workspace(path):
     lor_binstub = os.path.join(path, lor._constants.WORKSPACE_EXEC_BINSTUB)
 
     return os.path.exists(lor_binstub)
-
-
-def get_default_property_loaders(workspace_dir):
-    """Returns a list of default property loaders for a workspace dir.
-
-    Raises `FileNotFoundError` if `workspace_dir` does not exist.
-    Raises `NotADirectoryError` if `workspace_dir` is not a directory.
-    Raises `RuntimeError` if `workspace_dir` is not a workspace dir.
-
-    :return: A list of `PropertyLoader`s, ordered by high- to low-priority
-    """
-
-    if not os.path.exists(workspace_dir):
-        raise FileNotFoundError("{workspace_dir}: No such directory: expected workspace directory".format(workspace_dir=workspace_dir))
-    elif not os.path.isdir(workspace_dir):
-        raise NotADirectoryError("{workspace_dir}: Not a directory: expected a workspace directory".format(workspace_dir=workspace_dir))
-    elif not is_workspace(workspace_dir):
-        raise RuntimeError("{workspace_dir}: Not a workspace: it is a directory, but doesn't appear to be a workspace".format(workspace_dir=workspace_dir))
-    else:
-        workspace_properties_path = os.path.join(workspace_dir, lor._constants.WORKSPACE_PROPS)
-        workspace_properties_loader = YAMLFilePropertyLoader(workspace_properties_path)
-
-        return [workspace_properties_loader]
-
-
-class Workspace:
-
-    def __init__(self, workspace_path, property_loaders):
-        workspace_path = os.path.abspath(workspace_path)
-        if is_workspace(workspace_path):
-            self.workspace_path = workspace_path
-            self.property_loaders = property_loaders
-        else:
-            raise RuntimeError("{workspace_path}: is not a workspace".format(workspace_path=workspace_path))
-
-    def resolve_path(self, path):
-        """Resolve a path relative to the workspace.
-
-        :param path: The path to resolve
-        :return: A path resolved relative to the workspace
-        """
-        return os.path.join(self.workspace_path, path)
-
-    def resolve_workspace_pathalias(self, alias):
-        """Resolve a path from the workspace's workspace alias file.
-
-        If the workspace aliases file does not exist, a FileNotFoundError is raised.
-        If the `alias` does not exist, a KeyError is raised.
-
-        :param alias: The alias to look up
-        :return: A path resolved from the aliases file relative to the current workspace.
-        """
-        ws_alias_file = self.resolve_path(lor._constants.WORKSPACE_ALIASES)
-        alias_val = self.resolve_alias_file(ws_alias_file, alias)
-        return self.resolve_path(alias_val)
-
-    def resolve_alias_file(self, alias_file_path, alias):
-        """Resolve a path from an aliases file.
-
-        If `alias_file_path` does not exist, FileNotFoundError is raised.
-        If `alias` does not exist in the alias file, a KeyError is raised.
-
-        :param alias_file_path: A filesystem path to an aliases (YAML) file. Relative paths are
-        resolved relative to the current directory, NOT the current workspace.
-        :param alias: The alias to resolve
-        :return: The aliase's value
-        """
-
-        if os.path.exists(alias_file_path):
-            return lor.pathalias.resolve(alias_file_path, alias, property_loaders=self.property_loaders)
-        else:
-            raise FileNotFoundError(
-                "{alias}: cannot be resolved: the current workspace does not contain a workspace aliases file as {path}".format(
-                    alias=alias, path=lor._constants.WORKSPACE_ALIASES))
-
-    def get_property(self, prop_name):
-        """Get the value of a property.
-
-        If `prop_name` cannot be found, a KeyError is raised.
-
-        :param prop_name: The property's string identifier.
-        :return: The property's value.
-        """
-        return properties.get_property_from_list_of_loaders(self.property_loaders, prop_name)
-
-    def get_properties(self):
-        """Get a dict containing all available properties and their values.
-
-        :return: A dict containing all properties and their values.
-        """
-        return properties.merge_list_of_property_loaders(self.property_loaders)
-
-    def get_abspath(self):
-        """Returns the absolute path of the workspace
-        """
-        return os.path.abspath(self.workspace_path)

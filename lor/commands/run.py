@@ -16,7 +16,7 @@ import argparse
 
 import luigi
 
-from lor import workspace_global
+from lor import workspace
 from lor.properties import DictPropertyLoader
 from lor.util import cli
 from lor.util.cli import CliCommand
@@ -46,6 +46,6 @@ class RunCommand(CliCommand):
         property_overrides = cli.extract_property_overrides(lor_args)
         cli_overrides_loader = DictPropertyLoader("cli-overrides", property_overrides)
 
-        workspace_global.bootstrap([cli_overrides_loader])
+        workspace._bootstrap([cli_overrides_loader])
 
         luigi.run(luigi_args)

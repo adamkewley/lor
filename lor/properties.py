@@ -14,17 +14,135 @@
 #
 """Property loading support
 
-Luigi projects typically require loading configuration properties at runtime. *Where* those properties should be loaded
-from depends on the situation. For example, domain specific knowledge might be put into the project itself
-(e.g. etc/properties.yml) whereas user logins might be placed in the user's home folder.
+LoR projects typically require configuration properties that are loaded at runtime. Those properties can be loaded from
+multiple locations. For example, domain specific knowledge might be in the LoR project's `config/` folder whereas user
+logins might be placed in the user's home folder - downstream code shouldn't *need* to know the difference.
 
 This module contains basic abstractions for loading properties from various sources transparently. This allows LoR
-workspace tasks to just "get" a property without having to worry about *where* it came from. How the various property
-sources are prioritized is dictated by the workspace implementation.
+workspace code to get a property without having to worry about *where* it came from. This module also contains global
+property getters. Those globals can be used at any time; however, the LoR CLI commands will also augment them with
+CLI overrides etc.
 """
 import os
 
 from lor import util
+
+
+__property_loaders = []
+
+
+def get_property(prop_name):
+    """
+    Returns a property from the current workspace.
+
+    :param prop_name: Name of the property to get
+    :return: The property's value
+    :raises KeyError if `prop_name` cannot be found
+    """
+    return get_cur_workspace().get_property(prop_name)
+
+
+def get_properties():
+    """
+    Returns a dict containing all available workspace properties and their values.
+
+    :return a dict containing all available workspace properties and their values.
+    """
+    return get_cur_workspace().get_properties()
+
+
+def _bootstrap(prop_override_loaders=None):
+    """
+    Bootstrap the current workspac
+
+    Explicitly initialize the global workspace variable with its default state + extra loaders (usually, from the CLI).
+    This is usually called by CLI commands to prepare subsequent Luigi tasks with the correct workspace state.
+
+    Raises a `RuntimeError` if the current workspace cannot be located.
+
+    :param prop_override_loaders: A list of PropertyLoaders ordered by highest- to lowest-priority. All of these loaders are
+    higher priority than the default property loaders.
+    :return: The bootstrapped `Workspace` that will be returned by subsequent calls to `get_current_workspace`
+    """
+
+    if prop_override_loaders is None:
+        prop_override_loaders = []
+
+    workspace_dir = workspace.try_locate()
+
+    if workspace_dir is None:
+        raise RuntimeError("Cannot bootstrap workspace: cannot locate a workspace")
+
+    default_loaders = workspace.get_default_property_loaders(workspace_dir)
+    all_loaders = prop_override_loaders + default_loaders
+
+    ws = Workspace(workspace_dir, all_loaders)
+
+    _set_path(ws)
+
+    return ws
+
+
+def _set_property_loaders(property_loaders):
+    pass
+
+
+def get_default_property_loaders(workspace_dir):
+    """Returns a list of default property loaders for a workspace dir.
+
+    Raises `FileNotFoundError` if `workspace_dir` does not exist.
+    Raises `NotADirectoryError` if `workspace_dir` is not a directory.
+    Raises `RuntimeError` if `workspace_dir` is not a workspace dir.
+
+    :return: A list of `PropertyLoader`s, ordered by high- to low-priority
+    """
+
+    if not os.path.exists(workspace_dir):
+        raise FileNotFoundError("{workspace_dir}: No such directory: expected workspace directory".format(workspace_dir=workspace_dir))
+    elif not os.path.isdir(workspace_dir):
+        raise NotADirectoryError("{workspace_dir}: Not a directory: expected a workspace directory".format(workspace_dir=workspace_dir))
+    elif not is_workspace(workspace_dir):
+        raise RuntimeError("{workspace_dir}: Not a workspace: it is a directory, but doesn't appear to be a workspace".format(workspace_dir=workspace_dir))
+    else:
+        workspace_properties_path = os.path.join(workspace_dir, lor._constants.WORKSPACE_PROPS)
+        workspace_properties_loader = YAMLFilePropertyLoader(workspace_properties_path)
+
+        return [workspace_properties_loader]
+
+
+def get_property_from_list_of_loaders(property_loaders, prop_name):
+    """Returns a property's value, if a value could be loaded from a list of PropertyLoaders.
+
+    Goes through each `PropertyLoader` in `property_loaders` in order, attempting to get the property from that loader.
+    Once a value for the property is found, returns that value. If the property cannot be found in all property loaders,
+    raises a KeyError.
+
+    :return The property's value
+    """
+    for property_loader in property_loaders:
+        maybe_ret = property_loader.try_get(prop_name)
+        if maybe_ret is not None:
+            return maybe_ret
+
+    prop_loader_names = util.or_join(list(map(lambda loader: loader.get_name(), property_loaders)))
+    err_msg = "{prop_name}: No such property found in {loaders}".format(prop_name=prop_name, loaders=prop_loader_names)
+
+    raise KeyError(err_msg)
+
+
+def merge_list_of_property_loaders(property_loaders):
+    """Returns a dict containing the merge product of all property loaders.
+
+    Earlier elements in `property_loaders` take higher priority over lower elements
+    """
+
+    ret = {}
+
+    for property_loader in reversed(property_loaders):
+        loader_props = property_loader.get_all()
+        ret = util.merge(ret, loader_props)
+
+    return ret
 
 
 class PropertyLoader:
@@ -120,38 +238,3 @@ class YAMLFilePropertyLoader(PropertyLoader):
 
     def get_all(self):
         return self.property_dict
-
-
-def get_property_from_list_of_loaders(property_loaders, prop_name):
-    """Returns a property's value, if a value could be loaded from a list of PropertyLoaders.
-
-    Goes through each `PropertyLoader` in `property_loaders` in order, attempting to get the property from that loader.
-    Once a value for the property is found, returns that value. If the property cannot be found in all property loaders,
-    raises a KeyError.
-
-    :return The property's value
-    """
-    for property_loader in property_loaders:
-        maybe_ret = property_loader.try_get(prop_name)
-        if maybe_ret is not None:
-            return maybe_ret
-
-    prop_loader_names = util.or_join(list(map(lambda loader: loader.get_name(), property_loaders)))
-    err_msg = "{prop_name}: No such property found in {loaders}".format(prop_name=prop_name, loaders=prop_loader_names)
-
-    raise KeyError(err_msg)
-
-
-def merge_list_of_property_loaders(property_loaders):
-    """Returns a dict containing the merge product of all property loaders.
-
-    Earlier elements in `property_loaders` take higher priority over lower elements
-    """
-
-    ret = {}
-
-    for property_loader in reversed(property_loaders):
-        loader_props = property_loader.get_all()
-        ret = util.merge(ret, loader_props)
-
-    return ret

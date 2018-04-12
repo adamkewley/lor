@@ -22,6 +22,35 @@ from tests import tst_helpers
 
 class TestProperties(unittest.TestCase):
 
+    def test_get_default_property_loaders_returns_list_of_property_loaders_for_workspace(self):
+        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
+        workspace.create(ws_path)
+
+        returned_property_loaders = workspace.get_default_property_loaders(ws_path)
+
+        self.assertIsInstance(returned_property_loaders, list)
+
+        for loader in returned_property_loaders:
+            self.assertIsInstance(loader, PropertyLoader)
+
+    def test_get_default_property_loaders_raises_FileNotFoundError_for_non_existent_path(self):
+        non_existent_path = util.base36_str()
+
+        with self.assertRaises(FileNotFoundError):
+            workspace.get_default_property_loaders(non_existent_path)
+
+    def test_get_default_property_loaders_raises_NotADirectoryError_if_path_is_file(self):
+        _, path_to_file = tempfile.mkstemp()
+
+        with self.assertRaises(NotADirectoryError):
+            workspace.get_default_property_loaders(path_to_file)
+
+    def test_get_default_property_loaders_raises_RuntimeError_if_dir_is_not_workspace(self):
+        non_workspace_dir = tempfile.mkdtemp()
+
+        with self.assertRaises(RuntimeError):
+            workspace.get_default_property_loaders(non_workspace_dir)
+
     def test_DictPropertyLoader_init_works_with_standard_args(self):
         DictPropertyLoader(util.base36_str(), {})
 

@@ -13,8 +13,8 @@
 # limitations under the License.
 #
 
-WORKSPACE_ALIASES = "etc/paths/workspace.yml"
 WORKSPACE_EXEC_BINSTUB = "bin/lor"
+WORKSPACE_INSTALL_BINSTUB = "bin/install"
 MAX_TMP_DIR_CREATION_ATTEMPTS = 100
 WORKSPACE_ENV_VARNAME = "LOR_HOME"
 WORKSPACE_PROPS = "etc/properties.yml"

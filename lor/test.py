@@ -16,16 +16,16 @@
 
 This module contains helper functions that downstream workspaces might want to use for testing purposes.
 """
+import os
 import tempfile
 import unittest
 
 import luigi
-import os
 from luigi import Target
 from luigi.contrib.hdfs import HdfsClient
-from lor import util, workspace_global
+
 import lor._constants
-from lor.workspace import Workspace
+from lor import util
 from lor import workspace
 
 tc = unittest.TestCase('__init__')
@@ -122,13 +122,12 @@ class ChangeWorkspace(object):
         self.ws_path = ws_path
 
     def __enter__(self):
-        self.existing = workspace_global.get()
-        ws = Workspace(self.ws_path, [])
-        workspace_global.set(ws)
-        return ws
+        self.existing = workspace.get_path()
+        workspace._set_path(self.ws_path)
+        return self.ws_path
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        workspace_global.set(self.existing)
+        workspace._set_path(self.existing)
 
         if exc_val is not None:
             raise exc_val
@@ -143,16 +142,14 @@ class TemporaryWorkspace(object):
     """
 
     def __enter__(self):
-        self.existing = workspace_global.get()
-
+        self.existing = workspace.get_path()
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
         ws = workspace.create(ws_path)
-        workspace_global.set(ws)
-
+        workspace._set_path(ws)
         return ws
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        workspace_global.set(self.existing)
+        workspace._set_path(self.existing)
 
         if exc_val is not None:
             raise exc_val

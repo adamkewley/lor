@@ -18,12 +18,9 @@ import tempfile
 from unittest import TestCase
 
 import lor._constants
-from lor import workspace
-from lor.properties import DictPropertyLoader, PropertyLoader
-from lor.test import TemporaryEnv
-from lor.workspace import Workspace
 from lor import util
-from tests import tst_helpers
+from lor import workspace
+from lor.test import TemporaryEnv
 
 
 class TestWorkspaces(TestCase):
@@ -42,16 +39,71 @@ class TestWorkspaces(TestCase):
         with self.assertRaises(Exception):
             workspace.create(path)
 
-    def test_create_returns_a_Workspace_instance(self):
+    def test_create_returns_a_path_to_the_workspace(self):
         path = os.path.join(tempfile.mkdtemp(), "ws")
         ret = workspace.create(path)
 
-        self.assertIsInstance(ret, Workspace)
+        self.assertEqual(ret, path)
 
-    def test_create_accepts_a_list_arg(self):
-        path = os.path.join(tempfile.mkdtemp(), "ws")
+    def test__set_path_runs_ok_with_valid_workspace(self):
+        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
+        workspace.create(ws_path)
 
-        workspace.create(path, [])
+        workspace._set_path(ws_path)
+
+    def test__set_path_to_None_works_ok(self):
+        workspace._set_path(None)
+
+    def test__set_path_raises_FileNotFoundError_if_arg_does_not_exist(self):
+        with self.assertRaises(FileNotFoundError):
+            workspace._set_path(util.base36_str())
+
+    def test__set_path_raises_NotADirectoryError_if_arg_is_file(self):
+        _, file_path = tempfile.mkstemp()
+        with self.assertRaises(NotADirectoryError):
+            workspace._set_path(file_path)
+
+    def test__set_path_raises_ValueError_if_arg_is_no_a_workspace(self):
+        some_dir = tempfile.mkdtemp()
+        with self.assertRaises(ValueError):
+            workspace._set_path(some_dir)
+
+    def test_get_path_returns_None_if_manual_ws_set_is_None_and_cwd_is_not_a_workspace(self):
+        some_dir = tempfile.mkdtemp()
+        workspace._set_path(None)
+        self.assertIsNone(workspace.get_path(some_dir))
+
+    def test_get_path_returns_manually_set_path(self):
+        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
+        workspace.create(ws_path)
+        workspace._set_path(ws_path)
+
+        returned_path = workspace.get_path()
+
+        self.assertEqual(ws_path, returned_path)
+
+    def test_get_path_returns_cwd_if_cwd_is_workspace_and_no_manual_override_set(self):
+        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
+        workspace.create(ws_path)
+
+        workspace._set_path(None)
+
+        returned_path = workspace.get_path(ws_path)
+
+        self.assertEqual(ws_path, returned_path)
+
+    def test_get_path_returns_manually_set_path_even_if_supplied_cwd(self):
+        ws1_path = os.path.join(tempfile.mkdtemp(), "ws")
+        workspace.create(ws1_path)
+
+        ws2_path = os.path.join(tempfile.mkdtemp(), "ws")
+        workspace.create(ws2_path)
+
+        workspace._set_path(ws1_path)
+
+        returned_path = workspace.get_path(ws2_path)
+
+        self.assertEqual(ws1_path, returned_path)
 
     def test_is_workspace_raises_FileNotFoundError_if_path_does_not_exist(self):
         path = "doesnt-exist"
@@ -77,210 +129,15 @@ class TestWorkspaces(TestCase):
 
         self.assertTrue(workspace.is_workspace(path))
 
-    def test_get_default_property_loaders_returns_list_of_property_loaders_for_workspace(self):
+    def test_run_install_script_runs_bin_install(self):
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
         workspace.create(ws_path)
+        installer_path = os.path.join(ws_path, lor._constants.WORKSPACE_INSTALL_BINSTUB)
+        os.remove(installer_path)
 
-        returned_property_loaders = workspace.get_default_property_loaders(ws_path)
+        workspace_dir = ws_path
 
-        self.assertIsInstance(returned_property_loaders, list)
-
-        for loader in returned_property_loaders:
-            self.assertIsInstance(loader, PropertyLoader)
-
-    def test_get_default_property_loaders_raises_FileNotFoundError_for_non_existent_path(self):
-        non_existent_path = util.base36_str()
-
-        with self.assertRaises(FileNotFoundError):
-            workspace.get_default_property_loaders(non_existent_path)
-
-    def test_get_default_property_loaders_raises_NotADirectoryError_if_path_is_file(self):
-        _, path_to_file = tempfile.mkstemp()
-
-        with self.assertRaises(NotADirectoryError):
-            workspace.get_default_property_loaders(path_to_file)
-
-    def test_get_default_property_loaders_raises_RuntimeError_if_dir_is_not_workspace(self):
-        non_workspace_dir = tempfile.mkdtemp()
-
-        with self.assertRaises(RuntimeError):
-            workspace.get_default_property_loaders(non_workspace_dir)
-
-    def test_Workspace_init_raises_if_called_with_non_existent_dir(self):
-        with self.assertRaises(FileNotFoundError):
-            Workspace("some-non-existent-workspace", [])
-
-    def test_Workspace_init_raises_if_called_with_a_file(self):
-        _, path = tempfile.mkstemp()
-        
-        with self.assertRaises(NotADirectoryError):            
-            Workspace(path, [])
-
-    def test_Workspace_init_raises_if_called_with_a_non_workspace_directory(self):
-        path = tempfile.mkdtemp()
-        
-        with self.assertRaises(Exception):
-            Workspace(path, [])
-
-    def test_Workspace_init_works_fine_when_called_with_a_workspace(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
-
-        Workspace(ws_path, [])
-
-    def test_Workspace_init_accepts_a_property_loader_as_2nd_arg(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
-
-        property_loader = DictPropertyLoader(util.base36_str(), {})
-
-        Workspace(ws_path, property_loader)
-
-    def test_Workspace_resolve_resolves_path_relative_to_workspace(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-
-        subpath = util.base36_str()
-        ret = ws.resolve_path(subpath)
-
-        self.assertEqual(
-            os.path.relpath(os.path.join(ws_path, subpath)),
-            os.path.relpath(ret))
-
-    def test_Workspace_resolve_does_nothing_to_an_absolute_path(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-
-        subpath = "/" + util.base36_str()
-        ret = ws.resolve_path(subpath)
-
-        self.assertEqual(subpath, ret)
-
-    def test_Workspace_resolve_workspace_alias_raises_FileNotFoundError_if_workspace_aliases_file_does_not_exist(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-
-        aliases_path = os.path.join(ws_path, lor._constants.WORKSPACE_ALIASES)
-        os.remove(aliases_path)
-
-        with self.assertRaises(FileNotFoundError):
-            ws.resolve_workspace_pathalias(util.base36_str())
-
-    def test_Workspace_resolve_workspace_alias_raises_KeyError_if_alias_does_not_exist(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-
-        with self.assertRaises(KeyError):
-            ws.resolve_workspace_pathalias(util.base36_str())
-
-    def test_Workspace_resolve_workspace_alias_returns_value_when_called_with_actual_alias(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-
-        ret = ws.resolve_workspace_pathalias("TEST_FIXTURES")
-
-        self.assertEqual(
-            os.path.realpath(ret),
-            os.path.realpath(os.path.join(ws_path, "tests/fixtures")))
-
-    def test_Workspace_resolve_alias_raises_FileNotFoundError_if_supplied_non_existient_path(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-
-        non_existient_path = util.base36_str()
-
-        with self.assertRaises(FileNotFoundError):
-            ws.resolve_alias_file(non_existient_path, util.base36_str())
-
-    def test_Workspace_resolve_alias_works_with_absolute_path_to_aliases_file(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-        fixture_path = os.path.abspath(tst_helpers.fixture("paths/example.yml"))
-
-        ret = ws.resolve_alias_file(fixture_path, "foo")
-
-        self.assertEqual("bar/", ret)
-
-    def test_Workspace_resolve_alias_raises_KeyError_if_alias_not_in_aliases_file(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-        fixture_path = os.path.abspath(tst_helpers.fixture("paths/example.yml"))
-
-        non_existient_key = util.base36_str()
-
-        with self.assertRaises(KeyError):
-            ws.resolve_alias_file(fixture_path, non_existient_key)
-
-    def test_Workspace_resolve_alias_resolves_relative_paths_relative_to_cwd(self):
-        # The resolve_alias function shouldn't assume clients want relpaths relative to
-        # the workspace because aliases might be used in other ways (e.g. from scripts).
-        # Clients *should* use `resolve` if they want a path relative to the workspace.
-
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-
-        fixture_path = tst_helpers.fixture("paths/example.yml")
-        cwd = os.getcwd()
-        fixture_relpath = os.path.relpath(fixture_path, cwd)
-
-        ret = ws.resolve_alias_file(fixture_relpath, "foo")
-
-        self.assertEqual("bar/", ret)
-
-    def test_Workspace_get_property_raises_KeyError_if_property_cannot_be_loaded_from_property_loader(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        property_loader = []
-
-        ws = workspace.create(ws_path, property_loader)
-
-        with self.assertRaises(KeyError):
-            ws.get_property(util.base36_str())
-
-    def test_Workspace_get_property_returns_value_if_value_can_be_loaded_from_property_loader(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        prop_key = util.base36_str()
-        prop_val = util.base36_str()
-        property_loader = DictPropertyLoader(
-            name=util.base36_str(),
-            property_dict={prop_key: prop_val})
-
-        ws = workspace.create(ws_path, [property_loader])
-
-        self.assertEqual(prop_val, ws.get_property(prop_key))
-
-    def test_Workspace_get_properties_returns_dict(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
-
-        ret = ws.get_properties()
-
-        self.assertIsInstance(ret, dict)
-
-    def test_Workspce_get_properties_returns_dict_returned_by_property_loader(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        prop_dict = {"some": "var"}
-        property_loader = DictPropertyLoader(
-            name=util.base36_str(),
-            property_dict=prop_dict)
-
-        ws = workspace.create(ws_path, [property_loader])
-
-        self.assertEqual(property_loader.get_all(), ws.get_properties())
-
-    def test_Workspace_get_path_returns_absolute_workspace_path(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path, [])
-
-        self.assertTrue(ws.get_abspath().startswith("/"))
-        self.assertEqual(os.path.realpath(ws_path), os.path.realpath(ws.get_abspath()))
-
-    def test_calling_install_on_a_workspace_runs_bin_install(self):
-        workspace_dir = tempfile.mkdtemp()
-
-        bin_dir = os.path.join(workspace_dir, "bin")
-        os.mkdir(bin_dir)
-
-        install_path = os.path.join(bin_dir, "install")
+        install_path = os.path.join(workspace_dir, lor._constants.WORKSPACE_INSTALL_BINSTUB)
         str_written_by_script = util.base36_str(20)
         _, file_containing_str = tempfile.mkstemp()
 
@@ -294,18 +151,35 @@ class TestWorkspaces(TestCase):
         st = os.stat(str(install_path))
         os.chmod(install_path, st.st_mode | stat.S_IEXEC)
 
-        workspace.install(workspace_dir)
+        workspace.run_install_script(workspace_dir)
 
         self.assertTrue(os.path.exists(file_containing_str))
 
         with open(file_containing_str, "r") as f:
             self.assertEqual(str_written_by_script, f.readlines()[0].strip())
 
-    def test_try_locate_workspace_returns_none_if_lor_home_is_not_set_and_cwd_is_not_a_workspace(self):
+    def test_run_install_script_raises_FileNotFoundError_if_workspace_path_does_not_exist(self):
+        with self.assertRaises(FileNotFoundError):
+            workspace.run_install_script(util.base36_str())
+
+    def test_run_install_script_raises_NotADirectoryError_if_workspace_path_is_not_a_dir(self):
+        _, some_file = tempfile.mkstemp()
+        with self.assertRaises(NotADirectoryError):
+            workspace.run_install_script(some_file)
+
+    def test_run_install_script_raises_FileNotFoundError_if_workspace_doesnt_contain_installer(self):
+        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
+        workspace.create(ws_path)
+        installer_path = os.path.join(ws_path, lor._constants.WORKSPACE_INSTALL_BINSTUB)
+        os.remove(installer_path)
+        with self.assertRaises(FileNotFoundError):
+            workspace.run_install_script(ws_path)
+
+    def test_try_locate_returns_none_if_lor_home_is_not_set_and_cwd_is_not_a_workspace(self):
         cwd = tempfile.mkdtemp()
         self.assertIsNone(workspace.try_locate(cwd))
 
-    def test_try_locate_workspace_returns_cwd_if_cwd_is_a_workspace(self):
+    def test_try_locate_returns_cwd_if_cwd_is_a_workspace(self):
         cwd = os.path.join(tempfile.mkdtemp(), "ws")
         workspace.create(cwd)
 
@@ -313,7 +187,7 @@ class TestWorkspaces(TestCase):
 
         self.assertEqual(os.path.realpath(cwd), os.path.realpath(ws_path))
 
-    def test_try_locate_workspace_returns_env_cwd_if_env_cwd_is_a_workspace(self):
+    def test_try_locate_returns_env_cwd_if_env_cwd_is_a_workspace(self):
         cwd = os.path.join(tempfile.mkdtemp(), "wd")
         workspace.create(cwd)
 
@@ -322,7 +196,7 @@ class TestWorkspaces(TestCase):
             ws_path = workspace.try_locate()
             self.assertEqual(os.path.realpath(cwd), os.path.realpath(ws_path))
 
-    def test_try_locate_workspace_returns_LOR_HOME_if_it_is_set_in_env(self):
+    def test_try_locate_returns_LOR_HOME_if_it_is_set_in_env(self):
         cwd = os.path.join(tempfile.mkdtemp(), "wd")
         workspace.create(cwd)
 
