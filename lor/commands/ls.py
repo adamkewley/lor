@@ -15,6 +15,9 @@
 import argparse
 import importlib
 
+import os
+
+import sys
 from luigi import Task
 
 from lor.util import reflection
@@ -37,6 +40,8 @@ class LsCommand(CliCommand):
             nargs="+",
             help="Name of the module(s). Example: 'lor.tasks.tar'")
         parsed_args = parser.parse_args(argv)
+
+        sys.path.insert(0, os.getcwd())
 
         for mod_or_pkg_name in parsed_args.module_or_package:
             self.__print_tasks_in_mod_or_pkg(mod_or_pkg_name)

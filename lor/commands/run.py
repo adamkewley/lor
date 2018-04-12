@@ -43,6 +43,6 @@ class RunCommand(CliCommand):
         lor_args, luigi_args = parser.parse_known_args(argv)
 
         property_overrides = cli.extract_property_overrides(lor_args)
-        lor._internal.bootstrap_in_workspace_globals(property_overrides)
+        lor._internal.bootstrap_globals(property_overrides)
 
         luigi.run(luigi_args)

@@ -33,12 +33,11 @@ class ExplainCommand(CliCommand):
     def run(self, argv):
         parser = argparse.ArgumentParser(description=self.description())
 
-        # TODO: Replace the workspace CLI bootstrapping a func
         cli.add_properties_override_arg(parser)
         lor_args, luigi_args = parser.parse_known_args(argv)
 
         property_overrides = cli.extract_property_overrides(lor_args)
-        lor._internal.bootstrap_in_workspace_globals(property_overrides)
+        lor._internal.bootstrap_globals(property_overrides)
 
         with CmdlineParser.global_instance(luigi_args) as cp:
             task_obj = cp.get_task_obj()

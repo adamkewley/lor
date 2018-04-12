@@ -16,12 +16,13 @@
 Internal helper functions.
 """
 import os
+import sys
 import lor._constants
 
 from lor import workspace, path, props
 
 
-def bootstrap_in_workspace_globals(prop_overrides):
+def bootstrap_globals(prop_overrides):
     """
     Bootstrap global variables.
 
@@ -50,5 +51,9 @@ def bootstrap_in_workspace_globals(prop_overrides):
         props.DictPropertyLoader("cli-overrides", prop_overrides),
         props.YAMLFilePropertyLoader(prop_file_path),
     ]
+
+    # This allows workspaces to be loaded dynamically at runtime by LoR and Luigi
+    # (the Luigi docs get clients to set PYTHONPATH explicitly)
+    sys.path.insert(0, workspace.get_path())
 
     props._set_loaders(loaders)

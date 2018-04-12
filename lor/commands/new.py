@@ -36,4 +36,4 @@ class NewCommand(CliCommand):
         parsed_args = parser.parse_args(argv)
 
         workspace.create(parsed_args.workspace_path)
-        workspace.install(parsed_args.workspace_path)
+        workspace.run_install_script(parsed_args.workspace_path)
