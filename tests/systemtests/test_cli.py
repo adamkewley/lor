@@ -63,7 +63,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_explain_with_nothing_emits_help_to_stderr_and_nonzero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["explain"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertTrue(len(stderr) > 0)
@@ -72,7 +72,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_explain_with_help_emits_help_to_stdout_and_zero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["explain", "--help"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertTrue("usage" in stdout)
@@ -81,7 +81,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_explain_with_invalid_classname_emits_error_to_stderr_and_nonzero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["explain", "--module", "some.class.that.doesnt", "Exist"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertNotEqual(exit_code, 0)
@@ -90,7 +90,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_explain_with_valid_classname_emits_explanation_to_stdout_and_zero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["explain", "--module", "lor.tasks.general", "AlwaysRunsTask"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertEqual(exit_code, 0)
@@ -99,7 +99,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_ls_emits_list_of_classes_to_stdout_and_zero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["ls", "lor.tasks"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertEqual(exit_code, 0)
@@ -108,7 +108,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_run_with_invalid_task_classname_results_in_nonzero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["run", "--module", "some.invalid.module", "SomeInvalidClass"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertNotEqual(exit_code, 0)
@@ -116,7 +116,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_run_with_valid_task_classname_results_in_zero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["run", "--module", "lor.tasks.general", "AlwaysRunsTask", "--local-scheduler"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertEqual(exit_code, 0)
@@ -124,7 +124,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_properties_emits_varname_varval_space_separated_and_zero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["properties"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertEqual(exit_code, 0)
@@ -133,7 +133,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_dot_with_nothing_results_in_nonzero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["dot"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertNotEqual(exit_code, 0)
@@ -142,7 +142,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_dot_with_help_emits_usage_to_stdout_and_zero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["dot", "--help"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertEqual(exit_code, 0)
@@ -151,7 +151,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_dot_with_valid_task_class_emits_text_to_stdout_and_zero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["dot", "--module", "lor.tasks.general", "AlwaysRunsTask"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertEqual(exit_code, 0)
@@ -160,7 +160,7 @@ class TestCli(unittest.TestCase):
     def test_call_lor_dot_with_invalid_task_class_returns_nonzero_exit(self):
         with TemporaryWorkspace() as ws:
             with TemporaryEnv():
-                os.chdir(ws.get_abspath())
+                os.chdir(ws)
                 args = ["dot", "--module", "some.class.that.doesnt", "Exist"]
                 stdout, stderr, exit_code = run_cli(args)
                 self.assertNotEqual(exit_code, 0)

@@ -40,7 +40,9 @@ And the LoR CLI was used:
 Then this module will attempt to resolve "etc/foo.yml" against the `somedir/` overlay, followed by attempting to resolve
 it against the current workspace.
 """
-
+import os
+import multipath
+from lor import workspace
 
 __overlay_paths = []
 
@@ -51,7 +53,7 @@ def get_overlay_paths():
 
     :return: A list of overlay path strings used application-wide.
     """
-    pass
+    return __overlay_paths
 
 
 def _set_overlay_paths(new_overlay_paths):
@@ -63,18 +65,41 @@ def _set_overlay_paths(new_overlay_paths):
     :raises FileNotFoundError: If any path in `overlay_paths` does not exist
     :raises NotADirectoryError: If any path in `overlay_paths` is not a directory
     """
-    pass
+    if not isinstance(new_overlay_paths, list):
+        raise ValueError("{new_overlay_paths}: not a list: expecting a list of path strings".format(new_overlay_paths=str(new_overlay_paths)))
+    for overlay_path in new_overlay_paths:
+        if not isinstance(overlay_path, str):
+            raise ValueError("{overlay_path}: is not a string: expecting an overlay path as a string".format(overlay_path=str(overlay_path)))
+    for overlay_path in new_overlay_paths:
+        if not os.path.exists(overlay_path):
+            raise FileNotFoundError("{overlay_path}: no such directory: an overlay path argument must exist".format(overlay_path=overlay_path))
+    for overlay_path in new_overlay_paths:
+        if not os.path.isdir(overlay_path):
+            raise NotADirectoryError("{overlay_path}: is not a directory: overlay paths must be directories".format(overlay_path=overlay_path))
+
+    global __overlay_paths
+
+    __overlay_paths = new_overlay_paths
 
 
 def join(*paths):
     """
     Returns the top dir (i.e. top of overlay, or workspace dir) joined with *paths using os.path.join
 
-    :param *paths: Path componeents to join onto the dir
+    :param *paths: Path components to join onto the dir
     :return: A path resolved relative to the top dir
     :raises ValueError: If no overlay dirs are set *and* the workspace dir cannot be established
     """
-    return get_cur_workspace().resolve_path(get_path)
+    return multipath.join(__get_dirs(), *paths)
+
+
+def __get_dirs():
+    ws_path = workspace.get_path()
+
+    if ws_path is None:
+        return __overlay_paths
+    else:
+        return __overlay_paths + [ws_path]
 
 
 def join_all(*paths):
@@ -84,7 +109,7 @@ def join_all(*paths):
     :param paths: Path components to join
     :return: A list of path strings
     """
-    pass
+    return multipath.join_all(__get_dirs(), *paths)
 
 
 def resolve(*paths):
@@ -94,16 +119,18 @@ def resolve(*paths):
 
     :param paths: Path components to join
     :return: The first path to be resolved that exists
+    :raises ValueError: If no overlay dirs are set *and* the workspace dir cannot be established
     :raises FileNotFoundError: If no path could be resolved
     """
-    pass
+    return multipath.resolve(__get_dirs(), *paths)
 
 
 def resolve_all(*paths):
     """
     Returns a list of paths created by joining paths onto each dir in overlay_dirs + the workspace using os.path.join
     and discarding all join results that do not exist.
+
     :param paths: Path components to join
-    :return:
+    :return: A list of paths created by joining paths onto each dir in overlay_dirs + the workspace using os.path.join
     """
-    pass
+    return multipath.resolve_all(__get_dirs(), *paths)

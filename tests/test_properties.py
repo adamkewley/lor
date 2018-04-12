@@ -15,41 +15,99 @@
 import os
 import unittest
 
-from lor import util, properties
-from lor.properties import DictPropertyLoader, YAMLFilePropertyLoader
+from lor import util, props
+from lor.props import DictPropertyLoader, YAMLFilePropertyLoader
 from tests import tst_helpers
 
 
 class TestProperties(unittest.TestCase):
 
-    def test_get_default_property_loaders_returns_list_of_property_loaders_for_workspace(self):
-        ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+    def test__set_loaders_allows_setting_list_of_loaders(self):
+        loaders = [
+            DictPropertyLoader("some-loader", {})
+        ]
+        props._set_loaders(loaders)
 
-        returned_property_loaders = workspace.get_default_property_loaders(ws_path)
+    def test__set_loaders_then_uses_loader_with_get_call(self):
+        k = util.base36_str()
+        v = util.base36_str()
+        loaders = [DictPropertyLoader("some-loader", {k: v})]
 
-        self.assertIsInstance(returned_property_loaders, list)
+        props._set_loaders(loaders)
 
-        for loader in returned_property_loaders:
-            self.assertIsInstance(loader, PropertyLoader)
+        ret = props.get(k)
 
-    def test_get_default_property_loaders_raises_FileNotFoundError_for_non_existent_path(self):
-        non_existent_path = util.base36_str()
+        self.assertEqual(ret, v)
 
-        with self.assertRaises(FileNotFoundError):
-            workspace.get_default_property_loaders(non_existent_path)
+    def test__set_loaders_then_uses_loader_with_get_all_call(self):
+        k1 = util.base36_str()
+        v1 = util.base36_str()
+        k2 = util.base36_str()
+        v2 = util.base36_str()
+        loaders = [
+            DictPropertyLoader("some-loader", {k1: v1}),
+            DictPropertyLoader("some-other-loader", {k2: v2}),
+        ]
 
-    def test_get_default_property_loaders_raises_NotADirectoryError_if_path_is_file(self):
-        _, path_to_file = tempfile.mkstemp()
+        props._set_loaders(loaders)
 
-        with self.assertRaises(NotADirectoryError):
-            workspace.get_default_property_loaders(path_to_file)
+        expected_value = {
+            k1: v1,
+            k2: v2,
+        }
+        actual_value = props.get_all()
 
-    def test_get_default_property_loaders_raises_RuntimeError_if_dir_is_not_workspace(self):
-        non_workspace_dir = tempfile.mkdtemp()
+        self.assertEqual(expected_value, actual_value)
 
-        with self.assertRaises(RuntimeError):
-            workspace.get_default_property_loaders(non_workspace_dir)
+    def test__set_loaders_raises_ValueError_if_passed_non_list(self):
+        with self.assertRaises(ValueError):
+            props._set_loaders("not-a-list-of-prop-loaders")
+
+    def test__set_loaders_raises_ValueError_if_passed_list_containing_non_prop_loader(self):
+        with self.assertRaises(ValueError):
+            props._set_loaders([DictPropertyLoader("some-loader", {}), "not-a-loader"])
+
+    def test_get_returns_property_from_loaders(self):
+        k = util.base36_str()
+        v = util.base36_str()
+        loaders = [DictPropertyLoader("some-loader", {k: v})]
+
+        props._set_loaders(loaders)
+
+        self.assertEqual(v, props.get(k))
+
+    def test_get_raises_KeyError_for_non_existent_property(self):
+        props._set_loaders([DictPropertyLoader("some-loader", {})])
+
+        with self.assertRaises(KeyError):
+            props.get(util.base36_str())
+
+    def test_get_all_returns_a_dict(self):
+        self.assertIsInstance(props.get_all(), dict)
+
+    def test_get_all_dict_contains_expected_results(self):
+        k1 = util.base36_str()
+        v1 = util.base36_str()
+        v2 = util.base36_str()
+        k3 = util.base36_str()
+        v3 = util.base36_str()
+
+        loaders = [
+            DictPropertyLoader("first", {k1: v1}),
+            DictPropertyLoader("second", {k1: v2}),
+            DictPropertyLoader("third", {k3: v3}),
+        ]
+
+        props._set_loaders(loaders)
+
+        expected_result = {
+            k1: v1,
+            k3: v3,
+        }
+
+        actual_result = props.get_all()
+
+        self.assertEqual(expected_result, actual_result)
 
     def test_DictPropertyLoader_init_works_with_standard_args(self):
         DictPropertyLoader(util.base36_str(), {})
@@ -161,7 +219,7 @@ class TestProperties(unittest.TestCase):
         v = util.base36_str()
         loaders = [DictPropertyLoader(util.base36_str(), {k: v})]
 
-        ret = properties.get_property_from_list_of_loaders(loaders, k)
+        ret = props.get_property_from_list_of_loaders(loaders, k)
 
         self.assertEqual(v, ret)
 
@@ -176,13 +234,13 @@ class TestProperties(unittest.TestCase):
             DictPropertyLoader(util.base36_str(), {k2: v2}),
         ]
 
-        ret = properties.get_property_from_list_of_loaders(loaders, k2)
+        ret = props.get_property_from_list_of_loaders(loaders, k2)
 
         self.assertEqual(v2, ret)
 
     def test_get_property_from_list_of_loaders_raises_KeyError_if_property_is_not_in_loaders(self):
         with self.assertRaises(KeyError):
-            properties.get_property_from_list_of_loaders([], util.base36_str())
+            props.get_property_from_list_of_loaders([], util.base36_str())
 
     def test_get_property_from_list_of_loaders_overwrites_properties(self):
         k = util.base36_str()
@@ -194,12 +252,12 @@ class TestProperties(unittest.TestCase):
             DictPropertyLoader("second", {k: v2}),
         ]
 
-        ret = properties.get_property_from_list_of_loaders(loaders, k)
+        ret = props.get_property_from_list_of_loaders(loaders, k)
 
         self.assertEqual(ret, v1)
 
     def test_merge_list_of_property_loaders_takes_list_and_returns_dict(self):
-        ret = properties.merge_list_of_property_loaders([])
+        ret = props.merge_list_of_property_loaders([])
 
         self.assertIsInstance(ret, dict)
 
@@ -220,7 +278,7 @@ class TestProperties(unittest.TestCase):
             DictPropertyLoader("third", {k4: v4}),
         ]
 
-        ret = properties.merge_list_of_property_loaders(loaders)
+        ret = props.merge_list_of_property_loaders(loaders)
 
         expected_ret = {
             k1: v1,

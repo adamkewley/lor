@@ -18,8 +18,9 @@ import argparse
 import types
 
 import luigi
+import lor._internal
 import networkx
-from lor.properties import DictPropertyLoader
+from lor.props import DictPropertyLoader
 from lor.util import cli
 from luigi.cmdline_parser import CmdlineParser
 from networkx.drawing.nx_pydot import to_pydot
@@ -42,10 +43,10 @@ class DotCommand(CliCommand):
         # TODO: Replace the workspace CLI bootstrapping a func
         cli.add_properties_override_arg(parser)
         lor_args, luigi_args = parser.parse_known_args(argv)
-        property_overrides = cli.extract_property_overrides(lor_args)
-        cli_overrides_loader = DictPropertyLoader("cli-overrides", property_overrides)
 
-        workspace._bootstrap([cli_overrides_loader])
+        property_overrides = cli.extract_property_overrides(lor_args)
+        lor._internal.bootstrap_in_workspace_globals(property_overrides)
+
         with CmdlineParser.global_instance(luigi_args) as cp:
             task_obj = cp.get_task_obj()
             print_as_dot(task_obj)

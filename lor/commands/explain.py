@@ -15,11 +15,10 @@
 import argparse
 
 import luigi
-from lor import workspace
-from lor.properties import DictPropertyLoader
-from lor.util import cli
+import lor._internal
 from luigi.cmdline_parser import CmdlineParser
 
+from lor.util import cli
 from lor.util.cli import CliCommand
 
 
@@ -37,10 +36,9 @@ class ExplainCommand(CliCommand):
         # TODO: Replace the workspace CLI bootstrapping a func
         cli.add_properties_override_arg(parser)
         lor_args, luigi_args = parser.parse_known_args(argv)
-        property_overrides = cli.extract_property_overrides(lor_args)
-        cli_overrides_loader = DictPropertyLoader("cli-overrides", property_overrides)
 
-        workspace._bootstrap([cli_overrides_loader])
+        property_overrides = cli.extract_property_overrides(lor_args)
+        lor._internal.bootstrap_in_workspace_globals(property_overrides)
 
         with CmdlineParser.global_instance(luigi_args) as cp:
             task_obj = cp.get_task_obj()

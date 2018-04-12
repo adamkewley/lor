@@ -15,9 +15,8 @@
 import argparse
 
 import luigi
+import lor._internal
 
-from lor import workspace
-from lor.properties import DictPropertyLoader
 from lor.util import cli
 from lor.util.cli import CliCommand
 
@@ -40,12 +39,10 @@ class RunCommand(CliCommand):
         parser.formatter_class = argparse.RawDescriptionHelpFormatter
         parser.epilog = self.epilog
 
-        # TODO: Replace the workspace CLI bootstrapping a func
         cli.add_properties_override_arg(parser)
         lor_args, luigi_args = parser.parse_known_args(argv)
-        property_overrides = cli.extract_property_overrides(lor_args)
-        cli_overrides_loader = DictPropertyLoader("cli-overrides", property_overrides)
 
-        workspace._bootstrap([cli_overrides_loader])
+        property_overrides = cli.extract_property_overrides(lor_args)
+        lor._internal.bootstrap_in_workspace_globals(property_overrides)
 
         luigi.run(luigi_args)

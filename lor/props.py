@@ -12,7 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-"""Property loading support
+"""
+Configuration property loading support.
 
 LoR projects typically require configuration properties that are loaded at runtime. Those properties can be loaded from
 multiple locations. For example, domain specific knowledge might be in the LoR project's `config/` folder whereas user
@@ -20,8 +21,8 @@ logins might be placed in the user's home folder - downstream code shouldn't *ne
 
 This module contains basic abstractions for loading properties from various sources transparently. This allows LoR
 workspace code to get a property without having to worry about *where* it came from. This module also contains global
-property getters. Those globals can be used at any time; however, the LoR CLI commands will also augment them with
-CLI overrides etc.
+property getters. Those globals can be used at any time without initialization; however, the LoR CLI commands will
+also initialize them with CLI overrides etc.
 """
 import os
 
@@ -31,87 +32,50 @@ from lor import util
 __property_loaders = []
 
 
-def get_property(prop_name):
+def get(prop_name):
     """
-    Returns a property from the current workspace.
+    Returns the value of a property.
 
     :param prop_name: Name of the property to get
     :return: The property's value
-    :raises KeyError if `prop_name` cannot be found
+    :raises KeyError if `prop_name` cannot be loaded
     """
-    return get_cur_workspace().get_property(prop_name)
+    return get_property_from_list_of_loaders(__property_loaders, prop_name)
 
 
-def get_properties():
+def get_all():
     """
-    Returns a dict containing all available workspace properties and their values.
+    Returns a dict containing all available properties and their values.
 
     :return a dict containing all available workspace properties and their values.
     """
-    return get_cur_workspace().get_properties()
+    return merge_list_of_property_loaders(__property_loaders)
 
 
-def _bootstrap(prop_override_loaders=None):
+def _set_loaders(property_loaders):
     """
-    Bootstrap the current workspac
+    Set the application-wide property loaders.
 
-    Explicitly initialize the global workspace variable with its default state + extra loaders (usually, from the CLI).
-    This is usually called by CLI commands to prepare subsequent Luigi tasks with the correct workspace state.
+    Property loaders are used during calls to `get` and `get_all` to resolve property values. This function is usually
+    called by internal LoR commands.
 
-    Raises a `RuntimeError` if the current workspace cannot be located.
-
-    :param prop_override_loaders: A list of PropertyLoaders ordered by highest- to lowest-priority. All of these loaders are
-    higher priority than the default property loaders.
-    :return: The bootstrapped `Workspace` that will be returned by subsequent calls to `get_current_workspace`
+    :param property_loaders: A list of property loaders, ordered by highest- to lowest-priority
+    :raises ValueError if property_loaders is not a list of property loaders
     """
+    global __property_loaders
 
-    if prop_override_loaders is None:
-        prop_override_loaders = []
+    if not isinstance(property_loaders, list):
+        raise ValueError("{property_loaders}: not a list: must be a list of property loaders".format(property_loaders=str(property_loaders)))
+    for property_loader in property_loaders:
+        if not isinstance(property_loader, PropertyLoader):
+            raise ValueError("{property_loader}: not a PropertyLoader: must be a property loader".format(property_loader=str(property_loader)))
 
-    workspace_dir = workspace.try_locate()
-
-    if workspace_dir is None:
-        raise RuntimeError("Cannot bootstrap workspace: cannot locate a workspace")
-
-    default_loaders = workspace.get_default_property_loaders(workspace_dir)
-    all_loaders = prop_override_loaders + default_loaders
-
-    ws = Workspace(workspace_dir, all_loaders)
-
-    _set_path(ws)
-
-    return ws
-
-
-def _set_property_loaders(property_loaders):
-    pass
-
-
-def get_default_property_loaders(workspace_dir):
-    """Returns a list of default property loaders for a workspace dir.
-
-    Raises `FileNotFoundError` if `workspace_dir` does not exist.
-    Raises `NotADirectoryError` if `workspace_dir` is not a directory.
-    Raises `RuntimeError` if `workspace_dir` is not a workspace dir.
-
-    :return: A list of `PropertyLoader`s, ordered by high- to low-priority
-    """
-
-    if not os.path.exists(workspace_dir):
-        raise FileNotFoundError("{workspace_dir}: No such directory: expected workspace directory".format(workspace_dir=workspace_dir))
-    elif not os.path.isdir(workspace_dir):
-        raise NotADirectoryError("{workspace_dir}: Not a directory: expected a workspace directory".format(workspace_dir=workspace_dir))
-    elif not is_workspace(workspace_dir):
-        raise RuntimeError("{workspace_dir}: Not a workspace: it is a directory, but doesn't appear to be a workspace".format(workspace_dir=workspace_dir))
-    else:
-        workspace_properties_path = os.path.join(workspace_dir, lor._constants.WORKSPACE_PROPS)
-        workspace_properties_loader = YAMLFilePropertyLoader(workspace_properties_path)
-
-        return [workspace_properties_loader]
+    __property_loaders = property_loaders
 
 
 def get_property_from_list_of_loaders(property_loaders, prop_name):
-    """Returns a property's value, if a value could be loaded from a list of PropertyLoaders.
+    """
+    Returns a property's value, if a value could be loaded from a list of PropertyLoaders.
 
     Goes through each `PropertyLoader` in `property_loaders` in order, attempting to get the property from that loader.
     Once a value for the property is found, returns that value. If the property cannot be found in all property loaders,
