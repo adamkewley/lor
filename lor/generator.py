@@ -16,9 +16,9 @@
 File/directory generation support
 
 Generators help with LoR's "convention over configuration" approach by providing generators for the most common files
-users are likely to need (e.g. a Luigi task). Using generators, clients are more likely to write standard projects with
-a standard layout rather than create their own. This should hopefully standardize LoR projects enough to make it easier
-for devs to work together on LoR projects.
+that users are likely to need (e.g. a Luigi task). Using generators, clients are more likely to write projects with a
+standard layout rather than create their own. This should hopefully make LoR projects standard enough for devs to work
+together on them.
 
 This module contains helpers for writing Generators. Generators are classes that have a command-line interface and, when
 ran, generate files in the output dir (usually, a workspace). LoR generators have support for:
@@ -28,3 +28,43 @@ ran, generate files in the output dir (usually, a workspace). LoR generators hav
 - Running other generators
 - Running executable files (e.g. install scripts)
 """
+
+
+class Generator:
+
+    def description(self):
+        raise NotImplementedError()
+
+    def run(self, argv):
+        raise NotImplementedError()
+
+    def render_template(self, source, destination, env):
+        pass
+
+    def create_file(self, content, output_path):
+        pass
+
+    def run_file_in_output(self, path):
+        pass
+
+    def source_root(self):
+        # rails uses multiple source roots
+        pass
+
+    def destination_root(self):
+        pass
+
+    def copy_file(self, source, output_path):
+        pass
+
+    def run_generator(self, generator_name, args):
+        pass
+
+    def execute_file(self, path):
+        pass
+
+    def chmod(self, path, mode):
+        pass
+
+    def empty_directory(self, destination):
+        pass
