@@ -22,27 +22,28 @@ import lor.util.subprocess
 import os
 from lor.test import TemporaryWorkspace, TemporaryEnv
 
-# This *should* ensure python can load lor if running tests externally
-sys.path.insert(0, lor._paths.lor_path("."))
-
 
 def run_cli(args):
-    cli_command = lor._paths.lor_path("lor")
-    all_args = ["python3", cli_command] + args
+    with TemporaryEnv():
+        # CI might be running from a non-standard dir, so need to setup the python path correctly
+        # before launching off a subprocess
+        os.environ["PYTHONPATH"] = os.path.normpath(os.path.join(os.path.dirname(__file__), "../.."))
+        cli_command = lor._paths.lor_path("lor")
+        all_args = ["python3", cli_command] + args
 
-    exit_code, stdout_builder, stderr_builder = lor.util.subprocess.call_with_output_reducers(
-        all_args,
-        stdout_initial_state=io.StringIO(),
-        stdout_reducer=__append_to_builder,
-        stderr_initial_state=io.StringIO(),
-        stderr_reducer=__append_to_builder)
+        exit_code, stdout_builder, stderr_builder = lor.util.subprocess.call_with_output_reducers(
+            all_args,
+            stdout_initial_state=io.StringIO(),
+            stdout_reducer=__append_to_builder,
+            stderr_initial_state=io.StringIO(),
+            stderr_reducer=__append_to_builder)
 
-    stdout = stdout_builder.getvalue()
-    stdout_builder.close()
-    stderr = stderr_builder.getvalue()
-    stderr_builder.close()
+        stdout = stdout_builder.getvalue()
+        stdout_builder.close()
+        stderr = stderr_builder.getvalue()
+        stderr_builder.close()
 
-    return stdout, stderr, exit_code
+        return stdout, stderr, exit_code
 
 
 def __append_to_builder(builder, line):
