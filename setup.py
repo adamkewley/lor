@@ -12,9 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from setuptools import setup, find_packages
+import sys
 from codecs import open
 from os import path
+
+from setuptools import setup, find_packages
 
 here = path.abspath(path.dirname(__file__))
 
@@ -42,6 +44,7 @@ setup(
       'Intended Audience :: Developers',
       'Programming Language :: Python :: 3',
     ],
+    python_requires=">=3.4",
     keywords='Luigi',
     packages=find_packages(exclude=['docs', 'tests*']),
     include_package_data=True,

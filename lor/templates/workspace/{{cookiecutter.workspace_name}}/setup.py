@@ -25,7 +25,7 @@ with open(os.path.join(here, 'requirements.txt'), encoding='utf-8') as f:
 
 setup(
     name='{{cookiecutter.workspace_name}}',
-    version='0.0.1-SNAPSHOT',
+    version='0.0.1.dev1',
     description="{{cookiecutter.description}}",
     long_description=readme,
     author='{{cookiecutter.author}}',
