@@ -15,10 +15,15 @@
 import io
 import unittest
 
+import sys
+
 import lor._paths
 import lor.util.subprocess
 import os
 from lor.test import TemporaryWorkspace, TemporaryEnv
+
+# This *should* ensure python can load lor if running tests externally
+sys.path.insert(0, lor._paths.lor_path("."))
 
 
 def run_cli(args):

@@ -1,0 +1,6 @@
+PyYAML==3.12
+luigi==2.7.3
+networkx==2.1
+pydot==1.2.4
+cookiecutter==1.6.0
+multipath==0.0.2

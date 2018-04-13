@@ -47,7 +47,7 @@ def create(output_path):
 
     output_dir, workspace_name = os.path.split(output_path)
     cookiecutter(
-        lor._paths.lor_path("lor/templates/workspace"),
+        lor._paths.lor_path("templates/workspace"),
         no_input=True,
         extra_context={
             "workspace_name": workspace_name
