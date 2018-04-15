@@ -28,43 +28,98 @@ ran, generate files in the output dir (usually, a workspace). LoR generators hav
 - Running other generators
 - Running executable files (e.g. install scripts)
 """
+import inspect
+
+from lor import workspace
 
 
 class Generator:
+    """
+    Abstract base class for a generator.
 
-    def description(self):
-        raise NotImplementedError()
+    Concrete implementations of a Generator should provide a run method that parses command-line arguments (supplied)
+    and generates the necessary files in the source/destination. By default, the source is assumed to be the templates
+    directory and the destination is assumed to be within the workspace.
+    """
 
     def run(self, argv):
+        """
+        Run the generator.
+
+        :param argv: Command-line arguments for the generator
+        """
         raise NotImplementedError()
 
-    def render_template(self, source, destination, env):
-        pass
+    def description(self):
+        """
+        Returns a human-readable description of the generator as a string.
 
-    def create_file(self, content, output_path):
-        pass
+        :return: A human-readable description of the generator as a string.
+        """
+        return self.__name__
 
-    def run_file_in_output(self, path):
-        pass
+    def source_roots(self):
+        """
+        Returns a list of source folders from which files are copied/templates are rendered.
 
-    def source_root(self):
-        # rails uses multiple source roots
-        pass
+        By default, returns the "templates/" directory, if a `templates/` dir exists in the generator's package.
+        Otherwise, returns the path of the generator's package.
+
+        :return: A list of source folders as strings.
+        """
+        return [
+            inspect.getsourcefile(inspect.getmodule(self))
+        ]
 
     def destination_root(self):
+        """
+        Returns the destination root directory.
+
+        Relative destination paths are resolved relative to this root. By default, the destination root is the current
+        workspace if a current workspace can be established; otherwise, an AssertionError is raised.
+
+        :return: The destination root directory as a string
+        """
+        return workspace.get_path()
+
+    def render_template(self, source, destination, env):
+        """
+        Render a Jinja2 template.
+
+        :param source: Path to source Jinja2 templated file. Relative paths are resolved relative to `source_roots` until a path exists.
+        :param destination: Destination path. Relative paths are resolved relative to `destination_root`
+        :param env: A dict containing variables that appear within the Jinja2 template
+        :raises FileNotFoundError if source does not exist
+        :raises FileExistsError if destination already exists
+        """
         pass
 
-    def copy_file(self, source, output_path):
+    def create_file(self, content, destination):
+        """
+        Create a file populated with `content` at `destination`.
+
+        :param content: String content of the file
+        :param destination: Destination path. Relative paths are resolved relative to `destination_root`
+        :raises FileExistsError if destination already exists
+        """
         pass
 
-    def run_generator(self, generator_name, args):
+    def copy_file(self, source, destination):
+        """
+        Copy a file from `source` to `destination`.
+
+        :param source: Path to source file. Relative paths are resolved relative to `source_roots` until a path exists.
+        :param destination: Destination path. Relative paths are resolved relative to `destination_root`
+        :raises FileNotFoundError if `source` does not exist
+        :raises FileExistsError if `destination` already exists
+        """
         pass
 
-    def execute_file(self, path):
-        pass
+    def mkdir(self, destination):
+        """
+        Create an empty directory at `destination`.
 
-    def chmod(self, path, mode):
-        pass
-
-    def empty_directory(self, destination):
+        :param destination: Destination path. Relative paths are resolved relative to `destination_root`
+        :raises FileExistsError if `destination` already exists
+        """
         pass
