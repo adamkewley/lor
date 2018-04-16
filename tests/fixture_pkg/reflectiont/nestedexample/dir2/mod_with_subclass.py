@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from tests.fake_pkg.mod_with_class import SomeClass
+from tests.fixture_pkg.reflectiont.mod_with_class import SomeClass
 
 
 class SomeSubclass(SomeClass):

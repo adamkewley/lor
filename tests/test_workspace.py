@@ -205,3 +205,50 @@ class TestWorkspaces(TestCase):
 
             ws_path = workspace.try_locate()
             self.assertEqual(os.path.realpath(cwd), os.path.realpath(ws_path))
+
+    def test_get_package_name_returns_a_string_for_new_workspace(self):
+        cwd = os.path.join(tempfile.mkdtemp(), "wd")
+        workspace.create(cwd)
+
+        ret = workspace.get_package_name(cwd)
+
+        self.assertIsInstance(ret, str)
+
+    def test_get_package_name_uses_WORKSPACE_NAME_variable(self):
+        cwd = os.path.join(tempfile.mkdtemp(), "wd")
+        workspace.create(cwd)
+
+        props_file = os.path.join(cwd, lor._constants.WORKSPACE_PROPS)
+
+        ws_name = util.base36_str()
+        content = "WORKSPACE_NAME: " + ws_name
+
+        os.remove(props_file)
+        util.write_str_to_file(props_file, content)
+
+        ret = workspace.get_package_name(cwd)
+
+        self.assertEqual(ret, ws_name)
+
+    def test_get_package_name_raises_Exception_if_supplied_non_workspace(self):
+        with self.assertRaises(Exception):
+            workspace.get_package_name(tempfile.mkdtemp())
+
+    def test_get_package_name_raises_Exception_if_properties_file_missing_from_workspace(self):
+        cwd = os.path.join(tempfile.mkdtemp(), "wd")
+        workspace.create(cwd)
+        props_file = os.path.join(cwd, lor._constants.WORKSPACE_PROPS)
+        os.remove(props_file)
+
+        with self.assertRaises(Exception):
+            workspace.get_package_name(cwd)
+
+    def test_get_package_name_raises_Exception_if_properties_file_missing_WORKSPACE_NAME_key(self):
+        cwd = os.path.join(tempfile.mkdtemp(), "wd")
+        workspace.create(cwd)
+        props_file = os.path.join(cwd, lor._constants.WORKSPACE_PROPS)
+        os.remove(props_file)
+        util.write_str_to_file(props_file, "")
+
+        with self.assertRaises(Exception):
+            workspace.get_package_name(cwd)

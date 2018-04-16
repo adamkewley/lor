@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 import os
 from setuptools import setup, find_packages
 
@@ -24,11 +25,11 @@ with open(os.path.join(here, 'requirements.txt'), encoding='utf-8') as f:
     all_reqs = f.read().split('\n')
 
 setup(
-    name='{{cookiecutter.workspace_name}}',
+    name='{{workspace_name}}',
     version='0.0.1.dev1',
-    description="{{cookiecutter.description}}",
+    description="{{workspace_name}}",
     long_description=readme,
-    author='{{cookiecutter.author}}',
+    author='CHANGEME',
     license='Apache License 2.0',
     packages=find_packages(exclude=('tests', 'docs')),
     install_requires=all_reqs,

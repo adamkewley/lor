@@ -12,27 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import argparse
+import lor.props
+import lor.path
+import luigi
 
-from lor import workspace
-from lor.util.cli import CliCommand
 
+class {{ task_classname }}(luigi.Task):
 
-class NewCommand(CliCommand):
+    def requires(self):
+        # e.g. lor.tasks.fs.EnsureExistsOnLocalFilesystemTask("some/file")
+        pass
 
-    def name(self):
-        return "new"
+    def run(self):
+        # get a LoR config property (from CLI, properties.yml, etc.)
+        lor.props.get("PROP_NAME")
 
-    def description(self):
-        return "create a new LoR workspace"
+        # resolve a path (in workspace, from dirs specified at CLI)
+        lor.path.resolve("etc/extra/data")
 
-    def run(self, argv):
-        parser = argparse.ArgumentParser(description=self.description())
-        parser.add_argument(
-            "workspace_path",
-            type=str,
-            help="Path to newly-created workspace")
-
-        parsed_args = parser.parse_args(argv)
-
-        workspace.create(parsed_args.workspace_path)
+    def output(self):
+        # e.g. luigi.LocalTarget("some/file")
+        pass

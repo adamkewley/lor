@@ -12,27 +12,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import argparse
-
-from lor import workspace
-from lor.util.cli import CliCommand
-
-
-class NewCommand(CliCommand):
-
-    def name(self):
-        return "new"
-
-    def description(self):
-        return "create a new LoR workspace"
-
-    def run(self, argv):
-        parser = argparse.ArgumentParser(description=self.description())
-        parser.add_argument(
-            "workspace_path",
-            type=str,
-            help="Path to newly-created workspace")
-
-        parsed_args = parser.parse_args(argv)
-
-        workspace.create(parsed_args.workspace_path)

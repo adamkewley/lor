@@ -17,11 +17,12 @@ from unittest import TestCase
 import tests
 import tests.tst_helpers
 from lor.util import reflection
-from tests import fake_pkg
-from tests.fake_pkg import mod_with_class
-from tests.fake_pkg.mod_with_class import SomeClass
-from tests.fake_pkg.nestedexample.another_mod_with_class import SomeOtherClass
-from tests.fake_pkg.nestedexample.dir2.mod_with_subclass import SomeSubclass
+from tests import fixture_pkg
+from tests.fixture_pkg import reflectiont
+from tests.fixture_pkg.reflectiont import mod_with_class
+from tests.fixture_pkg.reflectiont.mod_with_class import SomeClass
+from tests.fixture_pkg.reflectiont.nestedexample.another_mod_with_class import SomeOtherClass
+from tests.fixture_pkg.reflectiont.nestedexample.dir2.mod_with_subclass import SomeSubclass
 
 
 class TestReflection(TestCase):
@@ -30,7 +31,7 @@ class TestReflection(TestCase):
         # Converted into a string because reflection is dynamically loading the class whereas the expected classes are
         # loaded here: the loader is assigning them as "different"
 
-        ret = set(map(str, reflection.classes_in_pkg(fake_pkg)))
+        ret = set(map(str, reflection.classes_in_pkg(fixture_pkg.reflectiont)))
         expected_classes = {
             str(SomeClass),
             str(SomeOtherClass),
@@ -41,7 +42,7 @@ class TestReflection(TestCase):
 
     def ignore_subclasses_in_pkg_returns_expected_entries(self):
         # TODO: impl
-        ret = set(map(str, reflection.subclasses_in_pkg(fake_pkg, SomeClass)))
+        ret = set(map(str, reflection.subclasses_in_pkg(fixture_pkg, SomeClass)))
         expected_classes = {
             str(SomeSubclass),
         }

@@ -12,27 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import argparse
+import unittest
+import lor.test
+from {{ workspace_pkg }}.tasks.{{ task_module }} import {{ task_classname }}
 
-from lor import workspace
-from lor.util.cli import CliCommand
 
+class Test{{ task_classname }}(unittest.TestCase):
 
-class NewCommand(CliCommand):
+    def test_can_run_task(self):
+        task = {{ task_classname }}()  # TODO: assign params
 
-    def name(self):
-        return "new"
-
-    def description(self):
-        return "create a new LoR workspace"
-
-    def run(self, argv):
-        parser = argparse.ArgumentParser(description=self.description())
-        parser.add_argument(
-            "workspace_path",
-            type=str,
-            help="Path to newly-created workspace")
-
-        parsed_args = parser.parse_args(argv)
-
-        workspace.create(parsed_args.workspace_path)
+        lor.test.assert_task_passes(task)
