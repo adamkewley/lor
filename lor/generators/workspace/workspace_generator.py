@@ -64,3 +64,19 @@ class WorkspaceGenerator(Generator):
 
     def destination_root(self):
         return self.destination_root_path
+
+
+def create(output_path):
+    """
+    Create a new workspace at `output path`, returns the workspace's path.
+
+    :param output_path: Full path to the workspace to create
+    :raises FileNotFoundError: if output_path does not exist
+    :raises NotADirectoryError: if output_path is not a directory
+    """
+
+    output_dir, workspace_name = os.path.split(output_path)
+    ws_generator = WorkspaceGenerator(output_dir)
+    ws_generator.run([workspace_name])
+
+    return output_path

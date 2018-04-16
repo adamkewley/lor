@@ -27,6 +27,7 @@ from luigi.contrib.hdfs import HdfsClient
 import lor._constants
 from lor import util
 from lor import workspace
+from lor.generators.workspace import workspace_generator
 
 tc = unittest.TestCase('__init__')
 
@@ -144,7 +145,7 @@ class TemporaryWorkspace(object):
     def __enter__(self):
         self.existing = workspace.get_path()
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        ws = workspace.create(ws_path)
+        ws = workspace_generator.create(ws_path)
         workspace._set_path(ws)
         return ws
 

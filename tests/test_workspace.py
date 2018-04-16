@@ -20,34 +20,15 @@ from unittest import TestCase
 import lor._constants
 from lor import util
 from lor import workspace
+from lor.generators.workspace import workspace_generator
 from lor.test import TemporaryEnv
 
 
 class TestWorkspaces(TestCase):
 
-    def test_create_works_with_valid_arguments(self):
-        path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(path)
-
-    def test_create_creates_a_directory_at_path(self):
-        path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(path)
-        self.assertTrue(os.path.exists(path))
-
-    def test_create_raises_if_path_already_exists(self):
-        path = tempfile.mkdtemp()
-        with self.assertRaises(Exception):
-            workspace.create(path)
-
-    def test_create_returns_a_path_to_the_workspace(self):
-        path = os.path.join(tempfile.mkdtemp(), "ws")
-        ret = workspace.create(path)
-
-        self.assertEqual(ret, path)
-
     def test__set_path_runs_ok_with_valid_workspace(self):
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
 
         workspace._set_path(ws_path)
 
@@ -75,7 +56,7 @@ class TestWorkspaces(TestCase):
 
     def test_get_path_returns_manually_set_path(self):
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
         workspace._set_path(ws_path)
 
         returned_path = workspace.get_path()
@@ -84,7 +65,7 @@ class TestWorkspaces(TestCase):
 
     def test_get_path_returns_cwd_if_cwd_is_workspace_and_no_manual_override_set(self):
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
 
         workspace._set_path(None)
 
@@ -94,10 +75,10 @@ class TestWorkspaces(TestCase):
 
     def test_get_path_returns_manually_set_path_even_if_supplied_cwd(self):
         ws1_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws1_path)
+        workspace_generator.create(ws1_path)
 
         ws2_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws2_path)
+        workspace_generator.create(ws2_path)
 
         workspace._set_path(ws1_path)
 
@@ -131,7 +112,7 @@ class TestWorkspaces(TestCase):
 
     def test_run_install_script_runs_bin_install(self):
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
         installer_path = os.path.join(ws_path, lor._constants.WORKSPACE_INSTALL_BINSTUB)
         os.remove(installer_path)
 
@@ -169,7 +150,7 @@ class TestWorkspaces(TestCase):
 
     def test_run_install_script_raises_FileNotFoundError_if_workspace_doesnt_contain_installer(self):
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
         installer_path = os.path.join(ws_path, lor._constants.WORKSPACE_INSTALL_BINSTUB)
         os.remove(installer_path)
         with self.assertRaises(FileNotFoundError):
@@ -181,7 +162,7 @@ class TestWorkspaces(TestCase):
 
     def test_try_locate_returns_cwd_if_cwd_is_a_workspace(self):
         cwd = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(cwd)
+        workspace_generator.create(cwd)
 
         ws_path = workspace.try_locate(cwd)
 
@@ -189,7 +170,7 @@ class TestWorkspaces(TestCase):
 
     def test_try_locate_returns_env_cwd_if_env_cwd_is_a_workspace(self):
         cwd = os.path.join(tempfile.mkdtemp(), "wd")
-        workspace.create(cwd)
+        workspace_generator.create(cwd)
 
         with TemporaryEnv():
             os.chdir(cwd)
@@ -198,7 +179,7 @@ class TestWorkspaces(TestCase):
 
     def test_try_locate_returns_LOR_HOME_if_it_is_set_in_env(self):
         cwd = os.path.join(tempfile.mkdtemp(), "wd")
-        workspace.create(cwd)
+        workspace_generator.create(cwd)
 
         with TemporaryEnv():
             os.environ[lor._constants.WORKSPACE_ENV_VARNAME] = cwd
@@ -208,7 +189,7 @@ class TestWorkspaces(TestCase):
 
     def test_get_package_name_returns_a_string_for_new_workspace(self):
         cwd = os.path.join(tempfile.mkdtemp(), "wd")
-        workspace.create(cwd)
+        workspace_generator.create(cwd)
 
         ret = workspace.get_package_name(cwd)
 
@@ -216,7 +197,7 @@ class TestWorkspaces(TestCase):
 
     def test_get_package_name_uses_WORKSPACE_NAME_variable(self):
         cwd = os.path.join(tempfile.mkdtemp(), "wd")
-        workspace.create(cwd)
+        workspace_generator.create(cwd)
 
         props_file = os.path.join(cwd, lor._constants.WORKSPACE_PROPS)
 
@@ -236,7 +217,7 @@ class TestWorkspaces(TestCase):
 
     def test_get_package_name_raises_Exception_if_properties_file_missing_from_workspace(self):
         cwd = os.path.join(tempfile.mkdtemp(), "wd")
-        workspace.create(cwd)
+        workspace_generator.create(cwd)
         props_file = os.path.join(cwd, lor._constants.WORKSPACE_PROPS)
         os.remove(props_file)
 
@@ -245,7 +226,7 @@ class TestWorkspaces(TestCase):
 
     def test_get_package_name_raises_Exception_if_properties_file_missing_WORKSPACE_NAME_key(self):
         cwd = os.path.join(tempfile.mkdtemp(), "wd")
-        workspace.create(cwd)
+        workspace_generator.create(cwd)
         props_file = os.path.join(cwd, lor._constants.WORKSPACE_PROPS)
         os.remove(props_file)
         util.write_str_to_file(props_file, "")

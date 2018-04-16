@@ -31,25 +31,8 @@ import yaml
 
 import lor._constants
 import lor._paths
-from lor.generators.workspace.workspace_generator import WorkspaceGenerator
 
 __current_workspace_path = None
-
-
-def create(output_path):
-    """
-    Create a new workspace at `output path`, returns the workspace's path.
-
-    :param output_path: Full path to the workspace to create
-    :raises FileNotFoundError: if output_path does not exist
-    :raises NotADirectoryError: if output_path is not a directory
-    """
-
-    output_dir, workspace_name = os.path.split(output_path)
-    ws_generator = WorkspaceGenerator(output_dir)
-    ws_generator.run([workspace_name])
-
-    return output_path
 
 
 def get_path(cwd=None):

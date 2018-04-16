@@ -15,6 +15,7 @@
 import argparse
 
 from lor import workspace
+from lor.generators.workspace import workspace_generator
 from lor.util.cli import CliCommand
 
 
@@ -35,4 +36,4 @@ class NewCommand(CliCommand):
 
         parsed_args = parser.parse_args(argv)
 
-        workspace.create(parsed_args.workspace_path)
+        workspace_generator.create(parsed_args.workspace_path)

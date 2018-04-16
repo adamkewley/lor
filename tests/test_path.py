@@ -18,6 +18,7 @@ from unittest import TestCase
 import os
 
 from lor import path, workspace, util
+from lor.generators.workspace import workspace_generator
 
 
 class TestPaths(TestCase):
@@ -67,7 +68,7 @@ class TestPaths(TestCase):
     def test_join_returns_paths_joined_onto_workspace_if_no_overlay_paths_available(self):
         path._set_overlay_paths([])
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
         workspace._set_path(ws_path)
 
         fragment = util.base36_str()
@@ -85,7 +86,7 @@ class TestPaths(TestCase):
         path._set_overlay_paths(overlays)
 
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
         workspace._set_path(ws_path)
 
         fragment = util.base36_str()
@@ -127,7 +128,7 @@ class TestPaths(TestCase):
         path._set_overlay_paths(overlays)
 
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
         workspace._set_path(ws_path)
 
         frag = util.base36_str()
@@ -167,7 +168,7 @@ class TestPaths(TestCase):
 
     def test_resolve_returns_result_from_workspace_if_workspace_has_file(self):
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
         workspace._set_path(ws_path)
 
         file_name = util.base36_str()
@@ -195,7 +196,7 @@ class TestPaths(TestCase):
         ]
         path._set_overlay_paths(overlays)
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
         workspace._set_path(ws_path)
 
         with self.assertRaises(FileNotFoundError):
@@ -228,7 +229,7 @@ class TestPaths(TestCase):
         ])
 
         ws_path = os.path.join(tempfile.mkdtemp(), "ws")
-        workspace.create(ws_path)
+        workspace_generator.create(ws_path)
         self.__create_file(os.path.join(ws_path, file_name))
         workspace._set_path(ws_path)
 

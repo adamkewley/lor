@@ -13,13 +13,11 @@
 # limitations under the License.
 #
 import io
+import os
 import unittest
-
-import sys
 
 import lor._paths
 import lor.util.subprocess
-import os
 from lor.test import TemporaryWorkspace, TemporaryEnv
 
 
