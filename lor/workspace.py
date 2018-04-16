@@ -25,14 +25,12 @@ perform working-directory-independent pathing.
 """
 import os
 import subprocess
-
 import sys
 
-import lor._paths
+import yaml
+
 import lor._constants
-
-from cookiecutter.main import cookiecutter
-
+import lor._paths
 from lor.generators.workspace.workspace_generator import WorkspaceGenerator
 
 __current_workspace_path = None
@@ -129,6 +127,33 @@ def run_install_script(ws_path):
     else:
         print("The install command failed. Please fix all errors and re-run {cmd} before using the workspace".format(cmd=installer_path), sys.stderr)
         return False
+
+
+def get_package_name(ws_path):
+    """
+    Returns the name of a workspace's main python package.
+
+    :return: The workspace's package name
+    :raises ValueError: if `ws_path` is not a workspace
+    :raises Exception: If the package name cannot be found from information in the workspace
+    """
+    __assert_is_ws_dir_path(ws_path)
+
+    props_file_path = os.path.join(ws_path, lor._constants.WORKSPACE_PROPS)
+
+    if not os.path.exists(props_file_path):
+        raise FileNotFoundError("{props_file_path}: does not exist: required to load WORKSPACE_NAME".format(props_file_path=props_file_path))
+
+    with open(props_file_path, "r") as f:
+        try:
+            props = yaml.load(f)
+
+            if "WORKSPACE_NAME" in props:
+                return props["WORKSPACE_NAME"]
+            else:
+                raise KeyError("WORKSPACE_NAME: cannot be found in {props_file_path}: required to locate the main pyhon package".format(props_file_path=props_file_path))
+        except Exception as ex:
+            raise RuntimeError("{props_file_path}: cannot be parsed as YAML: are you sure its valid?".format(props_file_path=props_file_path))
 
 
 def try_locate(cwd=None):

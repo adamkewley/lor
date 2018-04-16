@@ -34,16 +34,22 @@ class WorkspaceGenerator(Generator):
         template_env = {"workspace_name": workspace_name}
 
         self.mkdir(workspace_name)
-        self.render_template("README.md.jinja2", os.path.join(workspace_name, "README.md"), template_env)
+        self.render_template("README.rst.jinja2", os.path.join(workspace_name, "README.md"), template_env)
         self.copy_file("requirements.txt", os.path.join(workspace_name, "requirements.txt"))
         self.render_template("setup.py.jinja2", os.path.join(workspace_name, "setup.py"), template_env)
+        self.create_file("", os.path.join(workspace_name, "requirements_dev.txt"))
 
         python_src_dir = os.path.join(workspace_name, workspace_name)
         self.mkdir(python_src_dir)
         self.copy_file("pkg_init.py", os.path.join(python_src_dir, "__init__.py"))
+
         tasks_pkg_dir = os.path.join(python_src_dir, "tasks")
         self.mkdir(tasks_pkg_dir)
         self.copy_file("pkg_init.py", os.path.join(tasks_pkg_dir, "__init__.py"))
+
+        generators_dir = os.path.join(python_src_dir, "generators")
+        self.mkdir(generators_dir)
+        self.copy_file("pkg_init.py", os.path.join(generators_dir, "__init__.py"))
 
         self.mkdir(os.path.join(workspace_name, "tests"))
 

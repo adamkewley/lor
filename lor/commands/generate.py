@@ -14,25 +14,33 @@
 #
 import argparse
 
-from lor import workspace
+import lor.generators
+from lor.generator import Generator
+from lor.util import reflection
 from lor.util.cli import CliCommand
 
 
-class NewCommand(CliCommand):
+class GenerateCommand(CliCommand):
 
     def name(self):
-        return "new"
+        return "generate"
 
     def description(self):
-        return "create a new LoR workspace"
+        return "generate code in workspace"
 
     def run(self, argv):
         parser = argparse.ArgumentParser(description=self.description())
-        parser.add_argument(
-            "workspace_path",
-            type=str,
-            help="Path to newly-created workspace")
+        parser.add_argument("generator_name")
+        parser.add_argument("generator_args", nargs='*')
 
         parsed_args = parser.parse_args(argv)
 
-        workspace.create(parsed_args.workspace_path)
+        generator_classes = self.__find_generators()
+
+        for k in generator_classes:
+            print(k.__name__)
+
+        print(parsed_args)
+
+    def __find_generators(self):
+        return reflection.subclasses_in_pkg(lor.generators, Generator)

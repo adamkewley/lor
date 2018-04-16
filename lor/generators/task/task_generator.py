@@ -14,9 +14,8 @@
 #
 import os
 
-from lor import util
+from lor import util, workspace
 from lor.generator import Generator
-import lor.props
 
 
 class TaskGenerator(Generator):
@@ -26,8 +25,13 @@ class TaskGenerator(Generator):
 
     def run(self, argv):
         task_snake_case_name = argv[0]
-        task_camel_case_name = util.to_camel_case(task_snake_case_name)
-        ws_package_name = lor.props.get("WORKSPACE_NAME")
+        task_camel_case_name = util.to_camel_case(task_snake_case_name) + "Task"
+        workspace_path = workspace.get_path()
+
+        if workspace_path is None:
+            raise RuntimeError("Not currently in a workspace: running a task generator requires being in a workspace")
+
+        ws_package_name = workspace.get_package_name(workspace_path)
 
         self.render_template(
             source="task.py.jinja2",

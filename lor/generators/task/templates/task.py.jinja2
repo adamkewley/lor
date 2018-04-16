@@ -17,7 +17,7 @@ import lor.path
 import luigi
 
 
-class {{ task_classname }}Class(luigi.Task):
+class {{ task_classname }}(luigi.Task):
 
     def requires(self):
         # e.g. lor.tasks.fs.EnsureExistsOnLocalFilesystemTask("some/file")
