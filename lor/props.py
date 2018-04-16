@@ -40,7 +40,11 @@ def get(prop_name):
     :return: The property's value
     :raises KeyError if `prop_name` cannot be loaded
     """
-    return get_property_from_list_of_loaders(__property_loaders, prop_name)
+    return get_property_from_list_of_loaders(_get_loaders(), prop_name)
+
+
+def _get_loaders():
+    return __property_loaders
 
 
 def get_all():
@@ -49,7 +53,7 @@ def get_all():
 
     :return a dict containing all available workspace properties and their values.
     """
-    return merge_list_of_property_loaders(__property_loaders)
+    return merge_list_of_property_loaders(_get_loaders())
 
 
 def _set_loaders(property_loaders):

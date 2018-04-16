@@ -218,3 +218,13 @@ def or_join(strs):
         first_els = "".join(map(lambda s: s + ", ", strs[0:-1]))
         last_el = strs[-1]
         return "{first_els}or {last_el}".format(first_els=first_els, last_el=last_el)
+
+
+def to_camel_case(snake_case_str):
+    """
+    Returns `snake_case_str` (e.g. `some_str`) in CamelCase (e.g. `SomeStr`).
+
+    :param snake_case_str: A string in `snake_case`
+    :return: The string in `CamelCase`
+    """
+    return "".join([s[:1].upper() + s[1:] for s in snake_case_str.split("_")])

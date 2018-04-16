@@ -33,6 +33,8 @@ import lor._constants
 
 from cookiecutter.main import cookiecutter
 
+from lor.generators.workspace.workspace_generator import WorkspaceGenerator
+
 __current_workspace_path = None
 
 
@@ -46,24 +48,10 @@ def create(output_path):
     """
 
     output_dir, workspace_name = os.path.split(output_path)
-    cookiecutter(
-        lor._paths.lor_path("lor/templates/workspace"),
-        no_input=True,
-        extra_context={
-            "workspace_name": workspace_name
-        },
-        output_dir=output_dir)
-
-    __print_create_message_for_dir(output_path)
+    ws_generator = WorkspaceGenerator(output_dir)
+    ws_generator.run([workspace_name])
 
     return output_path
-
-
-def __print_create_message_for_dir(dir):
-    for root, dirs, files in os.walk(dir):
-        print("create", root)
-        for file in files:
-            print("create", os.path.join(root, file))
 
 
 def get_path(cwd=None):

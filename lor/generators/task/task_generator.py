@@ -12,3 +12,35 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import os
+
+from lor import util
+from lor.generator import Generator
+import lor.props
+
+
+class TaskGenerator(Generator):
+
+    def description(self):
+        return "Generate a new task + tests"
+
+    def run(self, argv):
+        task_snake_case_name = argv[0]
+        task_camel_case_name = util.to_camel_case(task_snake_case_name)
+        ws_package_name = lor.props.get("WORKSPACE_NAME")
+
+        self.render_template(
+            source="task.py.jinja2",
+            destination=os.path.join(ws_package_name, "tasks", task_snake_case_name + ".py"),
+            env={
+                "task_classname": task_camel_case_name
+            })
+
+        self.render_template(
+            source="test_task.py.jinja2",
+            destination=os.path.join("tests", "tasks", "test_" + task_snake_case_name + ".py"),
+            env={
+                "workspace_pkg": ws_package_name,
+                "task_module": "lor.tasks." + task_snake_case_name,
+                "task_classname": task_camel_case_name,
+            })

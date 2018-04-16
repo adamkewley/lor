@@ -32,7 +32,7 @@ class MinimalGeneratorImpl(Generator):
         pass
 
 
-class GeneratorWithOverridableSourceAndDest(Generator):
+class ConfigurableSourceDestGenerator(Generator):
 
     def __init__(self, source_roots_val, destination_root_val):
         self.source_roots_val = source_roots_val
@@ -50,56 +50,65 @@ class GeneratorWithOverridableSourceAndDest(Generator):
 
 class TestGenerator(TestCase):
 
-    def test_run_raises_NotImplementedError_on_base_class(self):
-        generator = Generator()
+    def test_run_default_raises_NotImplementedError(self):
+        non_subclassed_generator = Generator()
         with self.assertRaises(NotImplementedError):
-            generator.run([])
+            non_subclassed_generator.run([])
 
-    def test_description_returns_objects_name_if_not_overridden(self):
-        generator = Generator()
-        with self.assertRaises(NotImplementedError):
-            generator.description()
+    def test_description_default_returns_object_name(self):
+        non_subclassed_generator = Generator()
+        returned_description = non_subclassed_generator.description()
 
-    def test_source_roots_defaults_to_implementation_templates_dir_if_exists(self):
+        self.assertEqual("Generator", returned_description)
+
+    def test_source_roots_default_returns_implementation_templates_dir_if_exists(self):
         fixture_generator_with_templates_dir = WithTemplatesGenerator()
-        returned_source_roots = fixture_generator_with_templates_dir.source_roots()
+        actual_source_roots = fixture_generator_with_templates_dir.source_roots()
 
-        fixture_path = tests.fixture_pkg.generators.with_templates.with_templates_generator.__path__
+        fixture_path = tests.fixture_pkg.generators.with_templates.__path__[0]
 
         expected_source_roots = [
-            os.path.join(fixture_path, "templates")
+            os.path.join(fixture_path, "templates/")
         ]
 
-        self.assertEqual(expected_source_roots, returned_source_roots)
+        self.assertEqual(expected_source_roots, actual_source_roots)
 
-    def test_source_roots_detauls_to_implementation_package_path_if_templates_doesnt_exist(self):
+    def test_source_roots_default_returns_implementation_package_path_if_templates_doesnt_exist(self):
         fixture_generator_without_templates_dir = WithoutTemplatesGenerator()
-        returned_source_roots = fixture_generator_without_templates_dir.source_roots()
+        actual_source_roots = fixture_generator_without_templates_dir.source_roots()
 
-        package_path = os.path.dirname(inspect.getsourcefile(inspect.getmodule(fixture_generator_without_templates_dir)))
+        implementation_module_path = inspect.getsourcefile(inspect.getmodule(fixture_generator_without_templates_dir))
+        implementation_package_path = os.path.dirname(implementation_module_path)
 
-        self.assertEqual(package_path, returned_source_roots)
+        expected_source_roots = [
+            implementation_package_path,
+        ]
 
-    def test_destination_root_returns_workspace_on_base_class(self):
-        with TemporaryWorkspace() as ws:
-            generator = Generator()
-            self.assertEqual(ws.get_path(), generator.destination_root())
+        self.assertEqual(expected_source_roots, actual_source_roots)
 
-    def test_destination_root_raises_AssertionError_if_not_in_a_workspace(self):
-        generator = Generator()
-        tmp_dir = tempfile.mkdtemp()
+    def test_destination_root_default_returns_workspace(self):
+        non_subclassed_generator = Generator()
+
+        with TemporaryWorkspace() as workspace_path:
+            actual_destination_root = non_subclassed_generator.destination_root()
+
+            self.assertEqual(workspace_path, actual_destination_root)
+
+    def test_destination_root_default_raises_AssertionError_if_not_in_a_workspace(self):
+        non_subclassed_generator = Generator()
+        empty_dir = tempfile.mkdtemp()
 
         with TemporaryEnv():
             workspace._set_path(None)
-            os.chdir(tmp_dir)
+            os.chdir(empty_dir)
 
             with self.assertRaises(AssertionError):
-                generator.destination_root()
+                non_subclassed_generator.destination_root()
 
-    def test_render_template_renders_template_into_destination_root(self):
+    def test_render_template_writes_rendered_template_to_destination_root(self):
         source_roots = [tst_helpers.fixture("templates/")]
         destination_root = tempfile.mkdtemp()
-        generator = GeneratorWithOverridableSourceAndDest(source_roots, destination_root)
+        generator = ConfigurableSourceDestGenerator(source_roots, destination_root)
         output_filename = util.base36_str()
         foo_val = util.base36_str()
 
@@ -113,10 +122,10 @@ class TestGenerator(TestCase):
 
         self.assertTrue("foo\n", file_content)
 
-    def test_render_template_creates_non_existent_subdirs(self):
+    def test_render_template_creates_subdirs_when_required(self):
         source_roots = [tst_helpers.fixture("templates/")]
         destination_root = tempfile.mkdtemp()
-        generator = GeneratorWithOverridableSourceAndDest(source_roots, destination_root)
+        generator = ConfigurableSourceDestGenerator(source_roots, destination_root)
         foo_val = util.base36_str()
 
         output_relpath = os.path.join(util.base36_str(), util.base36_str())
@@ -134,27 +143,30 @@ class TestGenerator(TestCase):
     def test_render_template_raises_FileNotFound_if_template_does_not_exist(self):
         source_roots = [tempfile.mkdtemp()]
         destination_root = tempfile.mkdtemp()
-        generator = GeneratorWithOverridableSourceAndDest(source_roots, destination_root)
+        generator = ConfigurableSourceDestGenerator(source_roots, destination_root)
 
         with self.assertRaises(FileNotFoundError):
             generator.render_template("doesnt-exist", os.path.join(destination_root, util.base36_str()), {})
 
-    def test_render_template_raises_FileExistsError_if_file_already_exists_in_destination(self):
+    def test_render_template_raises_FileExistsError_if_destination_already_exists(self):
         source_roots = [tst_helpers.fixture("templates/")]
         destination_root = tempfile.mkdtemp()
 
         file_already_in_dest = util.base36_str()
-        open(os.path.join(destination_root, file_already_in_dest), "a").close()
+        self.__create_empty_file(os.path.join(destination_root, file_already_in_dest))
 
-        generator = GeneratorWithOverridableSourceAndDest(source_roots, destination_root)
+        generator = ConfigurableSourceDestGenerator(source_roots, destination_root)
 
         with self.assertRaises(FileExistsError):
             generator.render_template("example.txt.jinja2", file_already_in_dest, {})
 
+    def __create_empty_file(self, path):
+        open(path, "a").close()
+
     def test_create_file_creates_file_with_content(self):
         source_roots = [tst_helpers.fixture("templates/")]
         destination_root = tempfile.mkdtemp()
-        generator = GeneratorWithOverridableSourceAndDest(source_roots, destination_root)
+        generator = ConfigurableSourceDestGenerator(source_roots, destination_root)
 
         content = util.base36_str()
         filename = util.base36_str()
@@ -168,23 +180,99 @@ class TestGenerator(TestCase):
 
         self.assertEqual(content, written_content)
 
-    def test_create_file_creates_non_existent_subdirs(self):
-        self.assertTrue(False)
+    def test_create_file_creates_subdirs_when_required(self):
+        source_roots = [tempfile.mkdtemp()]
+        destination_root = tempfile.mkdtemp()
+        generator = ConfigurableSourceDestGenerator(source_roots, destination_root)
+        provided_content = util.base36_str()
+
+        output_relpath = os.path.join(util.base36_str(), util.base36_str())
+
+        generator.create_file(provided_content, output_relpath)
+
+        expected_output_path = os.path.join(destination_root, output_relpath)
+
+        self.assertTrue(os.path.exists(expected_output_path))
+
+        written_content = util.read_file_to_string(expected_output_path)
+
+        self.assertTrue(provided_content, written_content)
 
     def test_create_file_raises_FileExistsError_if_file_already_exists(self):
-        self.assertTrue(False)
+        source_roots = [tempfile.mkdtemp()]
+        destination_root = tempfile.mkdtemp()
+        generator = ConfigurableSourceDestGenerator(source_roots, destination_root)
+
+        path_already_at_dest = util.base36_str()
+        self.__create_empty_file(os.path.join(destination_root, path_already_at_dest))
+
+        with self.assertRaises(FileExistsError):
+            generator.create_file(util.base36_str(), path_already_at_dest)
 
     def test_copy_file_copies_file_to_destination(self):
-        self.assertTrue(False)
+        source_root = tempfile.mkdtemp()
+        file_at_source = util.base36_str()
+        content_in_source_file = util.base36_str()
+
+        with open(os.path.join(source_root, file_at_source), "w") as f:
+            f.write(content_in_source_file)
+
+        destination_root = tempfile.mkdtemp()
+        generator = ConfigurableSourceDestGenerator([source_root], destination_root)
+        destination_path = util.base36_str()
+
+        generator.copy_file(file_at_source, destination_path)
+
+        expected_output_file = os.path.join(destination_root, destination_path)
+
+        self.assertTrue(os.path.exists(expected_output_file))
+
+        content_in_destination_file = util.read_file_to_string(expected_output_file)
+
+        self.assertEqual(content_in_source_file, content_in_destination_file)
 
     def test_copy_file_raises_FileNotFoundError_if_source_does_not_exist(self):
-        self.assertTrue(False)
+        empty_source_root = tempfile.mkdtemp()
+        destination_root = tempfile.mkdtemp()
+        generator = ConfigurableSourceDestGenerator([empty_source_root], destination_root)
+
+        with self.assertRaises(FileNotFoundError):
+            generator.copy_file("doesnt-exist", "doesnt-matter")
 
     def test_copy_file_raises_FileExistsError_if_destination_already_exists(self):
-        self.assertTrue(False)
+        source_root = tempfile.mkdtemp()
+        destination_root = tempfile.mkdtemp()
+
+        source_path = util.base36_str()
+        self.__create_empty_file(os.path.join(source_root, source_path))
+
+        destination_path = util.base36_str()
+        self.__create_empty_file(os.path.join(destination_root, destination_path))
+
+        generator = ConfigurableSourceDestGenerator([source_root], destination_root)
+
+        with self.assertRaises(FileExistsError):
+            generator.copy_file(source_path, destination_path)
 
     def test_mkdir_makes_empty_dir(self):
-        self.assertTrue(False)
+        destination_root = tempfile.mkdtemp()
+        destination_path = util.base36_str()
+        generator = ConfigurableSourceDestGenerator([tempfile.mkdtemp()], destination_root)
+
+        generator.mkdir(destination_path)
+
+        expected_output_path = os.path.join(destination_root, destination_path)
+
+        self.assertTrue(os.path.exists(expected_output_path))
+        self.assertTrue(os.path.isdir(expected_output_path))
+        self.assertEqual(0, len(os.listdir(expected_output_path)))
 
     def test_mkdir_raises_FileExistsError_if_dir_already_exists(self):
-        self.assertTrue(False)
+        destination_root = tempfile.mkdtemp()
+        generator = ConfigurableSourceDestGenerator([tempfile.mkdtemp()], destination_root)
+
+        destination_path = util.base36_str()
+        self.__create_empty_file(os.path.join(destination_root, destination_path))
+
+        with self.assertRaises(FileExistsError):
+            generator.mkdir(destination_path)

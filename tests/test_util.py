@@ -66,4 +66,12 @@ class TestHelpers(unittest.TestCase):
         self.assertEqual("a or b", util.or_join(["a", "b"]))
         self.assertEqual("a, b, or c", util.or_join(["a", "b", "c"]))
 
+    def test_to_camel_case_returns_expected_results(self):
+        self.assertEqual("SomeStr", util.to_camel_case("some_str"))
+        self.assertEqual("SomeOtherStr", util.to_camel_case("some_other_str"))
+        self.assertEqual("Str", util.to_camel_case("str"))
+        self.assertEqual("", util.to_camel_case(""))
+        self.assertEqual("Str", util.to_camel_case("Str"))
+        self.assertEqual("SomeStr", util.to_camel_case("SomeStr"))
+
 

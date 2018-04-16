@@ -15,20 +15,19 @@
 """
 File/directory generation support
 
-Generators help with LoR's "convention over configuration" approach by providing generators for the most common files
-that users are likely to need (e.g. a Luigi task). Using generators, clients are more likely to write projects with a
-standard layout rather than create their own. This should hopefully make LoR projects standard enough for devs to work
-together on them.
+Generators help with LoR's "convention over configuration" approach by generating the most common files that users are
+likely to need (e.g. a Luigi task). Using generators, clients are more likely to write projects with a standard layout
+rather than create their own, which should make LoR projects easier to work with.
 
-This module contains helpers for writing Generators. Generators are classes that have a command-line interface and, when
-ran, generate files in the output dir (usually, a workspace). LoR generators have support for:
-
-- Writing files with CLI feedback
-- Rendering Jinda2 templates
-- Running other generators
-- Running executable files (e.g. install scripts)
+This module contains helpers for writing Generators. Generators are classes that have a command-line interface and,
+when ran, generate files in the output dir (usually, a workspace).
 """
 import inspect
+import os
+import shutil
+
+import jinja2
+import multipath
 
 from lor import workspace
 
@@ -37,7 +36,7 @@ class Generator:
     """
     Abstract base class for a generator.
 
-    Concrete implementations of a Generator should provide a run method that parses command-line arguments (supplied)
+    Concrete implementations of `Generator` should provide a run method that parses command-line arguments (supplied)
     and generates the necessary files in the source/destination. By default, the source is assumed to be the templates
     directory and the destination is assumed to be within the workspace.
     """
@@ -47,6 +46,7 @@ class Generator:
         Run the generator.
 
         :param argv: Command-line arguments for the generator
+        :raises Exception For a wide variety of reasons (CLI parsing, cannot copy file, cannot create file, invaild args, etc.)
         """
         raise NotImplementedError()
 
@@ -56,20 +56,24 @@ class Generator:
 
         :return: A human-readable description of the generator as a string.
         """
-        return self.__name__
+        return self.__class__.__name__
 
     def source_roots(self):
         """
-        Returns a list of source folders from which files are copied/templates are rendered.
+        Returns a list of source folders from which source files/templates should be read.
 
         By default, returns the "templates/" directory, if a `templates/` dir exists in the generator's package.
         Otherwise, returns the path of the generator's package.
 
         :return: A list of source folders as strings.
         """
-        return [
-            inspect.getsourcefile(inspect.getmodule(self))
-        ]
+        package_dir = os.path.dirname(inspect.getsourcefile(inspect.getmodule(self)))
+        maybe_templates_dir = os.path.join(package_dir, "templates/")
+
+        if os.path.exists(maybe_templates_dir):
+            return [maybe_templates_dir]
+        else:
+            return [package_dir]
 
     def destination_root(self):
         """
@@ -80,7 +84,12 @@ class Generator:
 
         :return: The destination root directory as a string
         """
-        return workspace.get_path()
+        maybe_workspace_path = workspace.get_path()
+
+        if maybe_workspace_path is None:
+            raise AssertionError("Not currently in a workspace: by default, generators write to a workspace")
+        else:
+            return maybe_workspace_path
 
     def render_template(self, source, destination, env):
         """
@@ -88,21 +97,44 @@ class Generator:
 
         :param source: Path to source Jinja2 templated file. Relative paths are resolved relative to `source_roots` until a path exists.
         :param destination: Destination path. Relative paths are resolved relative to `destination_root`
-        :param env: A dict containing variables that appear within the Jinja2 template
+        :param jinja2_env: A dict containing variables that appear within the Jinja2 template
         :raises FileNotFoundError if source does not exist
         :raises FileExistsError if destination already exists
         """
-        pass
+        jinja2_env = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(self.source_roots()))
+
+        try:
+            template = jinja2_env.get_template(source)
+        except jinja2.TemplateNotFound as ex:
+            raise FileNotFoundError("{source}: Cannot find template: tried: {source_roots}".format(source=source, source_roots=self.source_roots()))
+
+        rendered_template = template.render(env)
+
+        self.create_file(rendered_template, destination)
 
     def create_file(self, content, destination):
         """
-        Create a file populated with `content` at `destination`.
+        Create a file at `destination` and populate it with `content`.
 
         :param content: String content of the file
         :param destination: Destination path. Relative paths are resolved relative to `destination_root`
         :raises FileExistsError if destination already exists
         """
-        pass
+        destination_path = os.path.join(self.destination_root(), destination)
+
+        os.makedirs(os.path.dirname(destination_path), exist_ok=True)
+
+        if os.path.exists(destination_path):
+            raise FileExistsError("{destination_path}: already exists".format(destination_path=destination_path))
+
+        with open(destination_path, "w") as f:
+            f.write(content)
+
+        self.__print_creation(destination)
+
+    def __print_creation(self, destination):
+        print("create  {destination}".format(destination=destination))
 
     def copy_file(self, source, destination):
         """
@@ -113,7 +145,15 @@ class Generator:
         :raises FileNotFoundError if `source` does not exist
         :raises FileExistsError if `destination` already exists
         """
-        pass
+        source_path = multipath.resolve(self.source_roots(), source)
+        destination_path = os.path.join(self.destination_root(), destination)
+
+        if os.path.exists(destination_path):
+            raise FileExistsError("{destination_path}: already exists: cannot copy {source_path} to this location".format(destination_path=destination_path, source_path=source_path))
+
+        shutil.copy(source_path, destination_path)
+
+        self.__print_creation(destination)
 
     def mkdir(self, destination):
         """
@@ -122,4 +162,11 @@ class Generator:
         :param destination: Destination path. Relative paths are resolved relative to `destination_root`
         :raises FileExistsError if `destination` already exists
         """
-        pass
+        destination_path = os.path.join(self.destination_root(), destination)
+
+        if os.path.exists(destination_path):
+            raise FileExistsError("{destination_path}: already exists: cannot create a directory at this path".format(destination_path=destination_path))
+
+        os.mkdir(destination_path)
+
+        self.__print_creation(destination)

@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+import lor.props
+import lor.path
+import luigi
+
+
+class {{ task_classname }}Class(luigi.Task):
+
+    def requires(self):
+        # e.g. lor.tasks.fs.EnsureExistsOnLocalFilesystemTask("some/file")
+        pass
+
+    def run(self):
+        # get a LoR config property (from CLI, properties.yml, etc.)
+        lor.props.get("PROP_NAME")
+
+        # resolve a path (in workspace, from dirs specified at CLI)
+        lor.path.resolve("etc/extra/data")
+
+    def output(self):
+        # e.g. luigi.LocalTarget("some/file")
+        pass

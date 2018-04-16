@@ -4,3 +4,4 @@ networkx==2.1
 pydot==1.2.4
 cookiecutter==1.6.0
 multipath==0.0.2
+jinja2==2.10
