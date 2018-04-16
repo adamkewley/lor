@@ -20,6 +20,7 @@ import glob
 import logging
 import os
 import random
+import re
 import string
 
 import yaml
@@ -227,4 +228,23 @@ def to_camel_case(snake_case_str):
     :param snake_case_str: A string in `snake_case`
     :return: The string in `CamelCase`
     """
-    return "".join([s[:1].upper() + s[1:] for s in snake_case_str.split("_")])
+    els = [
+        s[:1].upper() + s[1:]
+        for s in snake_case_str.split("_")
+    ]
+    return "".join(els)
+
+
+def to_snake_case(camel_case_str):
+    """
+    Returns `camel_case_str` (e.g. `SomeStr`) as snake_case (e.g. `some_str`)
+
+    :param camel_case_str: A string in `CamelCase`
+    :return: The string in `snake_case`
+    """
+    els = [
+        el.lower()
+        for el in re.findall("[a-zA-Z][^A-Z_]*", camel_case_str)
+        if el != "_"
+    ]
+    return "_".join(els)

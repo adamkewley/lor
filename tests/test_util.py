@@ -67,11 +67,32 @@ class TestHelpers(unittest.TestCase):
         self.assertEqual("a, b, or c", util.or_join(["a", "b", "c"]))
 
     def test_to_camel_case_returns_expected_results(self):
-        self.assertEqual("SomeStr", util.to_camel_case("some_str"))
-        self.assertEqual("SomeOtherStr", util.to_camel_case("some_other_str"))
-        self.assertEqual("Str", util.to_camel_case("str"))
-        self.assertEqual("", util.to_camel_case(""))
-        self.assertEqual("Str", util.to_camel_case("Str"))
-        self.assertEqual("SomeStr", util.to_camel_case("SomeStr"))
+        cases = [
+            ("some_str", "SomeStr"),
+            ("some_other_str", "SomeOtherStr"),
+            ("str", "Str"),
+            ("", ""),
+            ("Str", "Str"),
+            ("SomeStr", "SomeStr"),
+        ]
+
+        for input_str, expected_output in cases:
+            actual_output = util.to_camel_case(input_str)
+            self.assertEqual(expected_output, actual_output)
+
+    def test_to_snake_case_returns_expected_results(self):
+        cases = [
+            ("SomeStr", "some_str"),
+            ("", ""),
+            ("some_str", "some_str"),
+            ("Some", "some"),
+            ("SomeOtherStr", "some_other_str"),
+            ("Some_ObviouslyMalformedStr", "some_obviously_malformed_str"),
+        ]
+
+        for input_str, expected_output in cases:
+            actual_output = util.to_snake_case(input_str)
+            self.assertEqual(expected_output, actual_output)
+
 
 
