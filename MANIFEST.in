@@ -1,3 +1,3 @@
 include README.rst
 include requirements.txt
-recursive-include lor/generators/
+recursive-include lor/generators/ *
