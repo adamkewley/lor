@@ -33,7 +33,7 @@ dependency_links = [x.strip().replace('git+', '') for x in all_reqs if x.startsw
 
 setup(
     name='lor',
-    version='0.0.3',
+    version='0.0.4',
     description='A framework for rapidly developing pipelines with Luigi',
     long_description=long_description,
     author='Adam Kewley',
