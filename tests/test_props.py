@@ -13,9 +13,16 @@
 # limitations under the License.
 #
 import os
+import tempfile
 import unittest
 
-from lor import util, props
+import yaml
+
+import lor
+import lor._constants
+from lor.test import TemporaryWorkspace
+
+from lor import util, props, workspace
 from lor.props import DictPropertyLoader, YAMLFilePropertyLoader
 from tests import tst_helpers
 
@@ -66,6 +73,31 @@ class TestProperties(unittest.TestCase):
     def test__set_loaders_raises_ValueError_if_passed_list_containing_non_prop_loader(self):
         with self.assertRaises(ValueError):
             props._set_loaders([DictPropertyLoader("some-loader", {}), "not-a-loader"])
+
+    def test__set_loaders_allows_None_as_arg(self):
+        props._set_loaders(None)
+
+    def test__set_loaders_loads_props_from_workspace_if_previously_set_to_None(self):
+        props._set_loaders(None)
+
+        with TemporaryWorkspace() as ws:
+            props_path = os.path.join(ws, lor._constants.WORKSPACE_PROPS)
+            os.remove(props_path)
+            k = util.base36_str()
+            v = util.base36_str()
+            new_props = {k: v}
+            with open(props_path, "w") as f:
+                yaml.dump(new_props, f)
+
+            actual_ret = props.get(k)
+            self.assertEqual(actual_ret, v)
+
+    def test__set_loaders_to_None_then_raises_RuntimeError_if_not_in_workspace(self):
+        workspace._set_path(None)
+        props._set_loaders(None)
+
+        with self.assertRaises(RuntimeError):
+            props.get(util.base36_str())
 
     def test_get_returns_property_from_loaders(self):
         k = util.base36_str()

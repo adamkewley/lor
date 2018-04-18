@@ -26,9 +26,10 @@ also initialize them with CLI overrides etc.
 """
 import os
 
-from lor import util
+import lor._constants
+from lor import util, workspace
 
-__property_loaders = []
+__property_loaders = None
 
 
 def get(prop_name):
@@ -43,6 +44,16 @@ def get(prop_name):
 
 
 def _get_loaders():
+    global __property_loaders
+
+    if __property_loaders is None:
+        maybe_ws = workspace.get_path()
+        if maybe_ws is None:
+            raise RuntimeError("Not currently in a workspace")
+        else:
+            prop_path = os.path.join(maybe_ws, lor._constants.WORKSPACE_PROPS)
+            __property_loaders = [YAMLFilePropertyLoader(prop_path)]
+
     return __property_loaders
 
 
@@ -67,8 +78,13 @@ def _set_loaders(property_loaders):
     """
     global __property_loaders
 
+    if property_loaders is None:
+        __property_loaders = None
+        return
+
     if not isinstance(property_loaders, list):
         raise ValueError("{property_loaders}: not a list: must be a list of property loaders".format(property_loaders=str(property_loaders)))
+
     for property_loader in property_loaders:
         if not isinstance(property_loader, PropertyLoader):
             raise ValueError("{property_loader}: not a PropertyLoader: must be a property loader".format(property_loader=str(property_loader)))

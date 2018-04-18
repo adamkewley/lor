@@ -33,7 +33,7 @@ def bootstrap_globals(prop_overrides):
     :raises RuntimeError: If not in a workspace
     :raises FileNotFoundError: If workspace properties.yml file is missing
     """
-    workspace_path = workspace.try_locate()
+    workspace_path = workspace.get_path()
 
     if workspace_path is None:
         raise RuntimeError("Not currently in a workspace (or cannot locate one)")
