@@ -12,10 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import os
 import tempfile
 from unittest import TestCase
-
-import os
 
 from lor import path, workspace, util
 from lor.generators.workspace import workspace_generator

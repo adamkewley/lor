@@ -14,7 +14,6 @@
 #
 import argparse
 
-from lor import workspace
 from lor.generators.workspace import workspace_generator
 from lor.util.cli import CliCommand
 

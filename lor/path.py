@@ -41,7 +41,9 @@ Then this module will attempt to resolve "etc/foo.yml" against the `somedir/` ov
 it against the current workspace.
 """
 import os
+
 import multipath
+
 from lor import workspace
 
 __overlay_paths = []

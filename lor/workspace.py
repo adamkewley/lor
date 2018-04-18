@@ -130,13 +130,13 @@ def get_package_name(ws_path):
     with open(props_file_path, "r") as f:
         try:
             props = yaml.load(f)
-
-            if "WORKSPACE_NAME" in props:
-                return props["WORKSPACE_NAME"]
-            else:
-                raise KeyError("WORKSPACE_NAME: cannot be found in {props_file_path}: required to locate the main pyhon package".format(props_file_path=props_file_path))
         except Exception as ex:
-            raise RuntimeError("{props_file_path}: cannot be parsed as YAML: are you sure its valid?".format(props_file_path=props_file_path))
+            raise RuntimeError("{props_file_path}: cannot be parsed as YAML: are you sure its valid?".format(props_file_path=props_file_path)) from ex
+
+        if "WORKSPACE_NAME" in props:
+            return props["WORKSPACE_NAME"]
+        else:
+            raise KeyError("WORKSPACE_NAME: cannot be found in {props_file_path}: required to locate the main pyhon package".format(props_file_path=props_file_path))
 
 
 def try_locate(cwd=None):

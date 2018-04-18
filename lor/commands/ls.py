@@ -14,10 +14,9 @@
 #
 import argparse
 import importlib
-
 import os
-
 import sys
+
 from luigi import Task
 
 from lor.util import reflection

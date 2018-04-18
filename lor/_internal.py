@@ -17,8 +17,8 @@ Internal helper functions.
 """
 import os
 import sys
-import lor._constants
 
+import lor._constants
 from lor import workspace, path, props
 
 

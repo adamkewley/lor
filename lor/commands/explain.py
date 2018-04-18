@@ -15,9 +15,9 @@
 import argparse
 
 import luigi
-import lor._internal
 from luigi.cmdline_parser import CmdlineParser
 
+import lor._internal
 from lor.util import cli
 from lor.util.cli import CliCommand
 
