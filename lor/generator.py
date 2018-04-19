@@ -159,14 +159,10 @@ class Generator:
         """
         Create an empty directory at `destination`.
 
+        Parent directories are created automatically. This command does nothing if the directory already exists.
+
         :param destination: Destination path. Relative paths are resolved relative to `destination_root`
-        :raises FileExistsError if `destination` already exists
         """
         destination_path = os.path.join(self.destination_root(), destination)
-
-        if os.path.exists(destination_path):
-            raise FileExistsError("{destination_path}: already exists: cannot create a directory at this path".format(destination_path=destination_path))
-
-        os.mkdir(destination_path)
-
+        os.makedirs(destination_path, exist_ok=True)
         self.__print_creation(destination)

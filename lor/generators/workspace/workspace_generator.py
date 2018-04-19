@@ -33,6 +33,9 @@ class WorkspaceGenerator(Generator):
 
         template_env = {"workspace_name": workspace_name}
 
+        if os.path.exists(os.path.join(self.destination_root(), workspace_name)):
+            raise FileExistsError("{workspace_name}: already exists: this generator will not overwrite existing dirs".format(workspace_name=workspace_name))
+
         self.mkdir(workspace_name)
         self.render_template("README.rst.jinja2", os.path.join(workspace_name, "README.md"), template_env)
         self.copy_file("requirements.txt", os.path.join(workspace_name, "requirements.txt"))

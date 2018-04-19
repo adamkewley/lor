@@ -267,12 +267,23 @@ class TestGenerator(TestCase):
         self.assertTrue(os.path.isdir(expected_output_path))
         self.assertEqual(0, len(os.listdir(expected_output_path)))
 
-    def test_mkdir_raises_FileExistsError_if_dir_already_exists(self):
+    def test_mkdir_makes_parent_dirs(self):
+        destination_root = tempfile.mkdtemp()
+        nested_destination_path = os.path.join(util.base36_str(), util.base36_str())
+        generator = ConfigurableSourceDestGenerator([tempfile.mkdtemp()], destination_root)
+
+        generator.mkdir(nested_destination_path)
+
+        expected_output_path = os.path.join(destination_root, nested_destination_path)
+
+        self.assertTrue(os.path.exists(expected_output_path))
+        self.assertTrue(os.path.isdir(expected_output_path))
+
+    def test_mkdir_is_ok_if_dir_already_exists(self):
         destination_root = tempfile.mkdtemp()
         generator = ConfigurableSourceDestGenerator([tempfile.mkdtemp()], destination_root)
 
         destination_path = util.base36_str()
-        self.__create_empty_file(os.path.join(destination_root, destination_path))
+        os.mkdir(os.path.join(destination_root, destination_path))
 
-        with self.assertRaises(FileExistsError):
-            generator.mkdir(destination_path)
+        generator.mkdir(destination_path)
