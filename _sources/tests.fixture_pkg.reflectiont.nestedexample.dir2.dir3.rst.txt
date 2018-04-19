@@ -1,0 +1,22 @@
+tests.fixture\_pkg.reflectiont.nestedexample.dir2.dir3 package
+==============================================================
+
+Submodules
+----------
+
+tests.fixture\_pkg.reflectiont.nestedexample.dir2.dir3.mod5 module
+------------------------------------------------------------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.nestedexample.dir2.dir3.mod5
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.nestedexample.dir2.dir3
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -338,19 +338,19 @@ establishing whether a directory is a workspace, resolving paths in the workspac
 current working dir or an env var) or set explicitly (e.g. by LoR’s CLI commands). This enables downstream code to
 perform working-directory-independent pathing.</p>
 <dl class="function">
-<dt id="lor.workspace.create">
-<code class="descclassname">lor.workspace.</code><code class="descname">create</code><span class="sig-paren">(</span><em>output_path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new workspace at <cite>output path</cite>, returns the workspace’s path.</p>
+<dt id="lor.workspace.get_package_name">
+<code class="descclassname">lor.workspace.</code><code class="descname">get_package_name</code><span class="sig-paren">(</span><em>ws_path</em><span class="sig-paren">)</span><a class="headerlink" href="#lor.workspace.get_package_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of a workspace’s main python package.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>output_path</strong> – Full path to the workspace to create</p>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The workspace’s package name</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
-<li><strong>FileNotFoundError</strong> – if output_path does not exist</li>
-<li><strong>NotADirectoryError</strong> – if output_path is not a directory</li>
+<li><strong>ValueError</strong> – if <cite>ws_path</cite> is not a workspace</li>
+<li><strong>Exception</strong> – If the package name cannot be found from information in the workspace</li>
 </ul>
 </td>
 </tr>

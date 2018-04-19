@@ -185,8 +185,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="lor.tasks.html#lor.tasks.general.AlwaysRunsTask">AlwaysRunsTask (class in lor.tasks.general)</a>
 </li>
-      <li><a href="lor.util.html#lor.util.assert_file_exists">assert_file_exists() (in module lor.util)</a>
-</li>
       <li><a href="lor.html#lor.test.assert_task_fails">assert_task_fails() (in module lor.test)</a>
 </li>
       <li><a href="lor.html#lor.test.assert_task_passes">assert_task_passes() (in module lor.test)</a>
@@ -233,7 +231,9 @@
 </li>
       <li><a href="lor.tasks.html#lor.tasks.general.AlwaysRunsTask.complete">complete() (lor.tasks.general.AlwaysRunsTask method)</a>
 </li>
-      <li><a href="lor.html#lor.workspace.create">create() (in module lor.workspace)</a>
+      <li><a href="tests.html#tests.test_generator.ConfigurableSourceDestGenerator">ConfigurableSourceDestGenerator (class in tests.test_generator)</a>
+</li>
+      <li><a href="lor.generators.workspace.html#lor.generators.workspace.workspace_generator.create">create() (in module lor.generators.workspace.workspace_generator)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -272,13 +272,29 @@
 </li>
         <li><a href="lor.commands.html#lor.commands.run.RunCommand.description">(lor.commands.run.RunCommand method)</a>
 </li>
+        <li><a href="lor.generators.generator.html#lor.generators.generator.generator_generator.GeneratorGenerator.description">(lor.generators.generator.generator_generator.GeneratorGenerator method)</a>
+</li>
+        <li><a href="lor.generators.task.html#lor.generators.task.task_generator.TaskGenerator.description">(lor.generators.task.task_generator.TaskGenerator method)</a>
+</li>
+        <li><a href="lor.generators.workspace.html#lor.generators.workspace.workspace_generator.WorkspaceGenerator.description">(lor.generators.workspace.workspace_generator.WorkspaceGenerator method)</a>
+</li>
         <li><a href="lor.util.html#lor.util.cli.CliCommand.description">(lor.util.cli.CliCommand method)</a>
+</li>
+        <li><a href="tests.fixture_pkg.generators.with_templates.html#tests.fixture_pkg.generators.with_templates.with_templates_generator.WithTemplatesGenerator.description">(tests.fixture_pkg.generators.with_templates.with_templates_generator.WithTemplatesGenerator method)</a>
+</li>
+        <li><a href="tests.fixture_pkg.generators.without_templates.html#tests.fixture_pkg.generators.without_templates.without_templates_generator.WithoutTemplatesGenerator.description">(tests.fixture_pkg.generators.without_templates.without_templates_generator.WithoutTemplatesGenerator method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="lor.tasks.html#lor.tasks.hdfs.ClusterDeployTask.destination">destination() (lor.tasks.hdfs.ClusterDeployTask method)</a>
 </li>
+      <li><a href="lor.generators.workspace.html#lor.generators.workspace.workspace_generator.WorkspaceGenerator.destination_root">destination_root() (lor.generators.workspace.workspace_generator.WorkspaceGenerator method)</a>
+
+      <ul>
+        <li><a href="tests.html#tests.test_generator.ConfigurableSourceDestGenerator.destination_root">(tests.test_generator.ConfigurableSourceDestGenerator method)</a>
+</li>
+      </ul></li>
       <li><a href="lor.tasks.html#lor.tasks.general.DictPluckTask">DictPluckTask (class in lor.tasks.general)</a>
 </li>
       <li><a href="lor.commands.html#lor.commands.dot.DotCommand">DotCommand (class in lor.commands.dot)</a>
@@ -313,15 +329,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="lor.util.html#lor.util.file_uri">file_uri() (in module lor.util)</a>
 </li>
-      <li><a href="lor.util.html#lor.util.reflection.filter_subclasses">filter_subclasses() (in module lor.util.reflection)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="lor.util.html#lor.util.find_newest_file_in_dir">find_newest_file_in_dir() (in module lor.util)</a>
+      <li><a href="lor.util.html#lor.util.reflection.filter_subclasses">filter_subclasses() (in module lor.util.reflection)</a>
 </li>
       <li><a href="tests.html#tests.tst_helpers.fixture">fixture() (in module tests.tst_helpers)</a>
-</li>
-      <li><a href="lor.util.html#lor.util.flatten">flatten() (in module lor.util)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -337,13 +349,17 @@
 </li>
       <li><a href="lor.commands.html#lor.commands.explain.generate_outputs">generate_outputs() (in module lor.commands.explain)</a>
 </li>
+      <li><a href="lor.commands.html#lor.commands.explain.generate_task_explanation">generate_task_explanation() (in module lor.commands.explain)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="lor.commands.html#lor.commands.explain.generate_task_explanation">generate_task_explanation() (in module lor.commands.explain)</a>
+      <li><a href="lor.generators.generator.html#lor.generators.generator.generator_generator.GeneratorGenerator">GeneratorGenerator (class in lor.generators.generator.generator_generator)</a>
 </li>
       <li><a href="lor.html#lor.cmdline.get_default_out_of_workspace_subcommands">get_default_out_of_workspace_subcommands() (in module lor.cmdline)</a>
 </li>
       <li><a href="lor.html#lor.cmdline.get_default_workspace_subcommands">get_default_workspace_subcommands() (in module lor.cmdline)</a>
+</li>
+      <li><a href="lor.html#lor.workspace.get_package_name">get_package_name() (in module lor.workspace)</a>
 </li>
       <li><a href="lor.html#lor.workspace.get_path">get_path() (in module lor.workspace)</a>
 </li>
@@ -353,7 +369,7 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tests.fake_pkg.nestedexample.dir1.html#tests.fake_pkg.nestedexample.dir1.mod2.hello">hello() (in module tests.fake_pkg.nestedexample.dir1.mod2)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir1.html#tests.fixture_pkg.reflectiont.nestedexample.dir1.mod2.hello">hello() (in module tests.fixture_pkg.reflectiont.nestedexample.dir1.mod2)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -405,8 +421,22 @@
 </li>
       <li><a href="lor.commands.html#module-lor.commands.run">lor.commands.run (module)</a>
 </li>
+      <li><a href="lor.generators.html#module-lor.generators">lor.generators (module)</a>
+</li>
+      <li><a href="lor.generators.generator.html#module-lor.generators.generator">lor.generators.generator (module)</a>
+</li>
+      <li><a href="lor.generators.generator.html#module-lor.generators.generator.generator_generator">lor.generators.generator.generator_generator (module)</a>
+</li>
+      <li><a href="lor.generators.task.html#module-lor.generators.task">lor.generators.task (module)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="lor.generators.task.html#module-lor.generators.task.task_generator">lor.generators.task.task_generator (module)</a>
+</li>
+      <li><a href="lor.generators.workspace.html#module-lor.generators.workspace">lor.generators.workspace (module)</a>
+</li>
+      <li><a href="lor.generators.workspace.html#module-lor.generators.workspace.workspace_generator">lor.generators.workspace.workspace_generator (module)</a>
+</li>
       <li><a href="lor.tasks.html#module-lor.tasks">lor.tasks (module)</a>
 </li>
       <li><a href="lor.tasks.html#module-lor.tasks.fs">lor.tasks.fs (module)</a>
@@ -437,11 +467,11 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="lor.util.html#lor.util.map_vals">map_vals() (in module lor.util)</a>
+      <li><a href="lor.util.html#lor.util.merge">merge() (in module lor.util)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="lor.util.html#lor.util.merge">merge() (in module lor.util)</a>
+      <li><a href="tests.html#tests.test_generator.MinimalGeneratorImpl">MinimalGeneratorImpl (class in tests.test_generator)</a>
 </li>
       <li><a href="lor.tasks.html#lor.tasks.hdfs.MoveToHdfsTask">MoveToHdfsTask (class in lor.tasks.hdfs)</a>
 </li>
@@ -531,10 +561,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="lor.util.html#lor.util.read_file_to_string">read_file_to_string() (in module lor.util)</a>
 </li>
-      <li><a href="lor.util.html#lor.util.read_non_blank_lines_in_file">read_non_blank_lines_in_file() (in module lor.util)</a>
-</li>
-      <li><a href="lor.util.html#lor.util.read_yaml">read_yaml() (in module lor.util)</a>
-</li>
       <li><a href="lor.commands.html#lor.commands.dot.recursively_traverse_task">recursively_traverse_task() (in module lor.commands.dot)</a>
 </li>
       <li><a href="lor.tasks.html#lor.tasks.general.DictPluckTask.requires">requires() (lor.tasks.general.DictPluckTask method)</a>
@@ -547,8 +573,6 @@
         <li><a href="lor.tasks.html#lor.tasks.tar.TarballTask.requires">(lor.tasks.tar.TarballTask method)</a>
 </li>
       </ul></li>
-      <li><a href="lor.util.html#lor.util.resolve_template_str">resolve_template_str() (in module lor.util)</a>
-</li>
       <li><a href="lor.commands.html#lor.commands.dot.DotCommand.run">run() (lor.commands.dot.DotCommand method)</a>
 
       <ul>
@@ -562,6 +586,12 @@
 </li>
         <li><a href="lor.commands.html#lor.commands.run.RunCommand.run">(lor.commands.run.RunCommand method)</a>
 </li>
+        <li><a href="lor.generators.generator.html#lor.generators.generator.generator_generator.GeneratorGenerator.run">(lor.generators.generator.generator_generator.GeneratorGenerator method)</a>
+</li>
+        <li><a href="lor.generators.task.html#lor.generators.task.task_generator.TaskGenerator.run">(lor.generators.task.task_generator.TaskGenerator method)</a>
+</li>
+        <li><a href="lor.generators.workspace.html#lor.generators.workspace.workspace_generator.WorkspaceGenerator.run">(lor.generators.workspace.workspace_generator.WorkspaceGenerator method)</a>
+</li>
         <li><a href="lor.tasks.html#lor.tasks.fs.EnsureExistsOnLocalFilesystemTask.run">(lor.tasks.fs.EnsureExistsOnLocalFilesystemTask method)</a>
 </li>
         <li><a href="lor.tasks.html#lor.tasks.hdfs.ClusterDeployTask.run">(lor.tasks.hdfs.ClusterDeployTask method)</a>
@@ -573,6 +603,14 @@
         <li><a href="lor.tasks.html#lor.tasks.hdfs.MoveToHdfsTask.run">(lor.tasks.hdfs.MoveToHdfsTask method)</a>
 </li>
         <li><a href="lor.util.html#lor.util.cli.CliCommand.run">(lor.util.cli.CliCommand method)</a>
+</li>
+        <li><a href="tests.fixture_pkg.generators.with_templates.html#tests.fixture_pkg.generators.with_templates.with_templates_generator.WithTemplatesGenerator.run">(tests.fixture_pkg.generators.with_templates.with_templates_generator.WithTemplatesGenerator method)</a>
+</li>
+        <li><a href="tests.fixture_pkg.generators.without_templates.html#tests.fixture_pkg.generators.without_templates.without_templates_generator.WithoutTemplatesGenerator.run">(tests.fixture_pkg.generators.without_templates.without_templates_generator.WithoutTemplatesGenerator method)</a>
+</li>
+        <li><a href="tests.html#tests.test_generator.ConfigurableSourceDestGenerator.run">(tests.test_generator.ConfigurableSourceDestGenerator method)</a>
+</li>
+        <li><a href="tests.html#tests.test_generator.MinimalGeneratorImpl.run">(tests.test_generator.MinimalGeneratorImpl method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -591,19 +629,19 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="tests.fake_pkg.html#tests.fake_pkg.mod_with_class.SomeClass">SomeClass (class in tests.fake_pkg.mod_with_class)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.html#tests.fixture_pkg.reflectiont.mod_with_class.SomeClass">SomeClass (class in tests.fixture_pkg.reflectiont.mod_with_class)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.html#tests.fake_pkg.nestedexample.another_mod_with_class.SomeOtherClass">SomeOtherClass (class in tests.fake_pkg.nestedexample.another_mod_with_class)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.html#tests.fixture_pkg.reflectiont.nestedexample.another_mod_with_class.SomeOtherClass">SomeOtherClass (class in tests.fixture_pkg.reflectiont.nestedexample.another_mod_with_class)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.dir2.html#tests.fake_pkg.nestedexample.dir2.mod_with_subclass.SomeSubclass">SomeSubclass (class in tests.fake_pkg.nestedexample.dir2.mod_with_subclass)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir2.html#tests.fixture_pkg.reflectiont.nestedexample.dir2.mod_with_subclass.SomeSubclass">SomeSubclass (class in tests.fixture_pkg.reflectiont.nestedexample.dir2.mod_with_subclass)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="lor.tasks.html#lor.tasks.hdfs.ClusterDeployTask.source">source() (lor.tasks.hdfs.ClusterDeployTask method)</a>
 </li>
-      <li><a href="lor.util.html#lor.util.reflection.subclasses_in_pkg">subclasses_in_pkg() (in module lor.util.reflection)</a>
+      <li><a href="tests.html#tests.test_generator.ConfigurableSourceDestGenerator.source_roots">source_roots() (tests.test_generator.ConfigurableSourceDestGenerator method)</a>
 </li>
-      <li><a href="lor.util.html#lor.util.subdirs_in">subdirs_in() (in module lor.util)</a>
+      <li><a href="lor.util.html#lor.util.reflection.subclasses_in_pkg">subclasses_in_pkg() (in module lor.util.reflection)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -613,7 +651,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="lor.tasks.html#lor.tasks.tar.TarballTask">TarballTask (class in lor.tasks.tar)</a>
 </li>
-      <li><a href="lor.util.html#lor.util.task_input_merge">task_input_merge() (in module lor.util)</a>
+      <li><a href="lor.generators.task.html#lor.generators.task.task_generator.TaskGenerator">TaskGenerator (class in lor.generators.task.task_generator)</a>
 </li>
       <li><a href="lor.html#lor.test.TemporaryEnv">TemporaryEnv (class in lor.test)</a>
 </li>
@@ -621,15 +659,21 @@
 </li>
       <li><a href="lor.html#lor.test.TemporaryWorkspace">TemporaryWorkspace (class in lor.test)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test__set_loaders_allows_setting_list_of_loaders">test__set_loaders_allows_setting_list_of_loaders() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test__set_loaders_allows_None_as_arg">test__set_loaders_allows_None_as_arg() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test__set_loaders_raises_ValueError_if_passed_list_containing_non_prop_loader">test__set_loaders_raises_ValueError_if_passed_list_containing_non_prop_loader() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test__set_loaders_allows_setting_list_of_loaders">test__set_loaders_allows_setting_list_of_loaders() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test__set_loaders_raises_ValueError_if_passed_non_list">test__set_loaders_raises_ValueError_if_passed_non_list() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test__set_loaders_loads_props_from_workspace_if_previously_set_to_None">test__set_loaders_loads_props_from_workspace_if_previously_set_to_None() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test__set_loaders_then_uses_loader_with_get_all_call">test__set_loaders_then_uses_loader_with_get_all_call() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test__set_loaders_raises_ValueError_if_passed_list_containing_non_prop_loader">test__set_loaders_raises_ValueError_if_passed_list_containing_non_prop_loader() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test__set_loaders_then_uses_loader_with_get_call">test__set_loaders_then_uses_loader_with_get_call() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test__set_loaders_raises_ValueError_if_passed_non_list">test__set_loaders_raises_ValueError_if_passed_non_list() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test__set_loaders_then_uses_loader_with_get_all_call">test__set_loaders_then_uses_loader_with_get_all_call() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test__set_loaders_then_uses_loader_with_get_call">test__set_loaders_then_uses_loader_with_get_call() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test__set_loaders_to_None_then_raises_RuntimeError_if_not_in_workspace">test__set_loaders_to_None_then_raises_RuntimeError_if_not_in_workspace() (tests.test_props.TestProperties method)</a>
 </li>
       <li><a href="tests.html#tests.test_path.TestPaths.test__set_overlay_paths_causes_get_overlay_paths_to_return_the_supplied_paths">test__set_overlay_paths_causes_get_overlay_paths_to_return_the_supplied_paths() (tests.test_path.TestPaths method)</a>
 </li>
@@ -705,37 +749,65 @@
 </li>
       <li><a href="tests.util.html#tests.util.test_reflection.TestReflection.test_classes_in_pkg_returns_expected_entries">test_classes_in_pkg_returns_expected_entries() (tests.util.test_reflection.TestReflection method)</a>
 </li>
-      <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_create_creates_a_directory_at_path">test_create_creates_a_directory_at_path() (tests.test_workspace.TestWorkspaces method)</a>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_copy_file_copies_file_to_destination">test_copy_file_copies_file_to_destination() (tests.test_generator.TestGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_create_raises_if_path_already_exists">test_create_raises_if_path_already_exists() (tests.test_workspace.TestWorkspaces method)</a>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_copy_file_raises_FileExistsError_if_destination_already_exists">test_copy_file_raises_FileExistsError_if_destination_already_exists() (tests.test_generator.TestGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_create_returns_a_path_to_the_workspace">test_create_returns_a_path_to_the_workspace() (tests.test_workspace.TestWorkspaces method)</a>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_copy_file_raises_FileNotFoundError_if_source_does_not_exist">test_copy_file_raises_FileNotFoundError_if_source_does_not_exist() (tests.test_generator.TestGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_create_works_with_valid_arguments">test_create_works_with_valid_arguments() (tests.test_workspace.TestWorkspaces method)</a>
+      <li><a href="tests.generators.workspace.html#tests.generators.workspace.workspace_generator_test.TestWorkspaceGenerator.test_create_creates_a_directory_at_path">test_create_creates_a_directory_at_path() (tests.generators.workspace.workspace_generator_test.TestWorkspaceGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_DictPropertyLoader_get_all_returns_same_dict_as_supplied_in_ctor">test_DictPropertyLoader_get_all_returns_same_dict_as_supplied_in_ctor() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_create_file_creates_file_with_content">test_create_file_creates_file_with_content() (tests.test_generator.TestGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_DictPropertyLoader_get_name_returns_supplied_name">test_DictPropertyLoader_get_name_returns_supplied_name() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_create_file_creates_subdirs_when_required">test_create_file_creates_subdirs_when_required() (tests.test_generator.TestGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_DictPropertyLoader_get_raises_KeyError_if_property_does_not_exist">test_DictPropertyLoader_get_raises_KeyError_if_property_does_not_exist() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_create_file_raises_FileExistsError_if_file_already_exists">test_create_file_raises_FileExistsError_if_file_already_exists() (tests.test_generator.TestGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_DictPropertyLoader_get_returns_property_from_dict">test_DictPropertyLoader_get_returns_property_from_dict() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.generators.workspace.html#tests.generators.workspace.workspace_generator_test.TestWorkspaceGenerator.test_create_raises_if_path_already_exists">test_create_raises_if_path_already_exists() (tests.generators.workspace.workspace_generator_test.TestWorkspaceGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_DictPropertyLoader_init_works_with_standard_args">test_DictPropertyLoader_init_works_with_standard_args() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.generators.workspace.html#tests.generators.workspace.workspace_generator_test.TestWorkspaceGenerator.test_create_returns_a_path_to_the_workspace">test_create_returns_a_path_to_the_workspace() (tests.generators.workspace.workspace_generator_test.TestWorkspaceGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_DictPropertyLoader_try_get_returns_None_if_property_does_not_exist">test_DictPropertyLoader_try_get_returns_None_if_property_does_not_exist() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.generators.workspace.html#tests.generators.workspace.workspace_generator_test.TestWorkspaceGenerator.test_create_works_with_valid_arguments">test_create_works_with_valid_arguments() (tests.generators.workspace.workspace_generator_test.TestWorkspaceGenerator method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_DictPropertyLoader_try_get_returns_property_from_dict">test_DictPropertyLoader_try_get_returns_property_from_dict() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_description_default_returns_object_name">test_description_default_returns_object_name() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_destination_root_default_raises_AssertionError_if_not_in_a_workspace">test_destination_root_default_raises_AssertionError_if_not_in_a_workspace() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_destination_root_default_returns_workspace">test_destination_root_default_returns_workspace() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_DictPropertyLoader_get_all_returns_same_dict_as_supplied_in_ctor">test_DictPropertyLoader_get_all_returns_same_dict_as_supplied_in_ctor() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_DictPropertyLoader_get_name_returns_supplied_name">test_DictPropertyLoader_get_name_returns_supplied_name() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_DictPropertyLoader_get_raises_KeyError_if_property_does_not_exist">test_DictPropertyLoader_get_raises_KeyError_if_property_does_not_exist() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_DictPropertyLoader_get_returns_property_from_dict">test_DictPropertyLoader_get_returns_property_from_dict() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_DictPropertyLoader_init_works_with_standard_args">test_DictPropertyLoader_init_works_with_standard_args() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_DictPropertyLoader_try_get_returns_None_if_property_does_not_exist">test_DictPropertyLoader_try_get_returns_None_if_property_does_not_exist() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_DictPropertyLoader_try_get_returns_property_from_dict">test_DictPropertyLoader_try_get_returns_property_from_dict() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_util.TestHelpers.test_file_uri_returns_expected_results">test_file_uri_returns_expected_results() (tests.test_util.TestHelpers method)</a>
 </li>
       <li><a href="tests.util.html#tests.util.test_reflection.TestReflection.test_filter_subclasses_returns_expected_result">test_filter_subclasses_returns_expected_result() (tests.util.test_reflection.TestReflection method)</a>
 </li>
-      <li><a href="tests.html#tests.test_util.TestHelpers.test_flatten_returns_expected_result">test_flatten_returns_expected_result() (tests.test_util.TestHelpers method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_get_all_dict_contains_expected_results">test_get_all_dict_contains_expected_results() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_get_all_dict_contains_expected_results">test_get_all_dict_contains_expected_results() (tests.test_properties.TestProperties method)</a>
-</li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_get_all_returns_a_dict">test_get_all_returns_a_dict() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_get_all_returns_a_dict">test_get_all_returns_a_dict() (tests.test_props.TestProperties method)</a>
 </li>
       <li><a href="tests.html#tests.test_path.TestPaths.test_get_overlay_paths_returns_a_list">test_get_overlay_paths_returns_a_list() (tests.test_path.TestPaths method)</a>
+</li>
+      <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_get_package_name_raises_Exception_if_properties_file_missing_from_workspace">test_get_package_name_raises_Exception_if_properties_file_missing_from_workspace() (tests.test_workspace.TestWorkspaces method)</a>
+</li>
+      <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_get_package_name_raises_Exception_if_properties_file_missing_WORKSPACE_NAME_key">test_get_package_name_raises_Exception_if_properties_file_missing_WORKSPACE_NAME_key() (tests.test_workspace.TestWorkspaces method)</a>
+</li>
+      <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_get_package_name_raises_Exception_if_supplied_non_workspace">test_get_package_name_raises_Exception_if_supplied_non_workspace() (tests.test_workspace.TestWorkspaces method)</a>
+</li>
+      <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_get_package_name_returns_a_string_for_new_workspace">test_get_package_name_returns_a_string_for_new_workspace() (tests.test_workspace.TestWorkspaces method)</a>
+</li>
+      <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_get_package_name_uses_WORKSPACE_NAME_variable">test_get_package_name_uses_WORKSPACE_NAME_variable() (tests.test_workspace.TestWorkspaces method)</a>
 </li>
       <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_get_path_returns_cwd_if_cwd_is_workspace_and_no_manual_override_set">test_get_path_returns_cwd_if_cwd_is_workspace_and_no_manual_override_set() (tests.test_workspace.TestWorkspaces method)</a>
 </li>
@@ -745,17 +817,17 @@
 </li>
       <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_get_path_returns_None_if_manual_ws_set_is_None_and_cwd_is_not_a_workspace">test_get_path_returns_None_if_manual_ws_set_is_None_and_cwd_is_not_a_workspace() (tests.test_workspace.TestWorkspaces method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_get_property_from_list_of_loaders_overwrites_properties">test_get_property_from_list_of_loaders_overwrites_properties() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_get_property_from_list_of_loaders_overwrites_properties">test_get_property_from_list_of_loaders_overwrites_properties() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_get_property_from_list_of_loaders_raises_KeyError_if_property_is_not_in_loaders">test_get_property_from_list_of_loaders_raises_KeyError_if_property_is_not_in_loaders() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_get_property_from_list_of_loaders_raises_KeyError_if_property_is_not_in_loaders">test_get_property_from_list_of_loaders_raises_KeyError_if_property_is_not_in_loaders() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_get_property_from_list_of_loaders_returns_prop_from_multiple_loaders">test_get_property_from_list_of_loaders_returns_prop_from_multiple_loaders() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_get_property_from_list_of_loaders_returns_prop_from_multiple_loaders">test_get_property_from_list_of_loaders_returns_prop_from_multiple_loaders() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_get_property_from_list_of_loaders_returns_prop_from_single_loader">test_get_property_from_list_of_loaders_returns_prop_from_single_loader() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_get_property_from_list_of_loaders_returns_prop_from_single_loader">test_get_property_from_list_of_loaders_returns_prop_from_single_loader() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_get_raises_KeyError_for_non_existent_property">test_get_raises_KeyError_for_non_existent_property() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_get_raises_KeyError_for_non_existent_property">test_get_raises_KeyError_for_non_existent_property() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_get_returns_property_from_loaders">test_get_returns_property_from_loaders() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_get_returns_property_from_loaders">test_get_returns_property_from_loaders() (tests.test_props.TestProperties method)</a>
 </li>
       <li><a href="tests.util.html#tests.util.test_reflection.TestReflection.test_is_pkg_returns_False_for_module">test_is_pkg_returns_False_for_module() (tests.util.test_reflection.TestReflection method)</a>
 </li>
@@ -771,8 +843,6 @@
 </li>
       <li><a href="tests.html#tests.test_path.TestPaths.test_join_all_returns_a_list">test_join_all_returns_a_list() (tests.test_path.TestPaths method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="tests.html#tests.test_path.TestPaths.test_join_all_returns_list_of_overlays_then_workspace">test_join_all_returns_list_of_overlays_then_workspace() (tests.test_path.TestPaths method)</a>
 </li>
       <li><a href="tests.html#tests.test_path.TestPaths.test_join_raises_ValueError_if_no_overlays_and_not_in_workspace">test_join_raises_ValueError_if_no_overlays_and_not_in_workspace() (tests.test_path.TestPaths method)</a>
@@ -785,11 +855,33 @@
 </li>
       <li><a href="tests.util.html#tests.util.test_reflection.TestReflection.test_load_class_by_name_works">test_load_class_by_name_works() (tests.util.test_reflection.TestReflection method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_merge_list_of_property_loaders_merges_properties_from_multiple_loaders_as_expected">test_merge_list_of_property_loaders_merges_properties_from_multiple_loaders_as_expected() (tests.test_properties.TestProperties method)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_merge_list_of_property_loaders_merges_properties_from_multiple_loaders_as_expected">test_merge_list_of_property_loaders_merges_properties_from_multiple_loaders_as_expected() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_merge_list_of_property_loaders_takes_list_and_returns_dict">test_merge_list_of_property_loaders_takes_list_and_returns_dict() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_merge_list_of_property_loaders_takes_list_and_returns_dict">test_merge_list_of_property_loaders_takes_list_and_returns_dict() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_mkdir_is_ok_if_dir_already_exists">test_mkdir_is_ok_if_dir_already_exists() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_mkdir_makes_empty_dir">test_mkdir_makes_empty_dir() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_mkdir_makes_parent_dirs">test_mkdir_makes_parent_dirs() (tests.test_generator.TestGenerator method)</a>
 </li>
       <li><a href="tests.html#tests.test_util.TestHelpers.test_or_join_returns_expected_results">test_or_join_returns_expected_results() (tests.test_util.TestHelpers method)</a>
+</li>
+      <li><a href="tests.html#tests.test_util.TestHelpers.test_read_file_to_string_raises_FileNotFoundError_for_non_existent_path">test_read_file_to_string_raises_FileNotFoundError_for_non_existent_path() (tests.test_util.TestHelpers method)</a>
+</li>
+      <li><a href="tests.html#tests.test_util.TestHelpers.test_read_file_to_string_raises_UnicodeDecodeError_for_binary_file">test_read_file_to_string_raises_UnicodeDecodeError_for_binary_file() (tests.test_util.TestHelpers method)</a>
+</li>
+      <li><a href="tests.html#tests.test_util.TestHelpers.test_read_file_to_string_returns_file_contents_as_string">test_read_file_to_string_returns_file_contents_as_string() (tests.test_util.TestHelpers method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_render_template_creates_subdirs_when_required">test_render_template_creates_subdirs_when_required() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_render_template_raises_FileExistsError_if_destination_already_exists">test_render_template_raises_FileExistsError_if_destination_already_exists() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_render_template_raises_FileNotFound_if_template_does_not_exist">test_render_template_raises_FileNotFound_if_template_does_not_exist() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_render_template_writes_rendered_template_to_destination_root">test_render_template_writes_rendered_template_to_destination_root() (tests.test_generator.TestGenerator method)</a>
 </li>
       <li><a href="tests.html#tests.test_path.TestPaths.test_resolve_all_list_contains_elements_that_do_exist">test_resolve_all_list_contains_elements_that_do_exist() (tests.test_path.TestPaths method)</a>
 </li>
@@ -807,7 +899,7 @@
 </li>
       <li><a href="tests.html#tests.test_path.TestPaths.test_resolve_returns_result_from_workspace_if_workspace_has_file">test_resolve_returns_result_from_workspace_if_workspace_has_file() (tests.test_path.TestPaths method)</a>
 </li>
-      <li><a href="tests.html#tests.test_util.TestHelpers.test_resolve_template_str_returns_expected_results">test_resolve_template_str_returns_expected_results() (tests.test_util.TestHelpers method)</a>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_run_default_raises_NotImplementedError">test_run_default_raises_NotImplementedError() (tests.test_generator.TestGenerator method)</a>
 </li>
       <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_run_install_script_raises_FileNotFoundError_if_workspace_doesnt_contain_installer">test_run_install_script_raises_FileNotFoundError_if_workspace_doesnt_contain_installer() (tests.test_workspace.TestWorkspaces method)</a>
 </li>
@@ -816,6 +908,14 @@
       <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_run_install_script_raises_NotADirectoryError_if_workspace_path_is_not_a_dir">test_run_install_script_raises_NotADirectoryError_if_workspace_path_is_not_a_dir() (tests.test_workspace.TestWorkspaces method)</a>
 </li>
       <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_run_install_script_runs_bin_install">test_run_install_script_runs_bin_install() (tests.test_workspace.TestWorkspaces method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_source_roots_default_returns_implementation_package_path_if_templates_doesnt_exist">test_source_roots_default_returns_implementation_package_path_if_templates_doesnt_exist() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator.test_source_roots_default_returns_implementation_templates_dir_if_exists">test_source_roots_default_returns_implementation_templates_dir_if_exists() (tests.test_generator.TestGenerator method)</a>
+</li>
+      <li><a href="tests.html#tests.test_util.TestHelpers.test_to_camel_case_returns_expected_results">test_to_camel_case_returns_expected_results() (tests.test_util.TestHelpers method)</a>
+</li>
+      <li><a href="tests.html#tests.test_util.TestHelpers.test_to_snake_case_returns_expected_results">test_to_snake_case_returns_expected_results() (tests.test_util.TestHelpers method)</a>
 </li>
       <li><a href="tests.html#tests.test_workspace.TestWorkspaces.test_try_locate_returns_cwd_if_cwd_is_a_workspace">test_try_locate_returns_cwd_if_cwd_is_a_workspace() (tests.test_workspace.TestWorkspaces method)</a>
 </li>
@@ -827,21 +927,25 @@
 </li>
       <li><a href="tests.html#tests.test_util.TestHelpers.test_uri_subfolder_returns_expected_result">test_uri_subfolder_returns_expected_result() (tests.test_util.TestHelpers method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_YAMLFilePropertyLoader_get_all_returns_dict_of_values_loaded_from_YAML_file">test_YAMLFilePropertyLoader_get_all_returns_dict_of_values_loaded_from_YAML_file() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_util.TestHelpers.test_write_str_to_file">test_write_str_to_file() (tests.test_util.TestHelpers method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_YAMLFilePropertyLoader_get_name_contains_YAML_file_name">test_YAMLFilePropertyLoader_get_name_contains_YAML_file_name() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_util.TestHelpers.test_write_str_to_file_raises_FileExistsError_if_file_exists">test_write_str_to_file_raises_FileExistsError_if_file_exists() (tests.test_util.TestHelpers method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_YAMLFilePropertyLoader_get_returns_variable_in_YAML_file">test_YAMLFilePropertyLoader_get_returns_variable_in_YAML_file() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_YAMLFilePropertyLoader_get_all_returns_dict_of_values_loaded_from_YAML_file">test_YAMLFilePropertyLoader_get_all_returns_dict_of_values_loaded_from_YAML_file() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_YAMLFilePropertyLoader_get_throws_KeyError_if_variable_not_in_YAML_file">test_YAMLFilePropertyLoader_get_throws_KeyError_if_variable_not_in_YAML_file() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_YAMLFilePropertyLoader_get_name_contains_YAML_file_name">test_YAMLFilePropertyLoader_get_name_contains_YAML_file_name() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_YAMLFilePropertyLoader_init_raises_FileNotFoundError_if_path_does_not_exist">test_YAMLFilePropertyLoader_init_raises_FileNotFoundError_if_path_does_not_exist() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_YAMLFilePropertyLoader_get_returns_variable_in_YAML_file">test_YAMLFilePropertyLoader_get_returns_variable_in_YAML_file() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_YAMLFilePropertyLoader_init_raises_RuntimeError_if_file_is_invalid">test_YAMLFilePropertyLoader_init_raises_RuntimeError_if_file_is_invalid() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_YAMLFilePropertyLoader_get_throws_KeyError_if_variable_not_in_YAML_file">test_YAMLFilePropertyLoader_get_throws_KeyError_if_variable_not_in_YAML_file() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_YAMLFilePropertyLoader_try_get_returns_None_if_variable_not_in_YAML_file">test_YAMLFilePropertyLoader_try_get_returns_None_if_variable_not_in_YAML_file() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_YAMLFilePropertyLoader_init_raises_FileNotFoundError_if_path_does_not_exist">test_YAMLFilePropertyLoader_init_raises_FileNotFoundError_if_path_does_not_exist() (tests.test_props.TestProperties method)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties.test_YAMLFilePropertyLoader_try_get_returns_variable_in_YAML_file">test_YAMLFilePropertyLoader_try_get_returns_variable_in_YAML_file() (tests.test_properties.TestProperties method)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_YAMLFilePropertyLoader_init_raises_RuntimeError_if_file_is_invalid">test_YAMLFilePropertyLoader_init_raises_RuntimeError_if_file_is_invalid() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_YAMLFilePropertyLoader_try_get_returns_None_if_variable_not_in_YAML_file">test_YAMLFilePropertyLoader_try_get_returns_None_if_variable_not_in_YAML_file() (tests.test_props.TestProperties method)</a>
+</li>
+      <li><a href="tests.html#tests.test_props.TestProperties.test_YAMLFilePropertyLoader_try_get_returns_variable_in_YAML_file">test_YAMLFilePropertyLoader_try_get_returns_variable_in_YAML_file() (tests.test_props.TestProperties method)</a>
 </li>
       <li><a href="tests.systemtests.html#tests.systemtests.test_cli.TestCli">TestCli (class in tests.systemtests.test_cli)</a>
 
@@ -851,49 +955,71 @@
       </ul></li>
       <li><a href="tests.html#tests.test_cmdline.TestCmdline">TestCmdline (class in tests.test_cmdline)</a>
 </li>
+      <li><a href="tests.html#tests.test_generator.TestGenerator">TestGenerator (class in tests.test_generator)</a>
+</li>
       <li><a href="tests.html#tests.test_util.TestHelpers">TestHelpers (class in tests.test_util)</a>
 </li>
       <li><a href="tests.html#tests.test_path.TestPaths">TestPaths (class in tests.test_path)</a>
 </li>
-      <li><a href="tests.html#tests.test_properties.TestProperties">TestProperties (class in tests.test_properties)</a>
+      <li><a href="tests.html#tests.test_props.TestProperties">TestProperties (class in tests.test_props)</a>
 </li>
       <li><a href="tests.util.html#tests.util.test_reflection.TestReflection">TestReflection (class in tests.util.test_reflection)</a>
 </li>
       <li><a href="tests.html#module-tests">tests (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.html#module-tests.fake_pkg">tests.fake_pkg (module)</a>
+      <li><a href="tests.fixture_pkg.html#module-tests.fixture_pkg">tests.fixture_pkg (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.empty.html#module-tests.fake_pkg.empty">tests.fake_pkg.empty (module)</a>
+      <li><a href="tests.fixture_pkg.generators.html#module-tests.fixture_pkg.generators">tests.fixture_pkg.generators (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.example.html#module-tests.fake_pkg.example">tests.fake_pkg.example (module)</a>
+      <li><a href="tests.fixture_pkg.generators.with_templates.html#module-tests.fixture_pkg.generators.with_templates">tests.fixture_pkg.generators.with_templates (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.example.html#module-tests.fake_pkg.example.mod1">tests.fake_pkg.example.mod1 (module)</a>
+      <li><a href="tests.fixture_pkg.generators.with_templates.templates.html#module-tests.fixture_pkg.generators.with_templates.templates">tests.fixture_pkg.generators.with_templates.templates (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.example.html#module-tests.fake_pkg.example.mod2">tests.fake_pkg.example.mod2 (module)</a>
+      <li><a href="tests.fixture_pkg.generators.with_templates.html#module-tests.fixture_pkg.generators.with_templates.with_templates_generator">tests.fixture_pkg.generators.with_templates.with_templates_generator (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.html#module-tests.fake_pkg.mod_with_class">tests.fake_pkg.mod_with_class (module)</a>
+      <li><a href="tests.fixture_pkg.generators.without_templates.html#module-tests.fixture_pkg.generators.without_templates">tests.fixture_pkg.generators.without_templates (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.html#module-tests.fake_pkg.nestedexample">tests.fake_pkg.nestedexample (module)</a>
+      <li><a href="tests.fixture_pkg.generators.without_templates.html#module-tests.fixture_pkg.generators.without_templates.without_templates_generator">tests.fixture_pkg.generators.without_templates.without_templates_generator (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.html#module-tests.fake_pkg.nestedexample.another_mod_with_class">tests.fake_pkg.nestedexample.another_mod_with_class (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.html#module-tests.fixture_pkg.reflectiont">tests.fixture_pkg.reflectiont (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.dir1.html#module-tests.fake_pkg.nestedexample.dir1">tests.fake_pkg.nestedexample.dir1 (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.empty.html#module-tests.fixture_pkg.reflectiont.empty">tests.fixture_pkg.reflectiont.empty (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.dir1.html#module-tests.fake_pkg.nestedexample.dir1.mod2">tests.fake_pkg.nestedexample.dir1.mod2 (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.example.html#module-tests.fixture_pkg.reflectiont.example">tests.fixture_pkg.reflectiont.example (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.dir1.html#module-tests.fake_pkg.nestedexample.dir1.mod3">tests.fake_pkg.nestedexample.dir1.mod3 (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.example.html#module-tests.fixture_pkg.reflectiont.example.mod1">tests.fixture_pkg.reflectiont.example.mod1 (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.dir2.html#module-tests.fake_pkg.nestedexample.dir2">tests.fake_pkg.nestedexample.dir2 (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.example.html#module-tests.fixture_pkg.reflectiont.example.mod2">tests.fixture_pkg.reflectiont.example.mod2 (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.dir2.dir3.html#module-tests.fake_pkg.nestedexample.dir2.dir3">tests.fake_pkg.nestedexample.dir2.dir3 (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.html#module-tests.fixture_pkg.reflectiont.mod_with_class">tests.fixture_pkg.reflectiont.mod_with_class (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.dir2.dir3.html#module-tests.fake_pkg.nestedexample.dir2.dir3.mod5">tests.fake_pkg.nestedexample.dir2.dir3.mod5 (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.html#module-tests.fixture_pkg.reflectiont.nestedexample">tests.fixture_pkg.reflectiont.nestedexample (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.dir2.html#module-tests.fake_pkg.nestedexample.dir2.mod4">tests.fake_pkg.nestedexample.dir2.mod4 (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.html#module-tests.fixture_pkg.reflectiont.nestedexample.another_mod_with_class">tests.fixture_pkg.reflectiont.nestedexample.another_mod_with_class (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.dir2.html#module-tests.fake_pkg.nestedexample.dir2.mod_with_subclass">tests.fake_pkg.nestedexample.dir2.mod_with_subclass (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir1.html#module-tests.fixture_pkg.reflectiont.nestedexample.dir1">tests.fixture_pkg.reflectiont.nestedexample.dir1 (module)</a>
 </li>
-      <li><a href="tests.fake_pkg.nestedexample.html#module-tests.fake_pkg.nestedexample.mod1">tests.fake_pkg.nestedexample.mod1 (module)</a>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir1.html#module-tests.fixture_pkg.reflectiont.nestedexample.dir1.mod2">tests.fixture_pkg.reflectiont.nestedexample.dir1.mod2 (module)</a>
+</li>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir1.html#module-tests.fixture_pkg.reflectiont.nestedexample.dir1.mod3">tests.fixture_pkg.reflectiont.nestedexample.dir1.mod3 (module)</a>
+</li>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir2.html#module-tests.fixture_pkg.reflectiont.nestedexample.dir2">tests.fixture_pkg.reflectiont.nestedexample.dir2 (module)</a>
+</li>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir2.dir3.html#module-tests.fixture_pkg.reflectiont.nestedexample.dir2.dir3">tests.fixture_pkg.reflectiont.nestedexample.dir2.dir3 (module)</a>
+</li>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir2.dir3.html#module-tests.fixture_pkg.reflectiont.nestedexample.dir2.dir3.mod5">tests.fixture_pkg.reflectiont.nestedexample.dir2.dir3.mod5 (module)</a>
+</li>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir2.html#module-tests.fixture_pkg.reflectiont.nestedexample.dir2.mod4">tests.fixture_pkg.reflectiont.nestedexample.dir2.mod4 (module)</a>
+</li>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.dir2.html#module-tests.fixture_pkg.reflectiont.nestedexample.dir2.mod_with_subclass">tests.fixture_pkg.reflectiont.nestedexample.dir2.mod_with_subclass (module)</a>
+</li>
+      <li><a href="tests.fixture_pkg.reflectiont.nestedexample.html#module-tests.fixture_pkg.reflectiont.nestedexample.mod1">tests.fixture_pkg.reflectiont.nestedexample.mod1 (module)</a>
+</li>
+      <li><a href="tests.generators.html#module-tests.generators">tests.generators (module)</a>
+</li>
+      <li><a href="tests.generators.workspace.html#module-tests.generators.workspace">tests.generators.workspace (module)</a>
+</li>
+      <li><a href="tests.generators.workspace.html#module-tests.generators.workspace.workspace_generator_test">tests.generators.workspace.workspace_generator_test (module)</a>
 </li>
       <li><a href="tests.systemtests.html#module-tests.systemtests">tests.systemtests (module)</a>
 </li>
@@ -901,9 +1027,11 @@
 </li>
       <li><a href="tests.html#module-tests.test_cmdline">tests.test_cmdline (module)</a>
 </li>
+      <li><a href="tests.html#module-tests.test_generator">tests.test_generator (module)</a>
+</li>
       <li><a href="tests.html#module-tests.test_path">tests.test_path (module)</a>
 </li>
-      <li><a href="tests.html#module-tests.test_properties">tests.test_properties (module)</a>
+      <li><a href="tests.html#module-tests.test_props">tests.test_props (module)</a>
 </li>
       <li><a href="tests.html#module-tests.test_test">tests.test_test (module)</a>
 </li>
@@ -925,9 +1053,13 @@
 </li>
       <li><a href="tests.html#tests.test_test.TestTest">TestTest (class in tests.test_test)</a>
 </li>
+      <li><a href="tests.generators.workspace.html#tests.generators.workspace.workspace_generator_test.TestWorkspaceGenerator">TestWorkspaceGenerator (class in tests.generators.workspace.workspace_generator_test)</a>
+</li>
       <li><a href="tests.html#tests.test_workspace.TestWorkspaces">TestWorkspaces (class in tests.test_workspace)</a>
 </li>
-      <li><a href="lor.util.html#lor.util.tree_map">tree_map() (in module lor.util)</a>
+      <li><a href="lor.util.html#lor.util.to_camel_case">to_camel_case() (in module lor.util)</a>
+</li>
+      <li><a href="lor.util.html#lor.util.to_snake_case">to_snake_case() (in module lor.util)</a>
 </li>
       <li><a href="lor.util.html#lor.util.try_construct_suggestions_msg">try_construct_suggestions_msg() (in module lor.util)</a>
 </li>
@@ -961,10 +1093,14 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="lor.util.html#lor.util.with_trailing_slash">with_trailing_slash() (in module lor.util)</a>
+      <li><a href="tests.fixture_pkg.generators.without_templates.html#tests.fixture_pkg.generators.without_templates.without_templates_generator.WithoutTemplatesGenerator">WithoutTemplatesGenerator (class in tests.fixture_pkg.generators.without_templates.without_templates_generator)</a>
+</li>
+      <li><a href="tests.fixture_pkg.generators.with_templates.html#tests.fixture_pkg.generators.with_templates.with_templates_generator.WithTemplatesGenerator">WithTemplatesGenerator (class in tests.fixture_pkg.generators.with_templates.with_templates_generator)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="lor.generators.workspace.html#lor.generators.workspace.workspace_generator.WorkspaceGenerator">WorkspaceGenerator (class in lor.generators.workspace.workspace_generator)</a>
+</li>
       <li><a href="lor.util.html#lor.util.write_str_to_file">write_str_to_file() (in module lor.util)</a>
 </li>
   </ul></td>

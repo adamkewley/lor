@@ -1,0 +1,31 @@
+tests.fixture\_pkg.reflectiont package
+======================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    tests.fixture_pkg.reflectiont.empty
+    tests.fixture_pkg.reflectiont.example
+    tests.fixture_pkg.reflectiont.nestedexample
+
+Submodules
+----------
+
+tests.fixture\_pkg.reflectiont.mod\_with\_class module
+------------------------------------------------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.mod_with_class
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.fixture_pkg.reflectiont
+    :members:
+    :undoc-members:
+    :show-inheritance:

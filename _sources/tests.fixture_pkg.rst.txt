@@ -1,0 +1,18 @@
+tests.fixture\_pkg package
+==========================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    tests.fixture_pkg.generators
+    tests.fixture_pkg.reflectiont
+
+Module contents
+---------------
+
+.. automodule:: tests.fixture_pkg
+    :members:
+    :undoc-members:
+    :show-inheritance:

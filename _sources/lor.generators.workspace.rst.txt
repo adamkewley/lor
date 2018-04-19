@@ -1,0 +1,22 @@
+lor.generators.workspace package
+================================
+
+Submodules
+----------
+
+lor.generators.workspace.workspace\_generator module
+----------------------------------------------------
+
+.. automodule:: lor.generators.workspace.workspace_generator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: lor.generators.workspace
+    :members:
+    :undoc-members:
+    :show-inheritance:

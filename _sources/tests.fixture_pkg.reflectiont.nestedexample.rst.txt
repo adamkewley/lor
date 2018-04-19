@@ -1,0 +1,38 @@
+tests.fixture\_pkg.reflectiont.nestedexample package
+====================================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    tests.fixture_pkg.reflectiont.nestedexample.dir1
+    tests.fixture_pkg.reflectiont.nestedexample.dir2
+
+Submodules
+----------
+
+tests.fixture\_pkg.reflectiont.nestedexample.another\_mod\_with\_class module
+-----------------------------------------------------------------------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.nestedexample.another_mod_with_class
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tests.fixture\_pkg.reflectiont.nestedexample.mod1 module
+--------------------------------------------------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.nestedexample.mod1
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.nestedexample
+    :members:
+    :undoc-members:
+    :show-inheritance:

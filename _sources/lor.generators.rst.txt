@@ -1,0 +1,19 @@
+lor.generators package
+======================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    lor.generators.generator
+    lor.generators.task
+    lor.generators.workspace
+
+Module contents
+---------------
+
+.. automodule:: lor.generators
+    :members:
+    :undoc-members:
+    :show-inheritance:

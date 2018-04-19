@@ -150,15 +150,16 @@
             
   <div class="section" id="luigi-on-rails">
 <h1>Luigi on Rails<a class="headerlink" href="#luigi-on-rails" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://travis-ci.org/adamkewley/lor"><img alt="Build Status" src="https://travis-ci.org/adamkewley/lor.svg?branch=master" /></a></p>
 <p>ALPHA BUILD: A framework for rapidly developing pipelines with Luigi</p>
 <p>[<a class="reference external" href="https://adamkewley.github.io/lor/">documentation</a>]</p>
 <p>Features:</p>
 <ul class="simple">
 <li>Convention-over-configuration approach to Luigi projects</li>
-<li>Standard workspace creation (<cite>lor new</cite>)</li>
+<li>Standard workspace creation (<code class="docutils literal notranslate"><span class="pre">lor</span> <span class="pre">new</span></code>)</li>
 <li>Configuration loading</li>
-<li>A workspace-centric command-line (<cite>new</cite>, <cite>explain</cite>, <cite>ls</cite>, <cite>run</cite>, etc.)</li>
-<li>Utility tasks (e.g. ` EnsureExistsOnLocalFilesystemTask`)</li>
+<li>A workspace-centric command-line (<code class="docutils literal notranslate"><span class="pre">new</span></code>, <code class="docutils literal notranslate"><span class="pre">explain</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">run</span></code>, etc.)</li>
+<li>Utility tasks (e.g. <code class="docutils literal notranslate"><span class="pre">EnsureExistsOnLocalFilesystemTask</span></code>)</li>
 <li>Other utilities for managing long-running subprocesses, building a CLI, etc.</li>
 </ul>
 <div class="section" id="installation">
@@ -174,18 +175,18 @@
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>Once installed, <cite>lor</cite> can be used from the command-line:</p>
+<p>Once installed, <code class="docutils literal notranslate"><span class="pre">lor</span></code> can be used from the command-line:</p>
 <blockquote>
 <div>$ lor new foo</div></blockquote>
-<p>This creates a <cite>lor</cite> workspace at <cite>foo/</cite>. A <cite>lor</cite> workspace is a standard python3 pip project which depends on <cite>lor</cite>
-as a dependency (this can be removed if you don’t need it). The <cite>lor</cite> command-line command can detect if the terminal is
-in a <cite>lor</cite> workspace and provides convenience commands for working in a standard workspace.</p>
-<p>Tasks written for <cite>lor</cite> are just standard Luigi tasks. The <cite>lor</cite> library provides various utility methods that a typical
-project <em>might</em> find useful (all opt-in). For example, <cite>lor</cite> provides a <cite>global_workspace</cite> module that you can use to
-resolve paths and configuration properties for the current workspace:</p>
+<p>This creates a <code class="docutils literal notranslate"><span class="pre">lor</span></code> workspace at <code class="docutils literal notranslate"><span class="pre">foo/</span></code>. A <code class="docutils literal notranslate"><span class="pre">lor</span></code> workspace is a standard python3 pip project which depends on
+<code class="docutils literal notranslate"><span class="pre">lor</span></code> as a dependency (this can be removed if you don’t need it). The <code class="docutils literal notranslate"><span class="pre">lor</span></code> command-line command can detect if the
+terminal is in a <code class="docutils literal notranslate"><span class="pre">lor</span></code> workspace and provides convenience commands for working in a standard workspace.</p>
+<p>Tasks written for <code class="docutils literal notranslate"><span class="pre">lor</span></code> are just standard Luigi tasks. The <code class="docutils literal notranslate"><span class="pre">lor</span></code> library provides various utility methods that a
+typical project <em>might</em> find useful (all opt-in). For example, <code class="docutils literal notranslate"><span class="pre">lor</span></code> provides a <code class="docutils literal notranslate"><span class="pre">props</span></code> module that you can use to
+load configuration properties at runtime:</p>
 <div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># foo/tasks/bar</span>
 
-<span class="kn">import</span> <span class="nn">lor.workspace_global</span>
+<span class="kn">import</span> <span class="nn">lor.props</span>
 <span class="kn">import</span> <span class="nn">luigi</span>
 
 
@@ -194,27 +195,27 @@ resolve paths and configuration properties for the current workspace:</p>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">config_prop</span> <span class="o">=</span> <span class="n">lor</span><span class="o">.</span><span class="n">workspace_global</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s2">&quot;CONFIG_PROP&quot;</span><span class="p">)</span>
+            <span class="n">config_prop</span> <span class="o">=</span> <span class="n">lor</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CONFIG_PROP&quot;</span><span class="p">)</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">config_prop</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">luigi</span><span class="o">.</span><span class="n">LocalTarget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_path</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The above is a standard Luigi task that uses <cite>lor</cite> to load a configuration property called <cite>CONFIG_PROP</cite> from the
-workspace (held at <cite>etc/properties.yml</cite> in the workspace). The task is a standard Luigi task, so it can be ran from
+<p>The above is a standard Luigi task that uses <code class="docutils literal notranslate"><span class="pre">lor</span></code> to load a configuration property called <code class="docutils literal notranslate"><span class="pre">CONFIG_PROP</span></code> from the
+workspace (held at <code class="docutils literal notranslate"><span class="pre">etc/properties.yml</span></code> in the workspace). The task is a standard Luigi task, so it can be ran from
 Luigi directly:</p>
 <blockquote>
 <div>$ luigi –module foo.tasks.bar BarTask –output-path some/path</div></blockquote>
-<p>The <cite>lor run</cite> command can also be used to run the task:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">lor</span> <span class="pre">run</span></code> command can also be used to run the task:</p>
 <blockquote>
 <div>$ lor run –module foo.tasks.bar BarTask –output-path some/path</div></blockquote>
-<p>The <cite>lor run</cite> command runs <cite>luigi</cite> by proxy, so it effectively has the same interface. However, <cite>lor run</cite> also adds
-useful functionality, such as the ability to override a variable’s value at runtime:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">lor</span> <span class="pre">run</span></code> command runs <code class="docutils literal notranslate"><span class="pre">luigi</span></code> by proxy, so it effectively has the same interface. However, <code class="docutils literal notranslate"><span class="pre">lor</span> <span class="pre">run</span></code> also
+adds useful functionality, such as the ability to override a variable’s value at runtime:</p>
 <blockquote>
 <div>$ lor run –properties CONFIG_PROP=overridden –module foo.tasks.bar BarTask –output-path some/path</div></blockquote>
 <p>The task will then write “overridden” to the output file instead of whatever was loaded from the workspace’s configuration
-file. This is because <cite>lor run</cite> bootstraps the workspace global with the override before running Luigi.</p>
+file. This is because <code class="docutils literal notranslate"><span class="pre">lor</span> <span class="pre">run</span></code> bootstraps the workspace global with the override before running Luigi.</p>
 <p>TODO: This documentation is work in progress</p>
 </div>
 <div class="section" id="table-of-contents">

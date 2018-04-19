@@ -6,7 +6,8 @@ Subpackages
 
 .. toctree::
 
-    tests.fake_pkg
+    tests.fixture_pkg
+    tests.generators
     tests.systemtests
     tests.util
 
@@ -21,6 +22,14 @@ tests.test\_cmdline module
     :undoc-members:
     :show-inheritance:
 
+tests.test\_generator module
+----------------------------
+
+.. automodule:: tests.test_generator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 tests.test\_path module
 -----------------------
 
@@ -29,10 +38,10 @@ tests.test\_path module
     :undoc-members:
     :show-inheritance:
 
-tests.test\_properties module
------------------------------
+tests.test\_props module
+------------------------
 
-.. automodule:: tests.test_properties
+.. automodule:: tests.test_props
     :members:
     :undoc-members:
     :show-inheritance:

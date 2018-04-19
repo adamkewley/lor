@@ -1,0 +1,29 @@
+tests.fixture\_pkg.generators.with\_templates package
+=====================================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    tests.fixture_pkg.generators.with_templates.templates
+
+Submodules
+----------
+
+tests.fixture\_pkg.generators.with\_templates.with\_templates\_generator module
+-------------------------------------------------------------------------------
+
+.. automodule:: tests.fixture_pkg.generators.with_templates.with_templates_generator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.fixture_pkg.generators.with_templates
+    :members:
+    :undoc-members:
+    :show-inheritance:

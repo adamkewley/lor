@@ -1,0 +1,22 @@
+lor.generators.generator package
+================================
+
+Submodules
+----------
+
+lor.generators.generator.generator\_generator module
+----------------------------------------------------
+
+.. automodule:: lor.generators.generator.generator_generator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: lor.generators.generator
+    :members:
+    :undoc-members:
+    :show-inheritance:

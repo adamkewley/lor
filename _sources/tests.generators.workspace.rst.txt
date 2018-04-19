@@ -1,0 +1,22 @@
+tests.generators.workspace package
+==================================
+
+Submodules
+----------
+
+tests.generators.workspace.workspace\_generator\_test module
+------------------------------------------------------------
+
+.. automodule:: tests.generators.workspace.workspace_generator_test
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.generators.workspace
+    :members:
+    :undoc-members:
+    :show-inheritance:

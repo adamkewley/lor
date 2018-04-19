@@ -1,0 +1,30 @@
+tests.fixture\_pkg.reflectiont.example package
+==============================================
+
+Submodules
+----------
+
+tests.fixture\_pkg.reflectiont.example.mod1 module
+--------------------------------------------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.example.mod1
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tests.fixture\_pkg.reflectiont.example.mod2 module
+--------------------------------------------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.example.mod2
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.example
+    :members:
+    :undoc-members:
+    :show-inheritance:

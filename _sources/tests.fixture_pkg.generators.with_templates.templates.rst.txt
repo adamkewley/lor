@@ -1,0 +1,10 @@
+tests.fixture\_pkg.generators.with\_templates.templates package
+===============================================================
+
+Module contents
+---------------
+
+.. automodule:: tests.fixture_pkg.generators.with_templates.templates
+    :members:
+    :undoc-members:
+    :show-inheritance:

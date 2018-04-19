@@ -1,0 +1,22 @@
+lor.generators.task package
+===========================
+
+Submodules
+----------
+
+lor.generators.task.task\_generator module
+------------------------------------------
+
+.. automodule:: lor.generators.task.task_generator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: lor.generators.task
+    :members:
+    :undoc-members:
+    :show-inheritance:

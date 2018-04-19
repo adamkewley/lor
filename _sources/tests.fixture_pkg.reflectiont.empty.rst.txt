@@ -1,0 +1,10 @@
+tests.fixture\_pkg.reflectiont.empty package
+============================================
+
+Module contents
+---------------
+
+.. automodule:: tests.fixture_pkg.reflectiont.empty
+    :members:
+    :undoc-members:
+    :show-inheritance:

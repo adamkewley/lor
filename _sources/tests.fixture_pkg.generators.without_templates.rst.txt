@@ -1,0 +1,22 @@
+tests.fixture\_pkg.generators.without\_templates package
+========================================================
+
+Submodules
+----------
+
+tests.fixture\_pkg.generators.without\_templates.without\_templates\_generator module
+-------------------------------------------------------------------------------------
+
+.. automodule:: tests.fixture_pkg.generators.without_templates.without_templates_generator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: tests.fixture_pkg.generators.without_templates
+    :members:
+    :undoc-members:
+    :show-inheritance:

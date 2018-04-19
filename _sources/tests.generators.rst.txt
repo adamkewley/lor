@@ -1,0 +1,17 @@
+tests.generators package
+========================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    tests.generators.workspace
+
+Module contents
+---------------
+
+.. automodule:: tests.generators
+    :members:
+    :undoc-members:
+    :show-inheritance:
