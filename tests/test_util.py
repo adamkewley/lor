@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import os
+import tempfile
 import unittest
 
 from lor import util
@@ -19,22 +21,58 @@ from lor import util
 
 class TestHelpers(unittest.TestCase):
 
-    def test_resolve_template_str_returns_expected_results(self):
+    def test_file_uri_returns_expected_results(self):
+        cwd = os.getcwd()
+
         tests = [
-            {"input": "", "variables": {}, "expectedOutput": ""},
-            {"input": "$VAR1", "variables": {}, "expectedOutput": "$VAR1"},
-            {"input": "$VAR1", "variables": {"VAR1": "val"}, "expectedOutput": "val"},
-            {"input": "$VAR1foo", "variables": {"VAR1": "val"}, "expectedOutput": "valfoo"},
-            {"input": "$VAR1foo$VAR2", "variables": {"VAR1": "val"}, "expectedOutput": "valfoo$VAR2"},
-            {"input": "$VAR1foo$VAR2", "variables": {"VAR1": "val", "VAR2": "val2"}, "expectedOutput": "valfooval2"},
+            ("/", "file:///"),
+            ("/dir1/dir2", "file:///dir1/dir2"),
+            ("", "file://{cwd}/".format(cwd=cwd)),
+            ("dir1/dir2", "file://{cwd}/dir1/dir2".format(cwd=cwd)),
         ]
 
-        for test in tests:
-            input_str = test["input"]
-            variables = test["variables"]
-            expected_output = test["expectedOutput"]
-            actual_output = util.resolve_template_str(input_str, variables)
-            self.assertEqual(actual_output, expected_output)
+        for input_path, expected_output in tests:
+            actual_output = util.file_uri(input_path)
+            self.assertEqual(expected_output, actual_output)
+
+    def test_read_file_to_string_returns_file_contents_as_string(self):
+        _, path = tempfile.mkstemp()
+        content = util.base36_str()
+        with open(path, "w") as f:
+            f.write(content)
+
+        returned_content = util.read_file_to_string(path)
+        self.assertEqual(content, returned_content)
+
+    def test_read_file_to_string_raises_FileNotFoundError_for_non_existent_path(self):
+        with self.assertRaises(FileNotFoundError):
+            util.read_file_to_string(util.base36_str(64))
+
+    def test_read_file_to_string_raises_UnicodeDecodeError_for_binary_file(self):
+        _, path = tempfile.mkstemp()
+        with open(path, "wb") as f:
+            f.write(os.urandom(32))
+
+        with self.assertRaises(UnicodeDecodeError):
+            util.read_file_to_string(path)
+
+    def test_write_str_to_file(self):
+        dir = tempfile.mkdtemp()
+        dest = os.path.join(dir, "file")
+        s = util.base36_str()
+
+        util.write_str_to_file(dest, s)
+
+        self.assertTrue(os.path.exists(dest))
+
+        with open(dest, "r") as f:
+            content = f.read()
+            self.assertEqual(s, content)
+
+    def test_write_str_to_file_raises_FileExistsError_if_file_exists(self):
+        _, p = tempfile.mkstemp()
+        with self.assertRaises(FileExistsError):
+            util.write_str_to_file(p, util.base36_str())
 
     def test_uri_subfolder_returns_expected_result(self):
         tests = [
@@ -53,12 +91,6 @@ class TestHelpers(unittest.TestCase):
         for test in tests:
             result = util.uri_subfolder(test["base"], test["part"])
             self.assertEqual(result, test["result"])
-
-    def test_flatten_returns_expected_result(self):
-        input = [1, [2, 3], 4, [5, 6, 7]]
-        expected_output = [1, 2, 3, 4, 5, 6, 7]
-        actual_output = util.flatten(input)
-        self.assertEqual(actual_output, expected_output)
 
     def test_or_join_returns_expected_results(self):
         self.assertEqual("", util.or_join([]))

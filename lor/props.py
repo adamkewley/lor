@@ -26,6 +26,8 @@ also initialize them with CLI overrides etc.
 """
 import os
 
+import yaml
+
 import lor._constants
 from lor import util, workspace
 
@@ -206,7 +208,8 @@ class YAMLFilePropertyLoader(PropertyLoader):
         self.path_to_yaml_file = path_to_yaml_file
 
         try:
-            self.property_dict = util.read_yaml(path_to_yaml_file)
+            with open(path_to_yaml_file, "r") as f:
+                self.property_dict = yaml.load(f)
         except Exception as ex:
             raise RuntimeError("{path_to_yaml_file}: Error loading as a standard YAML file: required as a properties file".format(path_to_yaml_file=path_to_yaml_file)) from ex
 

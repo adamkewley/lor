@@ -13,17 +13,15 @@
 # limitations under the License.
 #
 import os
-import tempfile
 import unittest
 
 import yaml
 
 import lor
 import lor._constants
-from lor.test import TemporaryWorkspace
-
 from lor import util, props, workspace
 from lor.props import DictPropertyLoader, YAMLFilePropertyLoader
+from lor.test import TemporaryWorkspace
 from tests import tst_helpers
 
 

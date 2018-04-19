@@ -16,109 +16,82 @@
 A module containing general helpers
 """
 import difflib
-import glob
-import logging
 import os
 import random
 import re
 import string
 
-import yaml
-from luigi import Target
 
-logger = logging.getLogger('etc-clusters')
+def file_uri(path):
+    """
+    Returns `path` as a file URI
 
+    Relative paths are resolved relative to the current working directory.
 
-def file_uri(local_path):
-    if local_path.startswith("/"):
-        return "file://%s" % local_path
+    :param path: A path string to convert
+    :return: A file URI string (e.g. file:///usr)
+    """
+    if path.startswith("/"):
+        return "file://" + path
     else:
-        return "file://%s/%s" % (os.getcwd(), local_path)
+        return "file://{cwd}/{path}".format(cwd=os.getcwd(), path=path)
 
 
 def read_file_to_string(path):
-    with open(path) as f:
+    """
+    Returns the contents of a file at ``path`` as a string.
+
+    :param path: A path string
+    :return: Contents of the file as a string
+    :raises FileNotFoundError: If ``path`` does not exist
+    :raises UnicodeDecodeError: If file does not contain UTF-8/ASCII text
+    """
+    with open(path, "r") as f:
         return f.read()
 
 
-def read_non_blank_lines_in_file(path):
-    with open(path) as file:
-        for line in file:
-            line = line.strip()
-            if len(line) > 0:
-                yield line
-
-
-def read_yaml(path):
-    with open(path, 'r') as f:
-        return yaml.load(f)
-
-
 def write_str_to_file(path, s):
+    """
+    Write ``s`` to a file located at ``path``.
+
+    :param path: Destination file path
+    :param s: The string to write
+    :raises FileExistsError if file exists
+    """
+    if os.path.exists(path):
+        raise FileExistsError("{path}: already exists".format(path=path))
+
     with open(path, "w") as f:
         f.write(s)
         f.flush()
 
 
-def tree_map(h, key_mapper, leaf_mapper):
-    """
-    Perform a depth-first traversal of a hash, passing each
-    key encountered to key_mapper and each value encountered to
-    leaf_mapper.
-    """
-
-    if isinstance(h, dict):
-        ret = {}
-
-        for k, v in h.items():
-            k2 = key_mapper(k)
-
-            if isinstance(v, dict):
-                v2 = tree_map(v, key_mapper, leaf_mapper)
-            elif isinstance(v, list):
-                v2 = list(map(lambda e: tree_map(e, key_mapper, leaf_mapper), v))
-            else:
-                v2 = leaf_mapper(v)
-
-            ret[k2] = v2
-
-        return ret
-    else:
-        return leaf_mapper(h)
-
-
-def resolve_template_str(s, variables_h):
-    """
-    Substitute a template string (e.g. "$VAR1")
-    """
-    ret = s
-
-    # Always substitute the longest match first.
-    for varname in sorted(variables_h, key=len, reverse=True):
-        varval = variables_h[varname]
-        ret = ret.replace("$" + str(varname), str(varval))
-
-    return ret
-
-
 def merge(h1, h2):
+    """
+    Returns a new dictionary containing the key-value pairs of ``h1`` combined with the key-value pairs of ``h2``.
+
+    Duplicate keys from ``h2`` overwrite keys from ``h1``.
+
+    :param h1: A python dict
+    :param h2: A python dict
+    :return: A new python dict containing the merged key-value pairs
+    """
     ret = {}
     ret.update(h1)
     ret.update(h2)
     return ret
 
 
-def assert_file_exists(path, noun="file"):
-    if not os.path.exists(path):
-        error_msg = "Cannot find {noun} at {path}".format(noun=noun, path=path)
-        logger.error(error_msg)
-        raise FileNotFoundError(error_msg)
-
-
 def uri_subfolder(base, subfolder):
     """
-    Join a subfolder onto a URI. This function exists because python (stupidly)
-    uses a whitelist for custom protocols (e.g. hdfs) when using urljoin.
+    Returns a URI created by addin ``subfolder`` (a path) to the end of ``base`` (a URI).
+
+    Assumes the protocol supports relative pathing. This function exists because python (stupidly) uses a whitelist for
+    custom protocols (e.g. hdfs) when using urljoin. See: https://bugs.python.org/issue18828
+
+    :param base: A URI
+    :param subfolder: A path
+    :return A URI
     """
     if base.endswith("/"):
         return base + subfolder
@@ -126,58 +99,14 @@ def uri_subfolder(base, subfolder):
         return base + "/" + subfolder
 
 
-def base36_str(l=5):
-    return "".join(random.choice(string.ascii_lowercase + string.digits) for _ in range(l))
+def base36_str(desired_length=5):
+    """
+    Returns a randomly-generated base36 string with length ``desired_length``.
 
-
-def flatten(lst):
-    ret = []
-    for x in lst:
-        if isinstance(x, list):
-            for y in x:
-                ret.append(y)
-        else:
-            ret.append(x)
-    return ret
-
-
-def task_input_merge(task_input):
-    if isinstance(task_input, Target):
-        return task_input
-    elif isinstance(task_input, dict):
-        ret = {}
-        for k, v in task_input.items():
-            mapped_v = task_input_merge(v)
-            if isinstance(mapped_v, dict):
-                for k2, v2 in mapped_v.items():
-                    ret_key = "{k}_{k2}".format(k=k, k2=k2)
-                    ret[ret_key] = v2
-            else:
-                ret[k] = mapped_v
-        return ret
-    else:
-        raise RuntimeError("{type}: Cannot be merged into other task outputs".format(type=type(task_input)))
-
-
-def map_vals(f, d):
-    return dict(map(lambda t: (t[0], f(t[1])), d.items()))
-
-
-def find_newest_file_in_dir(glob_pattern):
-    all_files = glob.glob(glob_pattern)
-    return max(all_files, key=os.path.getctime)
-
-
-def subdirs_in(path):
-    dir_names = next(os.walk(path))[1]
-    return map(lambda dir_name: os.path.join(path, dir_name), dir_names)
-
-
-def with_trailing_slash(s):
-    if s.endswith("/"):
-        return s
-    else:
-        return s + "/"
+    :param desired_length: Length of the string to generate
+    :return: A randomly-generated base36 string
+    """
+    return "".join(random.choice(string.ascii_lowercase + string.digits) for _ in range(desired_length))
 
 
 def bullet_point_list(str_list):
