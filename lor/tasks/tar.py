@@ -33,7 +33,7 @@ class TarballTask(ExternalProgramTask):
 
     def program_args(self):
         input_path = self.input().path
-        with tarfile.open(self.output().path, input_path) as tar:
+        with tarfile.open(self.output().path, "wb") as tar:
             tar.add(input_path, arcname=os.path.basename(input_path))
 
     def output(self):
