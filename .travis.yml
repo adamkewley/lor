@@ -1,3 +1,14 @@
 language: python
 python: 3.4
 script: python3 -m unittest discover tests/ "test_*"
+
+deploy:
+  provider: pypi
+  user: adamkewley
+  password:
+    secure: ieuxAvwcJL9foGTcwuj1SpDeFmnZz1ODyuGj5LnNZzfy50QSBDJ4VEY2WlRVtmFYupIcggcWUKje1rRcXq/ctFnSDEO1TBI9/hYgnJD4JZNUsY8grKwtZ57cOgFKQcTuDb1Zq4gsVUTwJ1gg9uK+rnvIU9WgEzWrLoX93ot5f58F52FxIb5eobxPtI0H+WVbzRwmsEw7BhP0q9l0uaWZlLkbvKtPV4Nkd6PZuMM7mf/xEHPhIKss4bFV1Q8u/QFuSHcQOIGKzgW56ZnwihGnoLbZvkd7n8tNnDRV/VROqzkZ0KiE+GNs7ZnEZ0WMDd55a3+eAO4epE/vNFAcHoNEOxWYo6C8FacJnUGoMJLiK4sjmzVUI+SxxTsy8bh7oLWtjNN4wjkjCOqcJE0DXXOW0PzfOOgOwlQczYsNJv+dQb0dLAti7Brtq3x++7ANEiYFq1kA4LkIE3nPGcYCF5N2Ym/yNSzlRcr5GzAkWsAWfBHOND/PV+A9xVS1X2hXEpactEWnnvahzq+yNlGG3QmgRCARzbpH22Th39HNaulFXKniZtJZYrH19eFRavt3QX5x4VCIEt6QQSpCAb93lbX8Ug1cRRW+Wq5xNbssjKCJO/DAoLwfKpziJDbrowwNYpu3DXgKCsncdKbvQg14J+ClA5R2tWQFEPgmi8a4XLnsyzg=
+
+  distributions: sdist
+
+  on:
+    tags: true
