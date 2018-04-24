@@ -95,5 +95,3 @@ class GenerateCommand(CliCommand):
             err_msg = "invalid choice: {generator_name}: choose from {choices}".format(generator_name=generator_name, choices=choices)
             parser.error(err_msg)
             exit(1)
-
-

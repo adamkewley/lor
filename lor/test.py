@@ -18,82 +18,9 @@ This module contains helper functions that downstream workspaces might want to u
 """
 import os
 import tempfile
-import unittest
 
-import luigi
-from luigi import Target
-from luigi.contrib.hdfs import HdfsClient
-
-import lor._constants
-from lor import util
 from lor import workspace
 from lor.generators.workspace import workspace_generator
-
-tc = unittest.TestCase('__init__')
-
-
-def assert_task_passes(luigi_task):
-    """Assert that `luigi_task` can be executed on a local scheduler.
-
-    An AssertionError is raised if the task cannot be executed
-
-    :param luigi_task: A fully-instantiated Luigi task
-    """
-    ran_ok = luigi.build([luigi_task], local_scheduler=True)
-    tc.assertTrue(ran_ok)
-    __assert_output_exists(luigi_task.output())
-
-
-def __assert_output_exists(output):
-    if isinstance(output, Target):
-        tc.assertTrue(output.exists)
-    else:
-        print("Incompatible output from task: " + str(output))
-
-
-def assert_task_fails(luigi_task):
-    """Assert that `luigi_task` cannot be executed on a local scheduler.
-
-    An AssertionError is raised if the task executed successfully.
-
-    :param luigi_task: A fully-instantiated Luigi task
-    """
-    ran_ok = luigi.build([luigi_task], local_scheduler=True)
-    tc = unittest.TestCase('__init__')
-    tc.assertTrue(not ran_ok)
-
-
-class TemporaryHdfsDir(object):
-    """Create a temporary directory on HDFS
-
-    The directory's path on HDFS is returned. After the block exists, the dir is deleted. Useful for testing tasks
-    on-cluster without filling the cluster's HDFS filesystem with test outputs.
-    """
-
-    def __init__(self):
-        pass
-
-    def __enter__(self):
-        hdfs_client = HdfsClient()
-        max_attempts = lor._constants.MAX_TMP_DIR_CREATION_ATTEMPTS
-        for i in range(max_attempts):
-            maybe_id = util.base36_str(10)
-            if not hdfs_client.exists(maybe_id):
-                hdfs_client.mkdir(maybe_id)
-                self.path = maybe_id
-                return maybe_id
-            else:
-                continue
-        raise RuntimeError("Could not generate a temporary ID after {num} attempts".format(num=max_attempts))
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        hdfs_client = HdfsClient()
-        hdfs_client.remove(self.path)
-
-        if exc_val is not None:
-            raise exc_val
-        else:
-            return True
 
 
 class TemporaryEnv(object):
