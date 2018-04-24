@@ -63,6 +63,16 @@ class TestSubprocess(TestCase):
         self.assertEqual("HELLO, WORLD!", final_stdout_state)
         self.assertEqual(0, exit_code)
 
+    def test_call_with_no_stdout_reducer_works(self):
+        args = ["python3", tst_helpers.fixture("print_hello_world.py")]
+        exit_code, final_stdout_state, final_stderr_state = subprocess.call_with_output_reducers(args)
+        self.assertEqual(exit_code, 0)
+
+    def test_call_with_no_stderr_reducer_works(self):
+        args = ["python3", tst_helpers.fixture("print_hello_world.py")]
+        exit_code, final_stdout_state, final_stderr_state = subprocess.call_with_output_reducers(args)
+        self.assertEqual(exit_code, 0)
+
     def test_call_with_output_reducers_with_stderr_reducer_works_as_expected(self):
         args = ["python3", tst_helpers.fixture("print_stderr.py")]
         initial_stderr_state = ""

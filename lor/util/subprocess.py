@@ -51,7 +51,7 @@ def call_with_stdout_reducer(args, initial_reducer_state, output_reducer):
     return exit_code, stdout_state
 
 
-def call_with_output_reducers(args, stdout_initial_state=None, stdout_reducer=lambda: (), stderr_initial_state=None, stderr_reducer=lambda: ()):
+def call_with_output_reducers(args, stdout_initial_state=None, stdout_reducer=lambda s, line: s, stderr_initial_state=None, stderr_reducer=lambda s, line: s):
     p = subprocess.Popen(args, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
 
     with ExternalProgramRunContext(p):
