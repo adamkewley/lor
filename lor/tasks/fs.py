@@ -29,4 +29,4 @@ class EnsureExistsOnLocalFilesystemTask(luigi.ExternalTask):
         return luigi.LocalTarget(self.path)
 
     def run(self):
-        raise RuntimeError("{path}: does not exist on the local filesystem (it should).".format(path=self.path))
+        raise FileNotFoundError("{path}: does not exist on the local filesystem (it should).".format(path=self.path))
