@@ -42,21 +42,37 @@ def get(prop_name):
     :return: The property's value
     :raises KeyError if `prop_name` cannot be loaded
     """
-    return get_property_from_list_of_loaders(_get_loaders(), prop_name)
+    return get_property_from_list_of_loaders(get_loaders(), prop_name)
 
 
-def _get_loaders():
+def get_loaders():
     global __property_loaders
 
-    if __property_loaders is None:
-        maybe_ws = workspace.get_path()
-        if maybe_ws is None:
-            raise RuntimeError("Not currently in a workspace")
-        else:
-            prop_path = os.path.join(maybe_ws, lor._constants.WORKSPACE_PROPS)
-            __property_loaders = [YAMLFilePropertyLoader(prop_path)]
+    if __property_loaders is not None:
+        return __property_loaders
+    else:
+        __bootstrap_property_loaders_global()
+        return __property_loaders
 
-    return __property_loaders
+
+def __bootstrap_property_loaders_global():
+    global __property_loaders
+
+    maybe_ws = workspace.get_path()
+
+    if maybe_ws is None:
+        raise RuntimeError("Not currently in a workspace")
+    else:
+        __property_loaders = __get_default_loaders_for_workspace(maybe_ws)
+
+
+def __get_default_loaders_for_workspace(ws):
+    paths_to_load = [
+        os.path.join(os.path.expanduser('~'), lor._constants.HOME_FOLDER_NAME, lor._constants.HOME_FOLDER_PROPS_NAME),
+        os.path.join(ws, lor._constants.WORKSPACE_PROPS),
+    ]
+
+    return [YAMLFilePropertyLoader(p) for p in paths_to_load if os.path.exists(p)]
 
 
 def get_all():
@@ -65,7 +81,7 @@ def get_all():
 
     :return a dict containing all available workspace properties and their values.
     """
-    return merge_list_of_property_loaders(_get_loaders())
+    return merge_list_of_property_loaders(get_loaders())
 
 
 def _set_loaders(property_loaders):

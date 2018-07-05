@@ -47,13 +47,9 @@ def bootstrap_globals(prop_overrides):
     if not os.path.exists(prop_file_path):
         raise FileNotFoundError("{prop_file_path}: No such file: a properties file is *required* in the workspace when running LoR")
 
-    loaders = [
-        props.DictPropertyLoader("cli-overrides", prop_overrides),
-        props.YAMLFilePropertyLoader(prop_file_path),
-    ]
+    loaders = [props.DictPropertyLoader("cli-overrides", prop_overrides)] + props.get_loaders()
+    props._set_loaders(loaders)
 
     # This allows workspaces to be loaded dynamically at runtime by LoR and Luigi
     # (the Luigi docs get clients to set PYTHONPATH explicitly)
     sys.path.insert(0, workspace.get_path())
-
-    props._set_loaders(loaders)

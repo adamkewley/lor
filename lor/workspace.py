@@ -182,7 +182,11 @@ def __try_get_workspace_path_from_cwd(cwd=None):
     if is_workspace(cwd):
         return cwd
     else:
-        return None
+        parent = os.path.dirname(cwd)
+        if parent == cwd:  # we're at the root
+            return None
+        else:  # try the next dir up
+            return __try_get_workspace_path_from_cwd(parent)
 
 
 def is_workspace(path):

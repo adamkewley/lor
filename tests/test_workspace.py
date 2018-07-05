@@ -168,6 +168,16 @@ class TestWorkspaces(TestCase):
 
         self.assertEqual(os.path.realpath(cwd), os.path.realpath(ws_path))
 
+    def test_try_locate_returns_cwd_if_workspace_is_a_parent_of_cwd(self):
+        cwd = os.path.join(tempfile.mkdtemp(), "ws")
+        workspace_generator.create(cwd)
+        some_subdir = os.path.join(cwd, 'some', 'subdir', 'in', 'ws')
+        os.makedirs(some_subdir)
+
+        ws_path = workspace.try_locate(some_subdir)
+
+        self.assertEqual(os.path.realpath(cwd), os.path.realpath(ws_path))
+
     def test_try_locate_returns_env_cwd_if_env_cwd_is_a_workspace(self):
         cwd = os.path.join(tempfile.mkdtemp(), "wd")
         workspace_generator.create(cwd)

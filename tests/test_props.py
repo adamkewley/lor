@@ -20,7 +20,7 @@ import yaml
 import lor
 import lor._constants
 from lor import util, props, workspace
-from lor.props import DictPropertyLoader, YAMLFilePropertyLoader
+from lor.props import DictPropertyLoader, YAMLFilePropertyLoader, PropertyLoader
 from lor.test import TemporaryWorkspace
 from tests import tst_helpers
 
@@ -96,6 +96,16 @@ class TestProperties(unittest.TestCase):
 
         with self.assertRaises(RuntimeError):
             props.get(util.base36_str())
+
+    def test_get_loaders_returns_list_of_PropertyLoaders(self):
+        with TemporaryWorkspace() as ws:
+            props._set_loaders(None)
+            loaders = props.get_loaders()
+            self.assertIsInstance(loaders, list)
+            self.assertGreater(len(loaders), 0)
+
+            for el in  loaders:
+                self.assertIsInstance(el, PropertyLoader)
 
     def test_get_returns_property_from_loaders(self):
         k = util.base36_str()
